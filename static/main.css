@@ -173,6 +173,13 @@ code{
    .page{
       padding-left: 0px;
    }
+   .book-list{
+      grid-template-columns: repeat(1, 100%);
+   }
+   .book-card{
+      width:90%;
+      justify-self: center;
+   }
 }
 
 @media(max-width:370px){
