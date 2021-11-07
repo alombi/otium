@@ -9,7 +9,6 @@ export async function get({query}) {
    data.forEach(book => {
       if (book.volumeInfo.publisher != undefined && book.volumeInfo.imageLinks != undefined) {
          dataFiltered.push(book)
-         dataFiltered.push(book)
       }
    });
    return {

@@ -3,7 +3,6 @@ body{
    font-family: 'Barlow', sans-serif;
    background-color: #4c566a;
    color:white;
-   overflow-y: hidden !important;
 }
 a{
    color:white;
@@ -40,12 +39,13 @@ a{
 
 /* Sidebar */
 .sidebar{
-   overflow-y: hidden;
+   overflow: hidden;
    display:block;
-   position: absolute;
+   position: fixed;
 	top:0;
 	left:0;
-	height:100%;
+   z-index: 1;
+	height:100vh;
 	width: 240px;
    background-color: #3b4252;
 }
@@ -97,6 +97,7 @@ a{
 
 /* Navbar */
 nav{
+   z-index: 2;
 	width: 100%;
    position: fixed;
    top:0;
@@ -137,12 +138,11 @@ code{
 
 /* Book cards */
 .book-list{
-   overflow-y: scroll;
-   overflow-x: hidden;
-   max-height: 80vh;
-   display: flex;
-   flex-wrap:wrap;
-   gap:10px;
+   display: grid;
+   grid-template-columns: repeat(4, 25%);
+   gap:20px 0px;
+   margin-bottom: 50px;
+   align-content: stretch;
 }
 .book-card{
    width: 180px;

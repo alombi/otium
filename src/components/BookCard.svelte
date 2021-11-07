@@ -1,7 +1,7 @@
 <script>
    export let book;
    let author = book.volumeInfo.authors ? book.volumeInfo.authors[0] : `Unknown`;
-   let cover = book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : 'https://bookstoreromanceday.org/wp-content/uploads/2020/08/book-cover-placeholder.png'
+   let cover = book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.smallThumbnail : 'https://bookstoreromanceday.org/wp-content/uploads/2020/08/book-cover-placeholder.png'
    let title = book.volumeInfo.title
 </script>
 
