@@ -22,19 +22,19 @@
       <span>Bookshelf</span>
     </p>
     <div class="headerLinks">
-      <p><a href="">Reading</a></p>
-      <p><a href="">To read</a></p>
-      <p><a href="">Already read</a></p>
-      <p><a href="">Favourites</a></p>
-      <p><a href="">Suggested</a></p>
+      <a href="">Reading</a>
+      <a href="">To read</a>
+      <a href="">Already read</a>
+      <a href="">Favourites</a>
+      <a href="">Suggested</a>
     </div>
 
     <p class="sidebarHeader">
       <span>Sections</span>
     </p>
     <div class="headerLinks">
-      <p><a href="/">Home</a></p>
-      <p><a href="">About</a></p>
+      <a href="/">Home</a>
+      <a href="">About</a>
     </div>
 
   </div>

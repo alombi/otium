@@ -63,15 +63,14 @@ a{
    border:0.2px solid #434c5e;
    border-radius:4px;
 }
-.headerLinks > p{
+.headerLinks > a{
+   display: block;
+   padding:10px 5px;
+   border-radius:4px;
    margin-top:-5px;
    opacity:0.8;
 }
-.headerLinks > p{
-   padding:3px 5px;
-   border-radius:4px ;
-}
-.headerLinks > p:hover{
+.headerLinks > a:hover{
    background-color: #4c566a;
 }
 .searchBar{
