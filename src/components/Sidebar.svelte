@@ -16,17 +16,17 @@
       <input type="text" class="textForm" placeholder="Search per title" required="required" bind:value={searchTerm}>
       <button id="searchButton" type="submit"><i class="fas fa-search"></i></button>
     </form>
-    <a id="tipLink" href="">Advanced search</a>
+    <a id="tipLink" href="#">Advanced search</a>
     
     <p class="sidebarHeader">
       <span>Bookshelf</span>
     </p>
     <div class="headerLinks">
-      <a href="">Reading</a>
-      <a href="">To read</a>
-      <a href="">Already read</a>
-      <a href="">Favourites</a>
-      <a href="">Suggested</a>
+      <a href="#">Reading</a>
+      <a href="#">To read</a>
+      <a href="#">Already read</a>
+      <a href="#">Favourites</a>
+      <a href="#">Suggested</a>
     </div>
 
     <p class="sidebarHeader">
@@ -34,7 +34,7 @@
     </p>
     <div class="headerLinks">
       <a href="/">Home</a>
-      <a href="">About</a>
+      <a href="#">About</a>
     </div>
 
   </div>

@@ -5,7 +5,7 @@ body{
    color:white;
 }
 a{
-   color:white;
+   color:#a1c4fd;
    text-decoration: none;
 }
 .loader{
@@ -64,6 +64,7 @@ a{
    border-radius:4px;
 }
 .headerLinks > a{
+   color:white;
    display: block;
    padding:10px 5px;
    border-radius:4px;
@@ -138,18 +139,20 @@ code{
 /* Book cards */
 .book-list{
    display: grid;
-   grid-template-columns: repeat(4, 25%);
-   gap:20px 0px;
+   grid-template-columns: repeat(auto-fit, minmax(0,180px));
    margin-bottom: 50px;
-   align-content: stretch;
+   gap:10px;
 }
 .book-card{
-   width: 180px;
+   width: 185px;
    text-align: center;
    background-color: #434c5e;
    padding-top:30px;
    padding-bottom: 10px;
-   border-radius:6px
+   border-radius:6px;
+}
+.book-card > a{
+   color:white;
 }
 .book-card >img{
    height: 150px;
@@ -173,6 +176,7 @@ code{
       padding-left: 0px;
    }
    .book-list{
+      display: grid;
       grid-template-columns: repeat(1, 100%);
    }
    .book-card{

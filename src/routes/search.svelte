@@ -17,19 +17,23 @@
    export let data = [], query;
    import { Jellyfish } from 'svelte-loading-spinners'
    import BookCard from '../components/BookCard.svelte';
+   import Error from '../components/Error.svelte';
 
-   console.log(data)
 </script>
 
 <div id="book-list-container">
    {#if !data}
       <div class="loader"><Jellyfish size="120" color="#f2b3cf" unit="px" duration="1s"></Jellyfish></div>
    {:else}
-      <h1>Search results for: {query}</h1>
-      <div class="book-list">
-         {#each data as book}
-            <BookCard book={book} />
-         {/each}
-      </div>
+      {#if !data.error}
+         <h1>Search results for: {query}</h1>
+         <div class="book-list">
+            {#each data as book}
+               <BookCard book={book} />
+            {/each}
+         </div>
+      {:else}
+         <Error />
+      {/if}
    {/if}
 </div>
