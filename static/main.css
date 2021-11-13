@@ -3,6 +3,7 @@ body{
    font-family: 'Barlow', sans-serif;
    background-color: #4c566a;
    color:white;
+   overflow-x: hidden;
 }
 a{
    color:#a1c4fd;
@@ -163,6 +164,56 @@ code{
 .author{
    margin-top:-17px;
 }
+/* Single page */
+.author-title{
+   font-weight: 400;
+   font-size: 20px;
+   
+}
+.book-title-container{
+   margin-bottom:20px;
+}
+.title-book{
+   text-align: center;
+}
+#author-name{
+   color:#bdd2ff
+}
+.book-cover{
+   height: 250px;
+   padding-top:30px;
+   display: block;
+   margin-left: auto;
+   margin-right: auto;
+}
+.book-details-container{
+   display: grid;
+   grid-template-columns: repeat(2, 50%);
+   gap:20px;
+}
+
+/* buttons */
+.buttons-container{
+   text-align: center;
+}
+.book-actions{
+   border:0px;;
+   color:#2e3440;
+   font-size: 14px;
+   padding: 8px 35px;
+   border-radius: 6px;
+   font-weight: 600;
+}
+.add{
+   background-color: #81a1c1;
+}
+.read{
+   background-color:#a1ffa1;
+}
+.favorite{
+   background-color: #ffe896;
+}
+
 
 /* Media query */
 @media(max-width:550px){
