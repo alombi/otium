@@ -7,6 +7,9 @@ const config = {
 		target: '#svelte',
 		adapter:vercel(),
 		vite: {
+			define: {
+				'process.env': process.env,
+		  	},
 			resolve: {
 				alias: {
 					$components: resolve('./src/components')
