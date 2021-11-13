@@ -1,7 +1,7 @@
 export async function get({query}) {
    const params = query.get('q');
    var dataFiltered = [];
-   const key = import.meta.env.VITE_GOOGLE_BOOKS_KEY
+   const key = process.env.VITE_GOOGLE_BOOKS_KEY
    const url = `https://www.googleapis.com/books/v1/volumes?q=${params}&key=${key}&maxResults=10&printType=books`
    let req = await fetch(url)
    var data = await req.json()
