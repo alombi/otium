@@ -16,6 +16,7 @@ a{
 }
 .page{
    padding-top: 25px;
+   overflow-x: hidden;
 }
 .toolsButton{
    background-color: #434c5e;
@@ -137,26 +138,14 @@ code{
    display: none;
 }
 
-/* Book cards */
-.book-list{
+/* Book list */
+.title-bar{
    display: grid;
-   grid-template-columns: repeat(auto-fit, minmax(0,180px));
-   margin-bottom: 50px;
-   gap:10px;
-}
-.book-card{
-   width: 185px;
-   text-align: center;
-   background-color: #434c5e;
-   padding-top:30px;
-   padding-bottom: 10px;
-   border-radius:6px;
+   grid-template-columns: 95% 5%;
+   align-items:center;
 }
 .book-card > a{
    color:white;
-}
-.book-card >img{
-   height: 150px;
 }
 .title{
    font-weight: 600;
@@ -164,11 +153,51 @@ code{
 .author{
    margin-top:-17px;
 }
+
+.layout-grid{
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(0,180px));
+   margin-bottom: 50px;
+   gap:10px;
+}
+.layout-grid > .book-card{
+   width: 185px;
+   text-align: center;
+   background-color: #434c5e;
+   padding-top:30px;
+   padding-bottom: 10px;
+   border-radius:6px;
+}
+.layout-grid > .book-card > a > div > div > img{
+   height: 150px;
+}
+
+
+.layout-list{
+   display: flex;
+   flex-direction: column;
+}
+.layout-list > .book-card{
+   background-color: #434c5e;
+   margin-bottom:10px;
+   border-radius:6px;
+   width: 98%;
+}
+.layout-list > .book-card > a > .book-card-container{
+   display: flex;
+   gap:10px;
+   align-items: center;
+}
+
+.layout-list > .book-card > a > div > div > img{
+   height: 120px;
+   padding: 20px;
+}
+
 /* Single page */
 .author-title{
    font-weight: 400;
    font-size: 20px;
-   
 }
 .book-title-container{
    margin-bottom:20px;
@@ -190,6 +219,7 @@ code{
    display: grid;
    grid-template-columns: repeat(2, 50%);
    gap:20px;
+   margin-bottom: 50px;
 }
 
 /* buttons */
@@ -230,9 +260,22 @@ code{
       display: grid;
       grid-template-columns: repeat(1, 100%);
    }
-   .book-card{
-      width:90%;
+   .layout-grid > .book-card{
+      width:100%;
       justify-self: center;
+   }
+   .book-details-container{
+      display: grid;
+      grid-template-columns: repeat(1, 100%);
+   }
+   .buttons-container{
+      margin-bottom: 30px;
+      display: flex;
+      flex-direction: column;
+      gap:5px;
+   }
+   .title-bar{
+      grid-template-columns: 90% 10%;
    }
 }
 

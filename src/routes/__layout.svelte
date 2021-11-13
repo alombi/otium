@@ -7,7 +7,6 @@
 
    if(browser){
       $session = supabase.auth.session()
-      console.log($session)
       supabase.auth.onAuthStateChange((event, supabaseSession) => {
          $session = supabaseSession
       })

@@ -15,7 +15,6 @@
 
 <script>
    export let book;
-   console.log(book)
    let cover;
    import { Jellyfish } from 'svelte-loading-spinners'
    import Error from '$components/Error.svelte';
@@ -57,7 +56,6 @@
             <p><b>Language</b>: {book.volumeInfo.language}</p>
          </div>
       </div>
-      
    {:else}
       <Error />
    {/if}

@@ -16,10 +16,16 @@
 
 <div class="book-card">
    <a href={url}>
-      <img src="https://books.google.com/books/content?id={cover}" alt='cover'>
-      <p class="title">{title}</p>
-      <p class="author">by <i>{author}</i></p>
-      <p>{publisher}, {year}</p>
+      <div class="book-card-container">
+         <div>
+            <img src="https://books.google.com/books/content?id={cover}" alt='cover'>
+         </div>
+         <div>
+            <p class="title">{title}</p>
+            <p class="author">by <i>{author}</i></p>
+            <p>{publisher}, {year}</p>
+         </div>
+      </div>
    </a>
    
 </div>
