@@ -21,6 +21,13 @@
    import { browser } from '$app/env';
    import { onMount } from 'svelte';
 
+   let title;
+   if(data){
+      title = `Results for ${query}`
+   }else{
+      title = 'Searching'
+   }
+
    let layout;
    onMount(()=>{
       if(browser){
@@ -51,6 +58,10 @@
       }
    }
 </script>
+
+<svelte:head>
+   <title>Otium | {title}</title>
+</svelte:head>
 
 <div id="book-list-container">
    {#if !data}

@@ -2,6 +2,10 @@
    import { session } from '$app/stores';
 </script>
 
+<svelte:head>
+   <title>Otium | A free and open source bookshelf organizer</title>
+</svelte:head>
+
 
 <div class="content">
    {#if $session}
