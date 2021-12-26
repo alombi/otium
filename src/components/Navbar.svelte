@@ -3,7 +3,6 @@
   import { session } from '$app/stores';
 
   function toggleSidebar(){
-    console.log(screen.width)
     if(document.getElementById('sidebar').style.display == 'none'){
       if(screen.width > 550){
         document.getElementById('page').style.paddingLeft = '240px';
@@ -44,7 +43,7 @@
       <button on:click={logOut} class="buttonAuth">Log out</button>
     {:else}
     <form class="" on:submit|preventDefault={signIn}> 
-      <input id="navForm" type="text" class="textForm" placeholder="Email address" required="required" bind:value={email}>
+    <input type="text" class="textForm navForm" placeholder="Email address" required="required" bind:value={email}>
       <button id="loginButton" class="buttonAuth" type="submit">Sign in</button>
       <button on:click={()=>window.location.href ='/auth'} id="alternativeButton" class="buttonAuth">Sign in</button>
     </form>

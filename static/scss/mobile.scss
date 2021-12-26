@@ -1,0 +1,57 @@
+/* Media query */
+@media(max-width:550px){
+   // #navbarBrand{
+   //    display: none;
+   // }
+   .sidebar{
+      display:none;
+   }
+   .page{
+      padding-left: 0px;
+   }
+   .book-list{
+      display: grid;
+      grid-template-columns: repeat(1, 100%);
+   }
+   .layout-grid > .book-card{
+      width:100%;
+      justify-self: center;
+   }
+   .book-details-container{
+      display: grid;
+      grid-template-columns: repeat(1, 100%);
+   }
+   .buttons-container{
+      margin-bottom: 30px;
+      display: flex;
+      flex-direction: column;
+      gap:5px;
+   }
+   .title-bar{
+      grid-template-columns: 90% 10%;
+   }
+
+   // Home page
+   .centered-welcome{
+     align-items: flex-start !important;
+     padding-top:25px ;
+   }
+   .centered-welcome h2, .centered-welcome p{
+      display: none;
+   }
+   .mobile-welcome{
+      display: block !important;
+   }
+   .mobile-welcome h1{
+      text-align: left;
+   }
+}
+
+@media(max-width:750px){
+   #loginButton, .navForm, .switchAuthButtons{
+      display: none;
+   }
+   #alternativeButton{
+      display: block;
+   }
+}

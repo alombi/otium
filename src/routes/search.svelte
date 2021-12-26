@@ -57,6 +57,11 @@
          }
       }
    }
+   let searchTerm;
+   function search(){
+      const url = '/search?q=' + searchTerm;
+      window.location.href = url;
+   }
 </script>
 
 <svelte:head>
@@ -67,6 +72,12 @@
    {#if !data}
       <div class="loader"><Jellyfish size="120" color="#f2b3cf" unit="px" duration="1s"></Jellyfish></div>
    {:else}
+      <div id="searchBar-local">
+         <form class="searchBar-alt" on:submit|preventDefault={search}>
+            <input type="text" class="textForm" placeholder="Search per title" required="required" bind:value={searchTerm}>
+            <button id="searchButton" type="submit"><i class="fas fa-search"></i></button>
+         </form>
+      </div>
       {#if !data.error}
          <div class="title-bar">
             <h1>Search results for: {query}</h1>
@@ -89,3 +100,17 @@
       {/if}
    {/if}
 </div>
+
+<style>
+   .searchBar-alt{
+      padding-top:25px;
+      text-align: center;
+   }
+   .searchBar-alt input{
+      width: 75vw !important;
+   }
+   #searchBar-local{
+      display: flex;
+      justify-content: center !important;
+   }
+</style>
