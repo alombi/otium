@@ -6,11 +6,30 @@
    if(book.volumeInfo.imageLinks){
       cover = book.volumeInfo.imageLinks.thumbnail.split('http://books.google.com/books/content?id=')[1]
    } else{
-      cover = 'https://bookstoreromanceday.org/wp-content/uploads/2020/08/book-cover-placeholder.png'
+      cover = 'https://college.indiana.edu/images/publications/book-cover-placeholder.jpg'
    }
    let title = book.volumeInfo.title
+   title = abbreviateTitle(title)
    let publisher = book.volumeInfo.publisher
+   if(publisher == undefined){
+      publisher =  retrievePublisher()
+   }
    let year = book.volumeInfo.publishedDate ? book.volumeInfo.publishedDate.split('-')[0] : 'Unknown'
+
+   async function retrievePublisher(){
+      let request = await fetch('https://www.googleapis.com/books/v1/volumes/' + book.id)
+      let json = await request.json()
+      return json.volumeInfo.publisher
+   }
+   function abbreviateTitle(title){
+      if(title.split('').length > 90){
+         title = title.slice(0, 87);
+         title = title + '...'
+         return title
+      }else{
+         return title
+      }
+   }
 </script>
 
 
@@ -18,14 +37,21 @@
    <a href={url}>
       <div class="book-card-container">
          <div>
-            <img src="https://books.google.com/books/content?id={cover}" alt='cover'>
+            {#if cover.indexOf('college.indiana.edu') == -1}
+               <img src="https://books.google.com/books/content?id={cover}" alt='cover'>
+            {:else}
+               <img src={cover} alt="cover">
+            {/if}
          </div>
          <div>
             <p class="title">{title}</p>
             <p class="author">by <i>{author}</i></p>
+            {#await publisher}
+            <p>Loading...</p>
+            {:then publisher}
             <p>{publisher}, {year}</p>
+            {/await}
          </div>
       </div>
    </a>
-   
 </div>

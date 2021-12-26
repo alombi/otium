@@ -7,9 +7,11 @@ export async function get({query}) {
    var data = await req.json()
    data = data.items
    data.forEach(book => {
-      if (book.volumeInfo.publisher != undefined && book.volumeInfo.imageLinks != undefined) {
-         dataFiltered.push(book)
-      }
+      dataFiltered.push(book)
+      //if (book.volumeInfo.publisher != undefined && book.volumeInfo.imageLinks != undefined) {
+      // if (book.volumeInfo.imageLinks != undefined) {
+      //    dataFiltered.push(book)
+      // }
    });
    return {
       body: {
