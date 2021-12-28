@@ -21,6 +21,8 @@
   },
   "type": "module",
   "dependencies": {
-    "@supabase/supabase-js": "^1.25.2"
+    "@supabase/supabase-js": "^1.25.2",
+    "iso-639-1": "^2.1.11",
+    "svelte-select": "^4.4.6"
   }
 }
