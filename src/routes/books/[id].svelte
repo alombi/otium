@@ -16,6 +16,7 @@
 <script>
    export let book;
    let cover;
+   let title = 'Loading';
    import { Jellyfish } from 'svelte-loading-spinners'
    import Error from '$components/Error.svelte';
    import { onMount } from 'svelte';
@@ -24,9 +25,14 @@
       cover = book.volumeInfo.imageLinks.thumbnail.replace('http://', 'https://')
       } else{
          cover = 'https://bookstoreromanceday.org/wp-content/uploads/2020/08/book-cover-placeholder.png'
-      }
+      };
+      title = book.volumeInfo.title;
    })
 </script>
+
+<svelte:head>
+   <title>Otium | {title}</title>
+</svelte:head>
 
 {#if !book}
       <div class="loader"><Jellyfish size="120" color="#f2b3cf" unit="px" duration="1s"></Jellyfish></div>

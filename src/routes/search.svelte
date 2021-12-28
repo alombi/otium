@@ -23,6 +23,13 @@
    import { onMount } from 'svelte';
    import ISO6391 from 'iso-639-1';
 
+   let title;
+   if(data){
+      title = `Results for ${query}`
+   }else{
+      title = 'Searching'
+   }
+
    let layout;
    onMount(()=>{
       if(browser){
@@ -61,6 +68,10 @@
       window.location.href = url;
    }
 </script>
+
+<svelte:head>
+   <title>Otium | {title}</title>
+</svelte:head>
 
 <div id="book-list-container">
    {#if !data}
