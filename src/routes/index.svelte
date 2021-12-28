@@ -1,10 +1,14 @@
 <script>
    import { session } from '$app/stores';
    import { onMount } from "svelte";
+   import ISO6391 from 'iso-639-1';
 
-   let searchTerm;
+   let searchTerm, langCode;
    function search(){
-      const url = '/search?q=' + searchTerm;
+      if(window.localStorage.getItem('language') != undefined){
+         langCode = ISO6391.getCode(window.localStorage.getItem('language'))
+      }
+      const url = '/search?q=' + searchTerm + '&lang=' + langCode;
       window.location.href = url;
    }
    onMount(()=>{
@@ -25,7 +29,7 @@
    {#await loaded}
       <div></div>
    {:then}
-      {#if $session}
+      {#if !$session}
          <div class="centered-welcome">
             <div>
                <h2>Welcome back!</h2>

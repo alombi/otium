@@ -149,6 +149,11 @@ code {
   padding: 20px;
 }
 
+.searchBar-container a {
+  display: flex;
+  justify-content: space-around;
+}
+
 /* Single page */
 .author-title {
   font-weight: 400;

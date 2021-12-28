@@ -1,9 +1,10 @@
 <script context="module">
    export async function load({page}){
       const query = page.query.get('q')
+      const lang = page.query.get('lang')
       let data;
       try{
-         let request = await fetch('./api/bookSearch?q=' + query)
+         let request = await fetch('./api/bookSearch?q=' + query + '&lang=' + lang)
          data = await request.json()
          data = data.results
       }catch{
@@ -20,6 +21,7 @@
    import Error from '../components/Error.svelte';
    import { browser } from '$app/env';
    import { onMount } from 'svelte';
+   import ISO6391 from 'iso-639-1';
 
    let layout;
    onMount(()=>{
@@ -50,9 +52,12 @@
          }
       }
    }
-   let searchTerm;
+   let searchTerm, langCode;
    function search(){
-      const url = '/search?q=' + searchTerm;
+      if(window.localStorage.getItem('language') != undefined){
+         langCode = ISO6391.getCode(window.localStorage.getItem('language'))
+      }
+      const url = '/search?q=' + searchTerm + '&lang=' + langCode;
       window.location.href = url;
    }
 </script>
@@ -96,10 +101,10 @@
       text-align: center;
    }
    .searchBar-alt input{
-      width: 75vw !important;
+      width: 70vw !important;
    }
    #searchBar-local{
       display: flex;
-      justify-content: center !important;
+      justify-content: space-around !important;
    }
 </style>
