@@ -8,6 +8,7 @@
   onMount(()=>{
     if(window.localStorage.getItem('language') != undefined){
       value = window.localStorage.getItem('language')
+      languagePreffered = ISO6391.getCode(value)
     }else{
       value = undefined
     }
