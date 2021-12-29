@@ -27,6 +27,9 @@
          cover = 'https://bookstoreromanceday.org/wp-content/uploads/2020/08/book-cover-placeholder.png'
       };
       title = book.volumeInfo.title;
+      if(book.volumeInfo.description == undefined){
+         book.volumeInfo.description = 'No description provided.'
+      }
    })
 </script>
 
