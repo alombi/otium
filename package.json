@@ -17,12 +17,13 @@
     "prettier": "^2.4.1",
     "prettier-plugin-svelte": "^2.4.0",
     "svelte": "^3.42.6",
-    "svelte-loading-spinners": "^0.1.7"
+    "svelte-loading-spinners": "^0.1.7",
+    "iso-639-1": "^2.1.11",
+    "svelte-select": "^4.4.6"
   },
   "type": "module",
   "dependencies": {
     "@supabase/supabase-js": "^1.25.2",
-    "iso-639-1": "^2.1.11",
-    "svelte-select": "^4.4.6"
+    "svelte-notifications": "^0.9.93"
   }
 }

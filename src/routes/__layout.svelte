@@ -4,6 +4,7 @@
    import { browser } from '$app/env';
    import Navbar from '../components/Navbar.svelte';
    import Sidebar from '../components/Sidebar.svelte';
+   import Notifications from 'svelte-notifications';
 
    if(browser){
       $session = supabase.auth.session()
@@ -14,6 +15,7 @@
 </script>
 
 
+<Notifications>
 <div>
    <Sidebar />
    <Navbar />
@@ -21,3 +23,4 @@
       <slot></slot>
    </div>
 </div>
+</Notifications>

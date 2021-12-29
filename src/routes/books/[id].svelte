@@ -14,12 +14,16 @@
 </script>
 
 <script>
+   import { session } from '$app/stores';
+   import { onMount } from 'svelte';
+   import { Jellyfish } from 'svelte-loading-spinners'
+   import ActionsBar from '$components/ActionsBar.svelte';
+   import Error from '$components/Error.svelte';
+   
    export let book;
    let cover;
    let title = 'Loading';
-   import { Jellyfish } from 'svelte-loading-spinners'
-   import Error from '$components/Error.svelte';
-   import { onMount } from 'svelte';
+   
    onMount(()=>{
       if(book.volumeInfo.imageLinks){
       cover = book.volumeInfo.imageLinks.thumbnail.replace('http://', 'https://')
@@ -46,12 +50,9 @@
             <h1 class="title-book">{book.volumeInfo.title}</h1>
             <h2 class="author title-book author-title">by <span id="author-name">{book.volumeInfo.authors[0]}</span></h2>
       </div>
-      <div class="buttons-container"> 
-         <button class="book-actions add"><i class="fas fa-plus"></i> Add to bookshelf</button>
-         <button class="book-actions read"><i class="fas fa-check"></i> Mark as read</button>
-         <button class="book-actions favorite"><i class="fas fa-star"></i> Star as favorite</button>
-         <!-- <button class="book-actions">Action</button> -->
-      </div>
+      {#if $session}
+         <ActionsBar />
+      {/if}
       <div class="book-details-container">
          <div>
             <h2>Description</h2>
