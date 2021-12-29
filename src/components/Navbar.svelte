@@ -17,6 +17,7 @@
 
   let email;
   async function signIn(){
+    document.getElementById('loginButton').disabled = 'true';
     const { user, session, error } = await supabase.auth.signIn({
       email: email
     })
@@ -43,7 +44,7 @@
       <button on:click={logOut} class="buttonAuth">Log out</button>
     {:else}
     <form class="" on:submit|preventDefault={signIn}> 
-    <input type="text" class="textForm navForm" placeholder="Email address" required="required" bind:value={email}>
+      <input type="text" class="textForm navForm" placeholder="Email address" required="required"  bind:value={email}>
       <button id="loginButton" class="buttonAuth" type="submit">Sign in</button>
       <button on:click={()=>window.location.href ='/auth'} id="alternativeButton" class="buttonAuth">Sign in</button>
     </form>

@@ -149,11 +149,6 @@ code {
   padding: 20px;
 }
 
-.searchBar-container a {
-  display: flex;
-  justify-content: space-around;
-}
-
 /* Single page */
 .author-title {
   font-weight: 400;
@@ -346,6 +341,21 @@ code {
     display: block;
   }
 }
+.banner {
+  background-color: #3b4252;
+  padding: 0px 8px 5px 5px;
+  border-radius: 2px;
+}
+.banner .bannerTitle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.banner #advancedBanner {
+  display: none;
+  padding-bottom: 10px;
+}
+
 /* General stuff */
 body {
   font-family: "Barlow", sans-serif;
