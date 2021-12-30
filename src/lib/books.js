@@ -2,7 +2,7 @@ import supabase from '$lib/db'
 import { session } from '$app/stores';
 import { getNotificationsContext } from 'svelte-notifications';
 
-export function addToBookshelf() {
+export async function addToBookshelf() {
    const { addNotification } = getNotificationsContext();
    
    const id = $session.user.id
