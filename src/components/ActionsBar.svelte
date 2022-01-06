@@ -3,6 +3,7 @@
    export let DB;
    import { addToBookshelf, removeFromBookshelf } from '$lib/books';
    import { getNotificationsContext } from 'svelte-notifications';
+   import { isAdded } from '$lib/tag_store';
    const { addNotification } = getNotificationsContext();
    let isStarred = false;
    
@@ -16,6 +17,7 @@
       }else{
          addNotification({text:'Done!', position:'bottom-right', type:'success', removeAfter: '2000'})
          DB = 'something'
+         isAdded.set(true)
       }
    } 
    async function invokeRemoveFromBookshelf(id){
@@ -25,6 +27,7 @@
       }else{
          addNotification({text:'Done!', position:'bottom-right', type:'success', removeAfter: '2000'})
          DB = null
+         isAdded.set(false)
       }
    }
 </script>

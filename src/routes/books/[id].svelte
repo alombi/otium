@@ -40,10 +40,11 @@
 
 <script>
    import { session } from '$app/stores';
-   import { onMount } from 'svelte';
+   import { onDestroy, onMount } from 'svelte';
    import { Jellyfish } from 'svelte-loading-spinners'
    import ActionsBar from '$components/ActionsBar.svelte';
    import Error from '$components/Error.svelte';
+   import { isAdded } from '$lib/tag_store';
    
    export let book;
    export let dataFiltered;
@@ -63,7 +64,12 @@
       }
       if(dataFiltered){
          tag = dataFiltered[0].tag
+         dataFiltered = dataFiltered
+         isAdded.set(true)
       }
+   })
+   onDestroy(()=>{
+      isAdded.set(false)
    })
 </script>
 
@@ -77,7 +83,7 @@
    {#if !book.error}
       <div class="book-title-container">
          <img loading="eager" class="book-cover" src="{cover}" alt='cover'>
-            {#if dataFiltered}
+            {#if $isAdded}
                <div id="tag_container">
                   <p class={tag} id="tag">{tags.unset}</p>
                   {#if dataFiltered[0].starred}

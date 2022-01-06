@@ -59,6 +59,7 @@
       <span>Bookshelf</span>
     </p>
     <div class="headerLinks">
+      <a href="/bookshelf">All bookshelf</a>
       <a href="#">Reading</a>
       <a href="#">To read</a>
       <a href="#">Already read</a>
