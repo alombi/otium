@@ -222,7 +222,7 @@ code {
   font-weight: 600;
 }
 
-.add {
+.add, .unset {
   background-color: #81a1c1;
 }
 
@@ -240,6 +240,26 @@ code {
 
 .share {
   background-color: #D5C6B4;
+}
+
+.remove {
+  background-color: #D26466;
+}
+
+#tag {
+  font-size: 13px;
+  text-align: center;
+  padding: 5px 15px;
+  border-radius: 16px;
+  color: #2e3440;
+  font-weight: 500;
+}
+
+#tag_container {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  margin-bottom: -15px;
 }
 
 #searchButton {
