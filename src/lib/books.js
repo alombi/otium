@@ -39,3 +39,43 @@ export async function removeFromBookshelf(bookID) {
       }
    }
 }
+
+export async function changeTag(bookID, tag) {
+   const session = supabase.auth.session()
+   const id = session.user.id
+   const { data, error } = await supabase.from('profiles').select('bookshelf').eq('id', id);
+   if (error) {
+      return error
+   } else {
+      let newData = data[0].bookshelf.filter(function (e) {
+         if (e.id == bookID) {
+            e.tag = tag
+         }
+         return e
+      });
+      const { updatedData, updatedError } = await supabase.from('profiles').update({ bookshelf: newData }).eq('id', id)
+      if (updatedError) {
+         return updatedError
+      }
+   }
+}
+
+export async function toggleStar(bookID) {
+   const session = supabase.auth.session()
+   const id = session.user.id
+   const { data, error } = await supabase.from('profiles').select('bookshelf').eq('id', id);
+   if (error) {
+      return error
+   } else {
+      let newData = data[0].bookshelf.filter(function (e) {
+         if (e.id == bookID) {
+            e.starred = !e.starred
+         }
+         return e
+      });
+      const { updatedData, updatedError } = await supabase.from('profiles').update({ bookshelf: newData }).eq('id', id)
+      if (updatedError) {
+         return updatedError
+      }
+   }
+}

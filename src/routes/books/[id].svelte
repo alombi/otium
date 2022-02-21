@@ -32,6 +32,7 @@
          unset: 'Added to bookshelf',
          read: 'Read',
          to_read: 'Marked as to read',
+         reading: 'Reading now'
       }
 
       return {props:{book, dataFiltered, tags}}
@@ -44,7 +45,7 @@
    import { Jellyfish } from 'svelte-loading-spinners'
    import ActionsBar from '$components/ActionsBar.svelte';
    import Error from '$components/Error.svelte';
-   import { isAdded } from '$lib/tag_store';
+   import { isAdded, bookshelfTag, isStarred } from '$lib/tag_store';
    
    export let book;
    export let dataFiltered;
@@ -65,7 +66,16 @@
       if(dataFiltered){
          tag = dataFiltered[0].tag
          dataFiltered = dataFiltered
-         isAdded.set(true)
+         if(tag == 'unset'){
+            isAdded.set(true)
+            bookshelfTag.set(undefined)
+         }else{
+            isAdded.set(false)
+            bookshelfTag.set(tag)
+         }
+         if(dataFiltered[0].starred){
+            isStarred.set(true)
+         }
       }
    })
    onDestroy(()=>{
@@ -83,13 +93,20 @@
    {#if !book.error}
       <div class="book-title-container">
          <img loading="eager" class="book-cover" src="{cover}" alt='cover'>
-            {#if $isAdded}
+            {#if $isAdded && $bookshelfTag == undefined}
                <div id="tag_container">
-                  <p class={tag} id="tag">{tags.unset}</p>
-                  {#if dataFiltered[0].starred}
+                  <p class="unset" id="tag">{tags.unset}</p>
+                  {#if $isStarred}
                      <p class='favorite' id="tag">Starred</p>
                   {/if}
                </div>
+            {:else if !$isAdded && $bookshelfTag != undefined}
+            <div id="tag_container">
+               <p class={$bookshelfTag} id="tag">{tags[$bookshelfTag]}</p>
+               {#if $isStarred}
+                  <p class='favorite' id="tag">Starred</p>
+               {/if}
+            </div>
             {/if}
             <h1 class="title-book">{book.volumeInfo.title}</h1>
             <h2 class="author title-book author-title">by <span id="author-name">{book.volumeInfo.authors[0]}</span></h2>

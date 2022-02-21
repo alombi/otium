@@ -246,6 +246,10 @@ code {
   background-color: #D26466;
 }
 
+.reading {
+  background-color: #D5F6FB;
+}
+
 #tag {
   font-size: 13px;
   text-align: center;
