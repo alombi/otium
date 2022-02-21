@@ -54,7 +54,7 @@
    let title = 'Loading';
    onMount(()=>{
       if(book.volumeInfo.imageLinks){
-      cover = book.volumeInfo.imageLinks.thumbnail.replace('http://', 'https://')
+         cover = book.volumeInfo.imageLinks.thumbnail.replace('http://', 'https://')
       } else{
          cover = 'https://bookstoreromanceday.org/wp-content/uploads/2020/08/book-cover-placeholder.png'
       };
