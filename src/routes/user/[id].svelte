@@ -1,7 +1,7 @@
 <script context="module">
    import supabase from '$lib/db';
-   export async function load({page}){
-      const id = page.params.id
+   export async function load({params}){
+      const id = params.id
       const session = await supabase.auth.session()
       const {data, error} = await supabase.from('profiles').select('*').eq('id', id)
       return {props:{data}}

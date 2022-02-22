@@ -5,7 +5,7 @@
       let element = await request.json()
       return element.results
    }
-   export async function load({page}){
+   export async function load(){
       let DBbookshelf;
       let bookshelf = [];
       try{
