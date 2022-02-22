@@ -21,12 +21,13 @@
     document.getElementById('loginInNavbar').style.display = 'none';
     document.getElementById('waitingForEmailToBeSentIndicator').style.display = 'block';
     document.getElementById('loginButton').disabled = 'true';
+    console.log(email)
     const { user, session, error } = await supabase.auth.signIn({
       email: email
     })
     if(error){
       alert(error.message)
-      console.log(error)
+      console.log(error, user, session)
     }else{
       document.getElementById('waitingForEmailToBeSentIndicator').style.display = 'none';
       document.getElementById('emailSentIndicator').style.display = 'block'
