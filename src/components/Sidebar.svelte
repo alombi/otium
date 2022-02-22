@@ -34,6 +34,10 @@
     document.getElementsByClassName('advanced')[0].style.display = 'block'
     document.getElementById('tipLink').style.display = 'none'
   }
+  function loading(){
+    document.getElementById('real-page').style.display = 'none';
+    document.getElementById('waitingForBookshelfPageToBeOpened').style.display = 'flex';
+  }
 </script>
 
 <div id="sidebar" class="sidebar">
@@ -68,11 +72,11 @@
       <span>Bookshelf</span>
     </p>
     <div class="headerLinks">
-      <a href="/bookshelf/reading">Reading</a>
-      <a href="/bookshelf/to_read">To read</a>
-      <a href="/bookshelf/read">Already read</a>
-      <a href="/bookshelf/favorites">Favourites</a>
-      <a href="/bookshelf/untagged">Untagged</a>
+      <a on:click={loading} href="/bookshelf/reading">Reading</a>
+      <a on:click={loading} href="/bookshelf/to_read">To read</a>
+      <a on:click={loading} href="/bookshelf/read">Already read</a>
+      <a on:click={loading} href="/bookshelf/favorites">Favourites</a>
+      <a on:click={loading} href="/bookshelf/untagged">Untagged</a>
     </div>
 
   </div>

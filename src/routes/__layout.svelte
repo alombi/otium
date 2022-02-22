@@ -5,6 +5,7 @@
    import Navbar from '../components/Navbar.svelte';
    import Sidebar from '../components/Sidebar.svelte';
    import Notifications from 'svelte-notifications';
+   import { Jumper } from 'svelte-loading-spinners';
 
    if(browser){
       $session = supabase.auth.session()
@@ -20,7 +21,16 @@
    <Sidebar />
    <Navbar />
    <div id="page" class="page">
-      <slot></slot>
+      <div id="real-page">
+         <slot></slot>
+      </div>
+      <div id="waitingForBookshelfPageToBeOpened" class="loader"><Jumper size="120" color="#f2b3cf" unit="px" duration="1s"></Jumper></div>
    </div>
 </div>
 </Notifications>
+
+<style>
+   #waitingForBookshelfPageToBeOpened{
+      display: none;
+   }
+</style>
