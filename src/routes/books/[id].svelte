@@ -1,7 +1,7 @@
 <script context="module">
    import supabase from '$lib/db';
-   export async function load(ctx){
-      const id = ctx.page.params.id;
+   export async function load({params}){
+      const id = params.id;
       // Requesting data from Google
       let book;
       try{
