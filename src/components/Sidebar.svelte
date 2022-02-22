@@ -34,9 +34,11 @@
     document.getElementsByClassName('advanced')[0].style.display = 'block'
     document.getElementById('tipLink').style.display = 'none'
   }
-  function loading(){
-    document.getElementById('real-page').style.display = 'none';
-    document.getElementById('waitingForBookshelfPageToBeOpened').style.display = 'flex';
+  function loading(direction){
+    if(direction != window.location.pathname){
+      document.getElementById('real-page').style.display = 'none';
+      document.getElementById('waitingForBookshelfPageToBeOpened').style.display = 'flex';
+    }
   }
 </script>
 
@@ -72,11 +74,11 @@
       <span>Bookshelf</span>
     </p>
     <div class="headerLinks">
-      <a on:click={loading} href="/bookshelf/reading">Reading</a>
-      <a on:click={loading} href="/bookshelf/to_read">To read</a>
-      <a on:click={loading} href="/bookshelf/read">Already read</a>
-      <a on:click={loading} href="/bookshelf/favorites">Favourites</a>
-      <a on:click={loading} href="/bookshelf/untagged">Untagged</a>
+      <a on:click={()=>{loading('/bookshelf/reading')}} href="/bookshelf/reading">Reading</a>
+      <a on:click={()=>{loading('/bookshelf/to_read')}} href="/bookshelf/to_read">To read</a>
+      <a on:click={()=>{loading('/bookshelf/read')}} href="/bookshelf/read">Already read</a>
+      <a on:click={()=>{loading('/bookshelf/favorites')}} href="/bookshelf/favorites">Favourites</a>
+      <a on:click={()=>{loading('/bookshelf/untagged')}} href="/bookshelf/untagged">Untagged</a>
     </div>
 
   </div>
