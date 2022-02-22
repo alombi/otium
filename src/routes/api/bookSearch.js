@@ -1,5 +1,5 @@
 import { GOOGLE_BOOKS_KEY } from '$lib/env'
-export async function get({ query }) {
+export async function get({ url }) {
    if (process.env.NODE_ENV === 'production') {
       // For production
       googleKey = process.env.GOOGLE_BOOKS_KEY;
@@ -7,8 +7,8 @@ export async function get({ query }) {
       // For development
       googleKey = GOOGLE_BOOKS_KEY;
    }
-   const params = query.get('q');
-   const lang = query.get('lang')
+   const params = url.searchParams.q
+   const lang = url.searchParams.lang
    var dataFiltered = [];
    //const key = import.meta.env.VITE_GOOGLE_BOOKS_KEY
    const url = `https://www.googleapis.com/books/v1/volumes?q=${params}&key=${googleKey}&maxResults=10&printType=books&langRestrict=${lang}`
