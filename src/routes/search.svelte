@@ -1,7 +1,7 @@
 <script context="module">
-   export async function load({page}){
-      const query = page.query.get('q')
-      const lang = page.query.get('lang')
+   export async function load({url}){
+      const query = url.searchParams.get('q')
+      const lang = url.searchParams.get('lang')
       let data;
       try{
          let request = await fetch('./api/bookSearch?q=' + query + '&lang=' + lang)
