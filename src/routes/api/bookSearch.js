@@ -11,8 +11,8 @@ export async function get({ url }) {
    const lang = url.searchParams.lang
    var dataFiltered = [];
    //const key = import.meta.env.VITE_GOOGLE_BOOKS_KEY
-   const url = `https://www.googleapis.com/books/v1/volumes?q=${params}&key=${googleKey}&maxResults=10&printType=books&langRestrict=${lang}`
-   let req = await fetch(url)
+   const reqUrl = `https://www.googleapis.com/books/v1/volumes?q=${params}&key=${googleKey}&maxResults=10&printType=books&langRestrict=${lang}`
+   let req = await fetch(reqUrl)
    var data = await req.json()
    data = data.items
    data.forEach(book => {
