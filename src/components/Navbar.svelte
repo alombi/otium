@@ -26,6 +26,7 @@
     })
     if(error){
       alert(error.message)
+      console.log(error)
     }else{
       document.getElementById('waitingForEmailToBeSentIndicator').style.display = 'none';
       document.getElementById('emailSentIndicator').style.display = 'block'
