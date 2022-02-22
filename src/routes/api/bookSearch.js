@@ -7,11 +7,11 @@ export async function get({ url }) {
       // For development
       googleKey = GOOGLE_BOOKS_KEY;
    }
-   const params = url.searchParams.q
-   const lang = url.searchParams.lang
+   const query = url.searchParams.get('q')
+   const lang = url.searchParams.get('lang')
    var dataFiltered = [];
    //const key = import.meta.env.VITE_GOOGLE_BOOKS_KEY
-   const reqUrl = `https://www.googleapis.com/books/v1/volumes?q=${params}&key=${googleKey}&maxResults=10&printType=books&langRestrict=${lang}`
+   const reqUrl = `https://www.googleapis.com/books/v1/volumes?q=${query}&key=${googleKey}&maxResults=10&printType=books&langRestrict=${lang}`
    let req = await fetch(reqUrl)
    var data = await req.json()
    data = data.items
