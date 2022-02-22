@@ -14,7 +14,6 @@
          DBbookshelf = data[0].bookshelf.filter(function (e) {
             return e.starred == true
          })
-         console.log(DBbookshelf)
          for(let book of DBbookshelf){
             book = await requestBook(book.id)
 
@@ -44,6 +43,11 @@
    import { session } from '$app/stores';
    import LoggedOutProfile from '$components/LoggedOutProfile.svelte';
    export let bookshelf;
+   import { onMount } from 'svelte';
+   onMount(()=>{
+      document.getElementById('real-page').style.display = 'block';
+      document.getElementById('waitingForBookshelfPageToBeOpened').style.display = 'none';
+   })
 </script>
 
 <svelte:head>

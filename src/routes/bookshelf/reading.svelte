@@ -43,6 +43,11 @@
    import { session } from '$app/stores';
    import LoggedOutProfile from '$components/LoggedOutProfile.svelte';
    export let bookshelf;
+   import { onMount } from 'svelte';
+   onMount(()=>{
+      document.getElementById('real-page').style.display = 'block';
+      document.getElementById('waitingForBookshelfPageToBeOpened').style.display = 'none';
+   })
 </script>
 
 <svelte:head>
