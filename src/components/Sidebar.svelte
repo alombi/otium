@@ -54,17 +54,6 @@
         <Select items={options} placeholder="Select language" on:select={selectLang} />
       {/if}
     </div>
-    
-    <p class="sidebarHeader">
-      <span>Bookshelf</span>
-    </p>
-    <div class="headerLinks">
-      <a href="#">Reading</a>
-      <a href="#">To read</a>
-      <a href="#">Already read</a>
-      <a href="#">Favourites</a>
-      <a href="#">Suggested</a>
-    </div>
 
     <p class="sidebarHeader">
       <span>Sections</span>
@@ -72,6 +61,18 @@
     <div class="headerLinks">
       <a href="/">Home</a>
       <a href="#">About</a>
+    </div>
+
+    
+    <p class="sidebarHeader">
+      <span>Bookshelf</span>
+    </p>
+    <div class="headerLinks">
+      <a href="/bookshelf/reading">Reading</a>
+      <a href="/bookshelf/to_read">To read</a>
+      <a href="/bookshelf/read">Already read</a>
+      <a href="/bookshelf/favorites">Favourites</a>
+      <a href="/bookshelf/untagged">Untagged</a>
     </div>
 
   </div>

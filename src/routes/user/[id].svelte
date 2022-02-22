@@ -3,7 +3,7 @@
    export async function load({page}){
       const id = page.params.id
       const session = await supabase.auth.session()
-      const {data, error} = await supabase.from('profiles').select('id').eq(id, 'id')
+      const {data, error} = await supabase.from('profiles').select('*').eq('id', id)
       return {props:{data}}
    }
 </script>
@@ -13,7 +13,7 @@
 </script>
 
 <div>
-   {data}
+   <h1>{data[0].username}</h1>
 </div>
 
 <!-- Qui si può creare la pagina dell'utente dove si vedono i i libri e dove l'utente stesso può aggiungere nickname e avatar -->

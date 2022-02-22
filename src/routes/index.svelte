@@ -33,7 +33,7 @@
    {#await loaded}
       <div></div>
    {:then}
-      {#if !$session}
+      {#if $session}
          <div class="centered-welcome">
             <div>
                <h2>Welcome back!</h2>
