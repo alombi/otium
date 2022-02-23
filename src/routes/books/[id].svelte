@@ -45,6 +45,7 @@
    import { Jellyfish } from 'svelte-loading-spinners'
    import ActionsBar from '$components/ActionsBar.svelte';
    import Error from '$components/Error.svelte';
+   import BookDescription from '$components/BookDescription.svelte';
    import { isAdded, bookshelfTag, isStarred } from '$lib/tag_store';
    
    export let book;
@@ -122,7 +123,7 @@
       <div class="book-details-container">
          <div>
             <h2>Description</h2>
-         <p>{@html book.volumeInfo.description}</p>
+            <BookDescription description={book.volumeInfo.description} />
          </div>
          <div>
             <h2>Details</h2>
