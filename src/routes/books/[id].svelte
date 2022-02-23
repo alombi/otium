@@ -51,9 +51,14 @@
    export let dataFiltered;
    export let tags;
    let tag;
-   let cover;
+   let cover, year;
    let title = 'Loading';
    onMount(()=>{
+      if(book.volumeInfo.publishedDate){
+         year = book.volumeInfo.publishedDate.split('-')[0]
+      }else{
+         year = 'Unavailable'
+      }
       if(book.volumeInfo.imageLinks){
          cover = book.volumeInfo.imageLinks.thumbnail.replace('http://', 'https://')
       } else{
@@ -123,7 +128,7 @@
             <h2>Details</h2>
             <p><b>Author</b>: {book.volumeInfo.authors[0]}</p>
             <p><b>Publisher</b>: {book.volumeInfo.publisher}</p>
-            <p><b>Year</b>: {book.volumeInfo.publishedDate.split('-')[0]}</p>
+            <p><b>Year</b>: {year}</p>
             <p><b>Language</b>: {book.volumeInfo.language}</p>
          </div>
       </div>

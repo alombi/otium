@@ -2,6 +2,13 @@
    import { session } from '$app/stores';
    import { onMount } from "svelte";
    import ISO6391 from 'iso-639-1';
+   import { getBooksById } from '$lib/getBooksById';
+
+   function loadDirection(){
+      // an alt version of loading() in Sidebar.svelte
+      document.getElementById('real-page').style.display = 'none';
+      document.getElementById('waitingForBookshelfPageToBeOpened').style.display = 'flex';
+   }
 
    let searchTerm, langCode;
    function search(){
@@ -16,10 +23,34 @@
          document.getElementById('alternativeButton').style.display = 'inherit';
       }
    })
+   let reading = [];
+   let bookshelf = [];
    async function loading(){
-      setTimeout(() => {
-         
-      }, 1000);
+      reading = await getBooksById('reading')
+      for(let book of reading){
+         book = await requestBook(book.id)
+
+         var bookFinal = {};
+         if(book.volumeInfo.imageLinks){
+            bookFinal.cover = book.volumeInfo.imageLinks.thumbnail.replace('http://', 'https://')
+         } else{
+            bookFinal.cover = 'https://bookstoreromanceday.org/wp-content/uploads/2020/08/book-cover-placeholder.png'
+         };
+         bookFinal.title = book.volumeInfo.title;
+         bookFinal.author = book.volumeInfo.authors[0];
+         bookFinal.publisher = book.volumeInfo.publisher;
+         bookFinal.year = book.volumeInfo.publishedDate.split('-')[0]
+         bookFinal.url = `/books/${book.id}`
+         bookshelf.push(bookFinal)
+      }
+      bookshelf = bookshelf.reverse()
+      bookshelf = bookshelf.slice(0,2)
+      return bookshelf
+   }
+   async function requestBook(id){
+      let request = await fetch('../api/book-' + id)
+      let element = await request.json()
+      return element.results
    }
    let loaded = loading()
 </script>
@@ -36,17 +67,37 @@
       {#if $session}
          <div class="centered-welcome">
             <div>
-               <h2>Welcome back!</h2>
+               <h1>Welcome back!</h1>
+               <div class="mobile-welcome">
+                  <h1 class="mobile-h1">Welcome back!</h1>
+               </div>
                <form class="searchBar-alt" on:submit|preventDefault={search}>
                   <input type="text" class="textForm" placeholder="Search per title" required="required" bind:value={searchTerm}>
                   <button id="searchButton" type="submit"><i class="fas fa-search"></i></button>
                </form>
-               <div class="mobile-welcome">
-                  <h1 class="mobile-h1">Welcome back!</h1>
-               </div>
             </div>
          </div>
-         <p>lista o griglia</p>
+         <h2>Reading now</h2>
+         <div id="books" class="book-list layout-list">
+            {#each bookshelf as book}
+               <div class="book-card">
+                  <a href={book.url}>
+                     <div class="book-card-container">
+                        <div>
+                           <img src={book.cover} alt="cover">
+                        </div>
+                        <div>
+                           <p class="title">{book.title}</p>
+                           <p class="author">by <i>{book.author}</i></p>
+                           <p>{book.publisher}, {book.year}</p>
+                        </div>
+                     </div>
+                  </a>
+               </div>
+            {/each}
+         </div>
+         <a on:click={loadDirection} href="/bookshelf/reading">More</a>
+         <h2>Friends are reading</h2>
       {:else}
          <h1>Welcome to Otium!</h1>
          <p>Otium is a free and open source bookshelf organizer, that helps you managing your books and the ones you would like to read.</p>

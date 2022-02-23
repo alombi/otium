@@ -280,13 +280,9 @@ code {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: calc(100vh - 450px);
+  height: calc(100vh - 650px);
   overflow-y: hidden;
   margin: 0;
-}
-
-.centered-welcome h2, .centered-welcome p {
-  opacity: 0.3;
 }
 
 .centered-welcome div {
@@ -348,8 +344,12 @@ code {
   }
 
   .centered-welcome {
-    align-items: flex-start !important;
+    display: unset;
     padding-top: 25px;
+  }
+
+  .centered-welcome div {
+    text-align: left;
   }
 
   .centered-welcome h2, .centered-welcome p {
@@ -362,6 +362,11 @@ code {
 
   .mobile-welcome h1 {
     text-align: left;
+  }
+
+  .searchBar-alt input {
+    width: 70vw;
+    margin-bottom: 25px;
   }
 }
 @media (max-width: 750px) {

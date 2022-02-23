@@ -2,13 +2,13 @@
    display: flex;
    align-items: center;
    justify-content: center;
-   height:calc(100vh - 450px);
+   height:calc(100vh - 650px);
    overflow-y: hidden;
    margin:0;
 }
-.centered-welcome h2, .centered-welcome p{
-   opacity: 0.3;
-}
+// .centered-welcome h2, .centered-welcome p{
+//    opacity: 0.3;
+// }
 .centered-welcome div{
    text-align: center;
 }

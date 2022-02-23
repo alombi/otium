@@ -13,7 +13,6 @@
       document.getElementById('page').style.paddingLeft = 0;
       document.getElementById('sidebar').style.display = 'none'
     }
-    
   }
 
   let email;
@@ -21,7 +20,6 @@
     document.getElementById('loginInNavbar').style.display = 'none';
     document.getElementById('waitingForEmailToBeSentIndicator').style.display = 'block';
     document.getElementById('loginButton').disabled = 'true';
-    console.log(email)
     const { user, session, error } = await supabase.auth.signIn({
       email: email
     })
