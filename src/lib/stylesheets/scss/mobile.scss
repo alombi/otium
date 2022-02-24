@@ -33,8 +33,11 @@
 
    // Home page
    .centered-welcome{
-     align-items: flex-start !important;
-     padding-top:25px ;
+     display:unset;
+     padding-top:25px;
+   }
+   .centered-welcome div{
+      text-align: left;
    }
    .centered-welcome h2, .centered-welcome p{
       display: none;
@@ -44,6 +47,10 @@
    }
    .mobile-welcome h1{
       text-align: left;
+   }
+   .searchBar-alt input{
+      width: 70vw;
+      margin-bottom: 25px;
    }
 }
 

@@ -6,7 +6,7 @@
    import Sidebar from '../components/Sidebar.svelte';
    import Notifications from 'svelte-notifications';
    import { Jumper } from 'svelte-loading-spinners';
-
+   import '$lib/stylesheets/main.css';
    if(browser){
       $session = supabase.auth.session()
       supabase.auth.onAuthStateChange((event, supabaseSession) => {
