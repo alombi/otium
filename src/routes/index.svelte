@@ -56,11 +56,6 @@
          document.getElementById('alternativeButton').style.display = 'inherit';
       }
    })
-   if(browser){
-      if(window.location.pathname == '/#fromauth'){
-         window.location.href('/')
-      }
-   }
 </script>
 
 <svelte:head>
