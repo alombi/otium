@@ -12,8 +12,6 @@
       document.getElementById('loginButton').disabled = 'true';
       const { user, session, error } = await supabase.auth.signIn({
          email: email
-      },{
-         redirectTo:'https://otium.vercel.app/#fromauth'
       });
       if(error){
          alert(error.message)
