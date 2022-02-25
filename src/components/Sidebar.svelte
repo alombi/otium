@@ -73,6 +73,7 @@
     </p>
     <div class="headerLinks">
       <a href="/">Home</a>
+      <a href="/profile">Social</a>
       <a href="#">About</a>
     </div>
 

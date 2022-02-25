@@ -59,51 +59,50 @@
    <title>Otium | A free and open source bookshelf organizer</title>
 </svelte:head>
 
-
+{#if $session}
 <div class="content">
    {#await loaded}
       <div></div>
    {:then}
-      {#if $session}
-         <div class="centered-welcome">
-            <div>
-               <h1>Welcome back!</h1>
-               <div class="mobile-welcome">
-                  <h1 class="mobile-h1">Welcome back!</h1>
-               </div>
-               <form class="searchBar-alt" on:submit|preventDefault={search}>
-                  <input type="text" class="textForm" placeholder="Search per title" required="required" bind:value={searchTerm}>
-                  <button id="searchButton" type="submit"><i class="fas fa-search"></i></button>
-               </form>
+      <div class="centered-welcome">
+         <div>
+            <h1>Welcome back!</h1>
+            <div class="mobile-welcome">
+               <h1 class="mobile-h1">Welcome back!</h1>
             </div>
+            <form class="searchBar-alt" on:submit|preventDefault={search}>
+               <input type="text" class="textForm" placeholder="Search per title" required="required" bind:value={searchTerm}>
+               <button id="searchButton" type="submit"><i class="fas fa-search"></i></button>
+            </form>
          </div>
-         <h2>Reading now</h2>
-         <div id="books" class="book-list layout-list">
-            {#each bookshelf as book}
-               <div class="book-card">
-                  <a href={book.url}>
-                     <div class="book-card-container">
-                        <div>
-                           <img src={book.cover} alt="cover">
-                        </div>
-                        <div>
-                           <p class="title">{book.title}</p>
-                           <p class="author">by <i>{book.author}</i></p>
-                           <p>{book.publisher}, {book.year}</p>
-                        </div>
+      </div>
+      <h2>Reading now</h2>
+      <div id="books" class="book-list layout-list">
+         {#each bookshelf as book}
+            <div class="book-card">
+               <a href={book.url}>
+                  <div class="book-card-container">
+                     <div>
+                        <img src={book.cover} alt="cover">
                      </div>
-                  </a>
-               </div>
-            {/each}
-         </div>
-         <a on:click={loadDirection} href="/bookshelf/reading">More</a>
-         <h2>Friends are reading</h2>
-      {:else}
-         <h1>Welcome to Otium!</h1>
-         <p>Otium is a free and open source bookshelf organizer, that helps you managing your books and the ones you would like to read.</p>
-         <h2>Getting started</h2>
-         <p>Ready to begin? Just insert your email and tap <b>Sign in</b>. In a few moments you'll receive an email containing a link, that will log you in into your new account!</p>
-         <p>Whenever you want to access your account, just fill in your email and tap on the link that will be sent you.</p>
-      {/if}
+                     <div>
+                        <p class="title">{book.title}</p>
+                        <p class="author">by <i>{book.author}</i></p>
+                        <p>{book.publisher}, {book.year}</p>
+                     </div>
+                  </div>
+               </a>
+            </div>
+         {/each}
+      </div>
+      <a on:click={loadDirection} href="/bookshelf/reading">More</a>
+      <h2>Friends are reading</h2>
    {/await}
 </div>
+{:else}
+   <h1>Welcome to Otium!</h1>
+   <p>Otium is a free and open source bookshelf organizer, that helps you managing your books and the ones you would like to read.</p>
+   <h2>Getting started</h2>
+   <p>Ready to begin? Just insert your email and tap <b>Sign in</b>. In a few moments you'll receive an email containing a link, that will log you in into your new account!</p>
+   <p>Whenever you want to access your account, just fill in your email and tap on the link that will be sent you.</p>
+{/if}
