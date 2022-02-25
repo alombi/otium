@@ -4,10 +4,11 @@
       const session = supabase.auth.session();
       let id;
       let data;
-      if(session != null){
+      try{
          id = session.user.id
          data = await supabase.from('profiles').select('*').eq('id', id)
-      }else{
+         data = data.data
+      }catch{
          data = null
       }
       return {props:{data}}
