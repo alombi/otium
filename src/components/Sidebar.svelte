@@ -59,7 +59,7 @@
       <input type="text" class="textForm" placeholder="Search per title" required="required" bind:value={searchTerm}>
       <button id="searchButton" type="submit"><i class="fas fa-search"></i></button>
     </form>
-    <a id="tipLink" href="#" on:click={showAdvanced}>Advanced search</a>
+    <a id="tipLink" href="#" on:click={showAdvanced}>Choose books language</a>
     <div class="advanced">
       {#if value}
         <Select value={value} items={options} placeholder="Select language" on:select={selectLang} />
