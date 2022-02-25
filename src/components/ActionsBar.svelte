@@ -7,7 +7,7 @@
    const { addNotification } = getNotificationsContext();
 
    async function invokeAddToBookshelf(id, tag){
-      let response = await addToBookshelf(id, tag, isStarred)
+      let response = await addToBookshelf(id, tag, $isStarred)
       if(response){
          alert(response.message)
       }else{
