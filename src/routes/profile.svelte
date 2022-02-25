@@ -3,11 +3,15 @@
    export async function load(){
       const session = supabase.auth.session();
       let id;
-      if(session != null){
+      let data;
+      try{
          id = session.user.id
+         data = await supabase.from('profiles').select('*').eq('id', id)
+         data = data.data
+      }catch{
+         data = null
       }
-      const {data, error} = await supabase.from('profiles').select('*').eq('id', id)
-      return {props:{data, error}}
+      return {props:{data}}
    }
 </script>
 
@@ -16,7 +20,7 @@
    import LoggedOutProfile from '$components/LoggedOutProfile.svelte';
    import Banner from '$components/Banner.svelte';
    import { onMount } from 'svelte';
-   export let data, error;
+   export let data;
    async function changeUsername(){
       let id = data[0].id
       document.getElementById('bannerInput').disabled = 'true';
@@ -34,11 +38,13 @@
    let name;
    let usernameMissing = true;
    onMount(()=>{
-      if(data[0].username == undefined || data[0].username == ''){
-         name = data[0].id
-      }else{
-         name = data[0].username;
-         usernameMissing = false;
+      if($session && data){
+         if(data[0].username == undefined || data[0].username == ''){
+            name = data[0].id
+         }else{
+            name = data[0].username;
+            usernameMissing = false;
+         }
       }
    })
    
@@ -59,6 +65,7 @@
       {#if usernameMissing}
          <Banner desc="Complete your profile by creating an username" button="Create" func={()=>changeUsername()} advancedTitle="Create username"/>
       {/if}
+      
    {:else}
       <LoggedOutProfile />
    {/if}
