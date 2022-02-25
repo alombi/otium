@@ -4,6 +4,7 @@
    import ISO6391 from 'iso-639-1';
    import { getBooksById } from '$lib/getBooksById';
    import { Jellyfish } from 'svelte-loading-spinners'
+   import { browser } from '$app/env';
 
    function loadDirection(){
       // an alt version of loading() in Sidebar.svelte
@@ -55,6 +56,11 @@
          document.getElementById('alternativeButton').style.display = 'inherit';
       }
    })
+   if(browser){
+      if(window.location.pathname == '/#fromauth'){
+         window.location.href('/')
+      }
+   }
 </script>
 
 <svelte:head>
@@ -69,9 +75,6 @@
       <div class="centered-welcome">
          <div>
             <h1>Welcome back!</h1>
-            <div class="mobile-welcome">
-               <h1 class="mobile-h1">Welcome back!</h1>
-            </div>
             <form class="searchBar-alt" on:submit|preventDefault={search}>
                <input type="text" class="textForm" placeholder="Search per title" required="required" bind:value={searchTerm}>
                <button id="searchButton" type="submit"><i class="fas fa-search"></i></button>
