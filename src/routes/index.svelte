@@ -3,6 +3,7 @@
    import { onMount } from "svelte";
    import ISO6391 from 'iso-639-1';
    import { getBooksById } from '$lib/getBooksById';
+   import { Jellyfish } from 'svelte-loading-spinners'
 
    function loadDirection(){
       // an alt version of loading() in Sidebar.svelte
@@ -18,11 +19,6 @@
       const url = '/search?q=' + searchTerm + '&lang=' + langCode;
       window.location.href = url;
    }
-   onMount(()=>{
-      if(screen.width < 750){
-         document.getElementById('alternativeButton').style.display = 'inherit';
-      }
-   })
    let reading = [];
    let bookshelf = [];
    async function loading(){
@@ -53,6 +49,12 @@
       return element.results
    }
    let loaded = loading()
+
+   onMount(()=>{
+      if(screen.width < 750){
+         document.getElementById('alternativeButton').style.display = 'inherit';
+      }
+   })
 </script>
 
 <svelte:head>
@@ -62,7 +64,7 @@
 {#if $session}
 <div class="content">
    {#await loaded}
-      <div></div>
+      <div class="loader"><Jellyfish size="120" color="#f2b3cf" unit="px" duration="1s"></Jellyfish></div>
    {:then}
       <div class="centered-welcome">
          <div>
