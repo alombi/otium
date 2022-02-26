@@ -57,7 +57,7 @@
    onMount(()=>{
       setTimeout(()=>{
          loaded = loading ()
-      }, 100)
+      }, 500)
    })
 </script>
 
