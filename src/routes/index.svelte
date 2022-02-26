@@ -64,7 +64,6 @@
 </svelte:head>
 
 {#if $session}
-{#if loaded}
 {#await loaded}
 <div class="loader"><Jellyfish size="120" color="#f2b3cf" unit="px" duration="1s"></Jellyfish></div>
 {:then}
@@ -101,7 +100,6 @@
       <h2>Friends are reading</h2>
 </div>
 {/await}
-{/if}
 {:else}
    <h1>Welcome to Otium!</h1>
    <p>Otium is a free and open source bookshelf organizer, that helps you managing your books and the ones you would like to read.</p>
