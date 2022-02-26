@@ -2,7 +2,7 @@ import supabase from '$lib/db'
 
 export async function getBooksByTag(tag) {
    let DBbookshelf;
-   setTimeout(() => {
+   setTimeout(async () => {
       const session = supabase.auth.session()
       const id = session.user.id
       const { data, error } = await supabase.from('profiles').select('bookshelf').eq('id', id)
