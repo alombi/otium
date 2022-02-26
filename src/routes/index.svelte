@@ -58,9 +58,6 @@
       //setTimeout(()=>{
       //   loaded = loading()
       //}, 100)
-      if(screen.width < 750){
-         document.getElementById('alternativeButton').style.display = 'inherit';
-      }
    })
    loaded = loading ()
 </script>
