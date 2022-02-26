@@ -41,6 +41,7 @@
       }
       bookshelf = bookshelf.reverse()
       bookshelf = bookshelf.slice(0,2)
+      console.log(bookshelf);
       return bookshelf
    }
    async function requestBook(id){
@@ -50,13 +51,14 @@
    }
    let loaded;
    onMount(()=>{
-      setTimeout(()=>{
-         loaded = loading()
-      }, 100)
+      //setTimeout(()=>{
+      //   loaded = loading()
+      //}, 100)
       if(screen.width < 750){
          document.getElementById('alternativeButton').style.display = 'inherit';
       }
    })
+   loaded = loading ()
 </script>
 
 <svelte:head>
