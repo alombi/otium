@@ -9,6 +9,6 @@ export async function getBooksByTag(tag) {
       DBbookshelf = data[0].bookshelf.filter(function (e) {
          return e.tag == tag
       })
+      return DBbookshelf
    }, 500)
-   return DBbookshelf
 }
