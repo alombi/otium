@@ -1,6 +1,6 @@
 import supabase from '$lib/db'
 
-export async function getBooksById(tag) {
+export async function getBooksByTag(tag) {
    let DBbookshelf;
    try {
       const session = supabase.auth.session()
@@ -10,6 +10,7 @@ export async function getBooksById(tag) {
          return e.tag == tag
       })
    } catch (e) {
+      console.log(e)
       DBbookshelf = []
    }
    return DBbookshelf

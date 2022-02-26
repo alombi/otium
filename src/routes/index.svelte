@@ -2,9 +2,8 @@
    import { session } from '$app/stores';
    import { onMount } from "svelte";
    import ISO6391 from 'iso-639-1';
-   import { getBooksById } from '$lib/getBooksById';
+   import { getBooksByTag } from '$lib/getBooksByTag';
    import { Jellyfish } from 'svelte-loading-spinners'
-   import { browser } from '$app/env';
 
    function loadDirection(){
       // an alt version of loading() in Sidebar.svelte
@@ -23,7 +22,7 @@
    let reading = [];
    let bookshelf = [];
    async function loading(){
-      reading = await getBooksById('reading')
+      reading = await getBooksByTag('reading')
       for(let book of reading){
          book = await requestBook(book.id)
 
@@ -49,9 +48,11 @@
       let element = await request.json()
       return element.results
    }
-   let loaded = loading()
-
+   let loaded;
    onMount(()=>{
+      setTimeout(()=>{
+         loaded = loading()
+      }, 50)
       if(screen.width < 750){
          document.getElementById('alternativeButton').style.display = 'inherit';
       }
@@ -63,10 +64,11 @@
 </svelte:head>
 
 {#if $session}
-<div class="content">
-   {#await loaded}
-      <div class="loader"><Jellyfish size="120" color="#f2b3cf" unit="px" duration="1s"></Jellyfish></div>
-   {:then}
+{#if loaded}
+{#await loaded}
+<div class="loader"><Jellyfish size="120" color="#f2b3cf" unit="px" duration="1s"></Jellyfish></div>
+{:then}
+   <div class="content">
       <div class="centered-welcome">
          <div>
             <h1>Welcome back!</h1>
@@ -97,8 +99,9 @@
       </div>
       <a on:click={loadDirection} href="/bookshelf/reading">More</a>
       <h2>Friends are reading</h2>
-   {/await}
 </div>
+{/await}
+{/if}
 {:else}
    <h1>Welcome to Otium!</h1>
    <p>Otium is a free and open source bookshelf organizer, that helps you managing your books and the ones you would like to read.</p>
