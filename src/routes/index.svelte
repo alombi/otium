@@ -55,11 +55,10 @@
    }
    let loaded;
    onMount(()=>{
-      //setTimeout(()=>{
-      //   loaded = loading()
-      //}, 100)
+      setTimeout(()=>{
+         loaded = loading ()
+      }, 100)
    })
-   loaded = loading ()
 </script>
 
 <svelte:head>
@@ -67,42 +66,44 @@
 </svelte:head>
 
 {#if $session}
-{#await loaded}
-<div class="loader"><Jellyfish size="120" color="#f2b3cf" unit="px" duration="1s"></Jellyfish></div>
-{:then}
-   <div class="content">
-      <div class="centered-welcome">
-         <div>
-            <h1>Welcome back!</h1>
-            <form class="searchBar-alt" on:submit|preventDefault={search}>
-               <input type="text" class="textForm" placeholder="Search per title" required="required" bind:value={searchTerm}>
-               <button id="searchButton" type="submit"><i class="fas fa-search"></i></button>
-            </form>
-         </div>
-      </div>
-      <h2>Reading now</h2>
-      <div id="books" class="book-list layout-list">
-         {#each bookshelf as book}
-            <div class="book-card">
-               <a href={book.url}>
-                  <div class="book-card-container">
-                     <div>
-                        <img src={book.cover} alt="cover">
-                     </div>
-                     <div>
-                        <p class="title">{book.title}</p>
-                        <p class="author">by <i>{book.author}</i></p>
-                        <p>{book.publisher}, {book.year}</p>
-                     </div>
-                  </div>
-               </a>
+   {#if loaded}
+   {#await loaded}
+      <div class="loader"><Jellyfish size="120" color="#f2b3cf" unit="px" duration="1s"></Jellyfish></div>
+   {:then}
+      <div class="content">
+         <div class="centered-welcome">
+            <div>
+               <h1>Welcome back!</h1>
+               <form class="searchBar-alt" on:submit|preventDefault={search}>
+                  <input type="text" class="textForm" placeholder="Search per title" required="required" bind:value={searchTerm}>
+                  <button id="searchButton" type="submit"><i class="fas fa-search"></i></button>
+               </form>
             </div>
-         {/each}
-      </div>
-      <a on:click={loadDirection} href="/bookshelf/reading">More</a>
-      <h2>Friends are reading</h2>
-</div>
-{/await}
+         </div>
+         <h2>Reading now</h2>
+         <div id="books" class="book-list layout-list">
+            {#each bookshelf as book}
+               <div class="book-card">
+                  <a href={book.url}>
+                     <div class="book-card-container">
+                        <div>
+                           <img src={book.cover} alt="cover">
+                        </div>
+                        <div>
+                           <p class="title">{book.title}</p>
+                           <p class="author">by <i>{book.author}</i></p>
+                           <p>{book.publisher}, {book.year}</p>
+                        </div>
+                     </div>
+                  </a>
+               </div>
+            {/each}
+         </div>
+         <a on:click={loadDirection} href="/bookshelf/reading">More</a>
+         <h2>Friends are reading</h2>
+   </div>
+   {/await}
+   {/if}
 {:else}
    <h1>Welcome to Otium!</h1>
    <p>Otium is a free and open source bookshelf organizer, that helps you managing your books and the ones you would like to read.</p>
