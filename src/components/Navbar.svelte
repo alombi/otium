@@ -25,7 +25,6 @@
     });
     if(error){
       alert(error.message)
-      console.log(error, user, session)
     }else{
       document.getElementById('waitingForEmailToBeSentIndicator').style.display = 'none';
       document.getElementById('emailSentIndicator').style.display = 'block'
