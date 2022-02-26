@@ -52,7 +52,7 @@
    onMount(()=>{
       setTimeout(()=>{
          loaded = loading()
-      }, 50)
+      }, 100)
       if(screen.width < 750){
          document.getElementById('alternativeButton').style.display = 'inherit';
       }
