@@ -58,6 +58,8 @@
       setTimeout(()=>{
          loaded = loading ()
       }, 500)
+      document.getElementById('real-page').style.display = 'block';
+      document.getElementById('waitingForBookshelfPageToBeOpened').style.display = 'none';
    })
 </script>
 
