@@ -27,17 +27,21 @@
          book = await requestBook(book.id)
 
          var bookFinal = {};
-         if(book.volumeInfo.imageLinks){
-            bookFinal.cover = book.volumeInfo.imageLinks.thumbnail.replace('http://', 'https://')
-         } else{
-            bookFinal.cover = 'https://bookstoreromanceday.org/wp-content/uploads/2020/08/book-cover-placeholder.png'
-         };
-         bookFinal.title = book.volumeInfo.title;
-         bookFinal.author = book.volumeInfo.authors[0];
-         bookFinal.publisher = book.volumeInfo.publisher;
-         bookFinal.year = book.volumeInfo.publishedDate.split('-')[0]
-         bookFinal.url = `/books/${book.id}`
-         bookshelf.push(bookFinal)
+         try{
+            if(book.volumeInfo.imageLinks){
+               bookFinal.cover = book.volumeInfo.imageLinks.thumbnail.replace('http://', 'https://')
+            } else{
+               bookFinal.cover = 'https://bookstoreromanceday.org/wp-content/uploads/2020/08/book-cover-placeholder.png'
+            };
+            bookFinal.title = book.volumeInfo.title;
+            bookFinal.author = book.volumeInfo.authors[0];
+            bookFinal.publisher = book.volumeInfo.publisher;
+            bookFinal.year = book.volumeInfo.publishedDate.split('-')[0]
+            bookFinal.url = `/books/${book.id}`
+            bookshelf.push(bookFinal)
+         }catch(e){
+         console.log(e)
+         }
       }
       bookshelf = bookshelf.reverse()
       bookshelf = bookshelf.slice(0,2)
