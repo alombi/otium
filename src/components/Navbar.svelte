@@ -22,9 +22,10 @@
     document.getElementById('loginButton').disabled = 'true';
     const { user, session, error } = await supabase.auth.signIn({
       email: email
-    },{
-      redirectTo: 'http://localhost:3000'
     });
+    // },{
+    //   redirectTo: 'http://localhost:3000'
+    // });
     if(error){
       alert(error.message)
       console.log(error, user, session)

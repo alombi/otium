@@ -11,7 +11,6 @@
       $session = supabase.auth.session()
       supabase.auth.onAuthStateChange((event, supabaseSession) => {
          $session = supabaseSession
-         console.log($session)
       })
    }
 </script>

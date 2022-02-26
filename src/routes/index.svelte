@@ -22,7 +22,6 @@
    let reading = [];
    let bookshelf = [];
    async function loading(){
-      console.log($session)
       reading = await getBooksByTag('reading')
       for(let book of reading){
          book = await requestBook(book.id)
