@@ -48,6 +48,7 @@
    .mobile-welcome h1{
       text-align: left;
    }
+   // at some point .searchBar-alt input stopped working. now there's an alias in index.svelte, which is using textForm
    .searchBar-alt input{
       width: 70vw;
       //margin-bottom: 25px;

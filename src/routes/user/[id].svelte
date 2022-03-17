@@ -82,7 +82,6 @@
             <h1>{data[0].username}</h1>
             <p>{#if !isFriend}<button id="friendButton" on:click={invokeSendFriendRequest}>Ask friendship</button>{/if}</p>
          </div>
-         
          <StatsBar stats={stats} />
       </div>
       <h2>Friends</h2>

@@ -58,7 +58,6 @@ export async function sendFriendRequest(targetID) {
 
 }
 
-
 export async function answerFriendRequest(hasAccepted, friendship) {
    if (hasAccepted) {
       friendship.pending = false;
@@ -73,4 +72,24 @@ export async function answerFriendRequest(hasAccepted, friendship) {
       if (updatedError) {
          return updatedError
       }
+}
+let finalBooks = []
+export async function whatAreFriendsReading(friends) {
+   if (finalBooks.length === 0) {
+      friends.forEach(async friend => {
+         var books = await supabase.from('profiles').select('bookshelf').eq('id', friend.friendID)
+         books = books.data[0].bookshelf
+         books = books.filter(function (e) {
+            return e.tag == 'reading'
+         })
+         books.forEach(book => {
+            book.user = friend.friendName
+            book.userID = friend.friendID
+            finalBooks.push(book)
+         })
+      });
+      return finalBooks;
+   } else {
+      return finalBooks
+   }
 }
