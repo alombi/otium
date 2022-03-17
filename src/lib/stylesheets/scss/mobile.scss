@@ -1,5 +1,14 @@
 /* Media query */
 @media(max-width:550px){
+   h1{
+      font-size: 25px;
+   }
+   h2{
+      font-size: 22px;
+   }
+   p, a{
+      font-size: 16px;
+   }
    // #navbarBrand{
    //    display: none;
    // }
