@@ -99,4 +99,7 @@
    .content{
       display:none
    }
+   .textForm{
+      width: 70vw;
+   }
 </style>
