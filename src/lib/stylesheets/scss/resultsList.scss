@@ -50,3 +50,25 @@
    height: 120px;
    padding: 20px;
 }
+
+
+// profile's result list
+// #results{
+//    display: none;
+// }
+
+
+// Friends
+.friends{
+   display: flex;
+   flex-direction: row;
+   overflow-x: scroll;
+}
+.friend{
+   background-color: #434c5e;
+   padding:15px 30px;
+   border-radius:6px;
+   font-weight: 600;
+   text-align: center;
+   width:150px;
+}

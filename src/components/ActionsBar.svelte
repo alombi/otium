@@ -13,7 +13,7 @@
       }else{
          addNotification({text:'Done!', position:'bottom-right', type:'success', removeAfter: '2000'})
          isAdded.set(true)
-         bookshelfTag.set(undefined)
+         bookshelfTag.set('unset')
          DB = true
       }
    } 
@@ -53,8 +53,8 @@
 </script>
 <div class="buttons-container">
    {#if DB}
-      {#if $bookshelfTag != undefined}
-         <button class="book-actions untag" on:click={invokeAddToBookshelf(id, 'unset')}><i class="fas fa-tag"></i> Remove tag</button>
+      {#if $bookshelfTag != 'unset'}
+         <button class="book-actions untag" on:click={invokeChangeTag(id, 'unset')}><i class="fas fa-tag"></i> Remove tag</button>
       {/if}
       {#if $bookshelfTag != 'read'}
          <button class="book-actions read revert" on:click={invokeChangeTag(id, 'read')}><i class="fas fa-check"></i> Mark as read</button>
@@ -74,6 +74,6 @@
       <button class="book-actions remove" on:click={invokeRemoveFromBookshelf(id)}><i class="fas fa-trash-alt"></i> Remove book</button>
    {:else}
       <button class="book-actions add" on:click={invokeAddToBookshelf(id, 'unset')}><i class="fas fa-plus"></i> Add to bookshelf</button>
-      <button class="book-actions share"><i class="fas fa-share"></i> Suggest to a friend</button>
+      <!-- <button class="book-actions share"><i class="fas fa-share"></i> Suggest to a friend</button> -->
    {/if}
 </div>

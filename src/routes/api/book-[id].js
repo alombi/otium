@@ -8,7 +8,8 @@ export async function get({ params }) {
       googleKey = GOOGLE_BOOKS_KEY;
    }
    const id = params.id
-   const url = `https://www.googleapis.com/books/v1/volumes/${id}?key=${googleKey}`
+   //const url = `https://www.googleapis.com/books/v1/volumes/${id}?key=${googleKey}`
+   const url = `https://www.googleapis.com/books/v1/volumes/${id}`
    let req = await fetch(url)
    var data = await req.json()
    return {

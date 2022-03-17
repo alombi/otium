@@ -6,6 +6,7 @@
 @import "scss/indexPage.scss";
 @import "scss/mobile.scss";
 @import "scss/banner.scss";
+@import "scss/searchBar.scss";
 
 /* General stuff */
 body{
@@ -34,4 +35,12 @@ a{
    border-radius: 4px;
    color:white;
    background-color: #434c5e;
+}
+.not_found{
+   text-align: center;
+   opacity: 0.6;
+}
+#pending{
+   font-size: 13px;
+   opacity: 0.6;
 }

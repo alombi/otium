@@ -73,7 +73,7 @@
     </p>
     <div class="headerLinks">
       <a on:click={()=>{loading('/')}} href="/">Home</a>
-      <a href="/profile">Social</a>
+      <a on:click={()=>{loading('/profile')}} href="/profile">Social</a>
     </div>
 
     

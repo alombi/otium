@@ -41,10 +41,6 @@
   background-color: #4c566a;
 }
 
-.searchBar {
-  display: flex;
-}
-
 #tipLink {
   font-size: 13px;
   margin-left: 5px;
@@ -147,6 +143,21 @@ code {
 .layout-list > .book-card > a > div > div > img {
   height: 120px;
   padding: 20px;
+}
+
+.friends {
+  display: flex;
+  flex-direction: row;
+  overflow-x: scroll;
+}
+
+.friend {
+  background-color: #434c5e;
+  padding: 15px 30px;
+  border-radius: 6px;
+  font-weight: 600;
+  text-align: center;
+  width: 150px;
 }
 
 /* Single page */
@@ -276,6 +287,23 @@ code {
   font-size: 15px;
 }
 
+#friendButton {
+  border-radius: 4px;
+  border: 0px;
+  color: white;
+  background-color: #9BBEED;
+  margin-top: 12px;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 5px;
+}
+
+#buttonContainer {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
 .centered-welcome {
   display: flex;
   align-items: center;
@@ -292,15 +320,6 @@ code {
 .centered-welcome p {
   margin-top: -15px;
   line-break: auto;
-}
-
-.textForm {
-  max-width: 300px;
-  text-align: left;
-}
-
-.searchBar-alt input {
-  width: 75vw;
 }
 
 .mobile-welcome {
@@ -366,7 +385,6 @@ code {
 
   .searchBar-alt input {
     width: 70vw;
-    margin-bottom: 25px;
   }
 }
 @media (max-width: 750px) {
@@ -391,6 +409,33 @@ code {
 .banner #advancedBanner {
   display: none;
   padding-bottom: 10px;
+}
+
+.searchBar {
+  display: flex;
+}
+
+.textForm {
+  max-width: 300px;
+  text-align: left;
+}
+
+.searchBar-alt input {
+  width: 75vw;
+}
+
+.searchBar-search-and-profile {
+  padding-top: 25px;
+  text-align: center;
+}
+
+.searchBar-search-and-profile input {
+  width: 70vw !important;
+}
+
+#searchBar-local {
+  display: flex;
+  justify-content: space-around !important;
 }
 
 /* General stuff */
@@ -424,4 +469,14 @@ a {
   border-radius: 4px;
   color: white;
   background-color: #434c5e;
+}
+
+.not_found {
+  text-align: center;
+  opacity: 0.6;
+}
+
+#pending {
+  font-size: 13px;
+  opacity: 0.6;
 }/*# sourceMappingURL=main.css.map */
