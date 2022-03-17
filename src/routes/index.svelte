@@ -2,11 +2,11 @@
    import { whatAreFriendsReading } from '$lib/userActions';
    import supabase from '$lib/db';
    export async function load(){
-      const session = supabase.auth.session();
       let id;
       let friendship;
       let friends = []
       try{
+         const session = supabase.auth.session();
          id = session.user.id
          friendship = await supabase.from('friendship').select('*');
          friendship = friendship.data;
@@ -18,7 +18,6 @@
             }
          })
       }catch{
-         data = null
       }
       friends.forEach(friend => {
          if(id != friend.receiver_id){

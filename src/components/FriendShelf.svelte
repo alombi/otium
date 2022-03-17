@@ -42,7 +42,7 @@
    {#await loading}
       <div class="loader"><Jumper size="60" color="#f2b3cf" unit="px" duration="1s"></Jumper></div>
    {:then loading} 
-      {#if bookshelf.length != 0}
+      {#if books.length != 0}
          {#each bookshelf as book}
             <div class="book-card">
                <a href={book.url}>

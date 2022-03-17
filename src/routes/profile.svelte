@@ -1,11 +1,11 @@
 <script context="module">
    import supabase from '$lib/db';
    export async function load(){
-      const session = supabase.auth.session();
       let id;
       let data, profiles, friendship;
       let friends = []
       try{
+         const session = supabase.auth.session();
          id = session.user.id
          data = await supabase.from('profiles').select('*').eq('id', id)
          data = data.data
@@ -126,10 +126,10 @@
    }
 </script>
 
+{#if $session}
 {#await loaded}
    <div class="loader"><Jellyfish size="120" color="#f2b3cf" unit="px" duration="1s"></Jellyfish></div>  
 {:then}
-   {#if $session}
       <div id="searchBar-local">
          <form class="searchBar-alt searchBar-search-and-profile" on:submit|preventDefault={search}>
             <input type="text" class="textForm" placeholder="Search per username" required="required" bind:value={searchTerm}>
@@ -171,11 +171,10 @@
          {/each}
          </div>
       {/if}
-            
-   {:else}
-      <LoggedOutProfile />
-   {/if}
 {/await}
+{:else}
+      <LoggedOutProfile />
+{/if}
 
 <style>
    #results{
