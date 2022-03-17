@@ -1,6 +1,7 @@
 <script>
    import { Jumper } from 'svelte-loading-spinners'
    export let books;
+   console.log(books)
    async function requestBook(id){
       let request = await fetch('../api/book-' + id)
       let element = await request.json()
@@ -34,7 +35,10 @@
    }
 
    let loading;
-   loading = getBooks()
+   setTimeout(async()=>{
+      loading = getBooks()
+   }, 500)
+   bookshelf = []
 </script>
 
 
@@ -42,7 +46,7 @@
    {#await loading}
       <div class="loader"><Jumper size="60" color="#f2b3cf" unit="px" duration="1s"></Jumper></div>
    {:then loading} 
-      {#if bookshelf.length != 0}
+      {#if books.length != 0}
          {#each bookshelf as book}
             <div class="book-card">
                <a href={book.url}>
