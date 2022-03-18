@@ -171,6 +171,8 @@
          {/each}
          </div>
       {/if}
+      <!-- activity (reviews, groups..) -->
+      
 {/await}
 {:else}
       <LoggedOutProfile />
