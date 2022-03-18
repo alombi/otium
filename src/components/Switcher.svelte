@@ -28,6 +28,7 @@
      border-right: none;
      user-select: none;
      border: 2px solid #3b4252;
+     font-size: 15px;
    }
  
    input {
