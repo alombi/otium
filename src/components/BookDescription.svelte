@@ -2,8 +2,8 @@
    export let description;
    let length = description.length;
    let smallDescription;
-   if(length > 1097){
-      smallDescription = description.substr(0, 1100) + '...'
+   if(length > 847){
+      smallDescription = description.substr(0, 850) + '...'
    }
    function showFull(){
       document.getElementById('displayed').style.display = 'none';
