@@ -47,14 +47,17 @@
    import Error from '$components/Error.svelte';
    import BookDescription from '$components/BookDescription.svelte';
    import { isAdded, bookshelfTag, isStarred } from '$lib/tag_store';
+   import ISO6391 from 'iso-639-1';
+
    
    export let book;
    export let dataFiltered;
    export let tags;
    let tag;
-   let cover, year;
+   let cover, year, lang;
    let title = 'Loading';
    onMount(()=>{
+      lang = ISO6391.getName(book.volumeInfo.language)
       if(book.volumeInfo.publishedDate){
          year = book.volumeInfo.publishedDate.split('-')[0]
       }else{
@@ -130,7 +133,7 @@
             <p><b>Author</b>: {book.volumeInfo.authors[0]}</p>
             <p><b>Publisher</b>: {book.volumeInfo.publisher}</p>
             <p><b>Year</b>: {year}</p>
-            <p><b>Language</b>: {book.volumeInfo.language}</p>
+            <p><b>Language</b>: {lang}</p>
          </div>
       </div>
    {:else}
