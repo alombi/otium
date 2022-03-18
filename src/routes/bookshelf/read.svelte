@@ -55,7 +55,7 @@
 </svelte:head>
 
 {#if $session}
-   <h1><i class="fas fa-check"></i> Read</h1>
+   <h1>Already read</h1>
    <div id="books" class="book-list layout-list">
       {#each bookshelf as book}
          <div class="book-card">
