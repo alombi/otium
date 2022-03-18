@@ -54,7 +54,7 @@
                      <div>
                         <img src={book.cover} alt="cover">
                      </div>
-                     <div>
+                     <div id="book-card-text">
                         <p class="title">{book.title}</p>
                         <p class="author">by <i>{book.author}</i></p>
                         <p class="reader">Reading by <a href={book.url}><span>{book.user}</span></a></p>

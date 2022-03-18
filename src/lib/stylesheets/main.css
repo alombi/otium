@@ -143,6 +143,11 @@ code {
 .layout-list > .book-card > a > div > div > img {
   height: 120px;
   padding: 20px;
+  padding-right: 5px;
+}
+
+#book-card-text {
+  padding-right: 2px;
 }
 
 .friends {
