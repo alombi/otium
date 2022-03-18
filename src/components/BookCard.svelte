@@ -43,7 +43,7 @@
                <img src={cover} alt="cover">
             {/if}
          </div>
-         <div>
+         <div id="book-card-text">
             <p class="title">{title}</p>
             <p class="author">by <i>{author}</i></p>
             {#await publisher}

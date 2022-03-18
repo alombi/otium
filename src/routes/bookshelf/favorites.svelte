@@ -55,7 +55,7 @@
 </svelte:head>
 
 {#if $session}
-   <h1><i class="fas fa-star"></i> Favourites</h1>
+   <h1>Favourites</h1>
    <div id="books" class="book-list layout-list">
       {#each bookshelf as book}
          <div class="book-card">

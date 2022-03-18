@@ -72,8 +72,8 @@
       <span>Sections</span>
     </p>
     <div class="headerLinks">
-      <a on:click={()=>{loading('/')}} href="/">Home</a>
-      <a on:click={()=>{loading('/profile')}} href="/profile">Social</a>
+      <a on:click={()=>{loading('/')}} href="/"><i class="fa-solid fa-house"></i> Home</a>
+      <a on:click={()=>{loading('/profile')}} href="/profile"><i class="fa-regular fa-user"></i> Social</a>
     </div>
 
     
@@ -81,11 +81,11 @@
       <span>Bookshelf</span>
     </p>
     <div class="headerLinks">
-      <a on:click={()=>{loading('/bookshelf/reading')}} href="/bookshelf/reading">Reading</a>
-      <a on:click={()=>{loading('/bookshelf/to_read')}} href="/bookshelf/to_read">To read</a>
-      <a on:click={()=>{loading('/bookshelf/read')}} href="/bookshelf/read">Already read</a>
-      <a on:click={()=>{loading('/bookshelf/favorites')}} href="/bookshelf/favorites">Favourites</a>
-      <a on:click={()=>{loading('/bookshelf/untagged')}} href="/bookshelf/untagged">Untagged</a>
+      <a on:click={()=>{loading('/bookshelf/reading')}} href="/bookshelf/reading"><i class="fa-solid fa-book-bookmark"></i> Reading</a>
+      <a on:click={()=>{loading('/bookshelf/to_read')}} href="/bookshelf/to_read"><i class="fa-regular fa-clock"></i> To read</a>
+      <a on:click={()=>{loading('/bookshelf/read')}} href="/bookshelf/read"><i class="fa-regular fa-check"></i> Already read</a>
+      <a on:click={()=>{loading('/bookshelf/favorites')}} href="/bookshelf/favorites"><i class="fa-regular fa-star"></i> Favourites</a>
+      <a on:click={()=>{loading('/bookshelf/untagged')}} href="/bookshelf/untagged"><i class="fa-solid fa-tag"></i> Untagged</a>
     </div>
 
   </div>

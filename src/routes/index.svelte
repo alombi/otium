@@ -84,7 +84,7 @@
       <h2>Reading now</h2>
       <Shelf tag="reading" />
       <!-- <a on:click={loadDirection} href="/bookshelf/reading">More</a> -->
-      <h2>Friends are reading</h2>
+      <h2><i class="fa-solid fa-user-group"></i> Friends are reading</h2>
       <FriendShelf books={books} />
    </div>
 {:else}
@@ -101,5 +101,8 @@
    }
    .textForm{
       width: 70vw;
+   }
+   .fa-solid{
+      font-size: 21px;
    }
 </style>
