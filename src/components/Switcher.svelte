@@ -22,7 +22,7 @@
    label {
      display: inline-block;
      cursor: pointer;
-     padding: 0px 15px;
+     padding: 0px 11px;
      line-height: 34px;
      background-color: #3b42521a;
      border-right: none;
