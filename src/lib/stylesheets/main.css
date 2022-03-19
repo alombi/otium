@@ -455,6 +455,32 @@ code {
   justify-content: space-around !important;
 }
 
+#results {
+  display: block;
+  position: absolute;
+  background-color: #2e3440;
+  width: 70vw;
+  max-width: 300px;
+  border-radius: 4px;
+  text-decoration: none;
+  padding: 5px 15px;
+}
+
+#results p:hover {
+  opacity: 0.6;
+}
+
+#results .sidebarHeader:hover {
+  opacity: 1;
+}
+
+#results_container {
+  display: none;
+  justify-content: center;
+  padding-right: 45px;
+  padding-top: 5px;
+}
+
 /* General stuff */
 body {
   font-family: "Barlow", sans-serif;
@@ -496,4 +522,8 @@ a {
 #pending {
   font-size: 13px;
   opacity: 0.6;
+}
+
+#in_friends_bookshelf {
+  text-align: center;
 }/*# sourceMappingURL=main.css.map */

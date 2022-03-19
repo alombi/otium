@@ -13,6 +13,7 @@
       }
       // Requesting data from Otium DB
       let dataFiltered;
+      let friends = [];
       try{
          const session = supabase.auth.session()
          const userID = session.user.id
@@ -24,6 +25,25 @@
          if(dataFiltered.length == 0){
             dataFiltered = null
          }
+
+         let friendship = await supabase.from('friendship').select('*');
+         friendship = friendship.data;
+         friendship.filter(function (e){
+            if(e.sender_id == userID || e.receiver_id == userID){
+               if(e.status != 'declined'){
+                  friends.push(e)
+               }
+            }
+         })
+         friends.forEach(friend => {
+            if(id != friend.receiver_id){
+               friend.friendName = friend.receiver_name
+               friend.friendID = friend.receiver_id
+            }else{
+               friend.friendName = friend.sender_name
+               friend.friendID = friend.sender_id
+            }
+         });
       }catch{
          dataFiltered = null
       }
@@ -35,7 +55,7 @@
          reading: 'Reading now'
       }
 
-      return {props:{book, dataFiltered, tags}}
+      return {props:{book, dataFiltered, tags, friends, id}}
    }
 </script>
 
@@ -46,6 +66,7 @@
    import ActionsBar from '$components/ActionsBar.svelte';
    import Error from '$components/Error.svelte';
    import BookDescription from '$components/BookDescription.svelte';
+   import BooksInCommon from '$components/BooksInCommon.svelte';
    import { isAdded, bookshelfTag, isStarred } from '$lib/tag_store';
    import ISO6391 from 'iso-639-1';
 
@@ -53,6 +74,7 @@
    export let book;
    export let dataFiltered;
    export let tags;
+   export let friends, id
    let tag;
    let cover, year, lang;
    let title = 'Loading';
@@ -117,6 +139,7 @@
                {/if}
             </div>
             {/if}
+            <BooksInCommon friends={friends} id={id} />
             <h1 class="title-book">{book.volumeInfo.title}</h1>
             <h2 class="author title-book author-title">by <span id="author-name">{book.volumeInfo.authors[0]}</span></h2>
       </div>

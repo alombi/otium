@@ -75,7 +75,7 @@
          }
       })
       if(results.length > 0){
-         document.getElementById('results').style.display = 'block'
+         document.getElementById('results_container').style.display = 'flex'
          addNotification({text:`Found ${results.length} results`, position:'bottom-right', type:'success', removeAfter: '2000'})
          searchRes = results
       }else{
@@ -177,25 +177,3 @@
 {:else}
       <LoggedOutProfile />
 {/if}
-
-<style>
-   #results{
-      display: none;
-      position: fixed;
-      background-color: #2e3440;
-      width: 70vw;
-      max-width: 300px;
-      border-radius: 4px;
-      text-decoration: none;
-      padding: 5px 15px;
-   }
-   #results p:hover{
-      opacity: 0.6;
-   }
-   #results_container{
-      display: flex;
-      justify-content: center;
-      padding-right: 45px;
-      padding-top:5px;
-   }
-</style>

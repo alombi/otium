@@ -7,6 +7,7 @@
 @import "scss/mobile.scss";
 @import "scss/banner.scss";
 @import "scss/searchBar.scss";
+@import "scss/popover.scss";
 
 /* General stuff */
 body{
@@ -43,4 +44,7 @@ a{
 #pending{
    font-size: 13px;
    opacity: 0.6;
+}
+#in_friends_bookshelf{
+   text-align: center;
 }
