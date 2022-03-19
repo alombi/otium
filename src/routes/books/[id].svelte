@@ -150,7 +150,11 @@
       <div class="book-details-container">
          <div>
             <h2>Description</h2>
-            <BookDescription description={book.volumeInfo.description} />
+            {#if !book.volumeInfo.description}
+               <p>No description provided.</p>
+            {:else}
+               <BookDescription description={book.volumeInfo.description} />
+            {/if}
          </div>
          <div>
             <h2>Details</h2>
