@@ -79,3 +79,33 @@ export async function toggleStar(bookID) {
       }
    }
 }
+let commonBookFriends = [];
+let id; 
+export async function isInFriendsBookshelf(friends, bookID) {
+   if (id != bookID) {
+      id = bookID
+      commonBookFriends = []
+      friends.forEach(async friend => {
+         let friendBookshelf = await supabase.from('profiles').select('bookshelf').eq('id', friend.friendID)
+         friendBookshelf = friendBookshelf.data[0].bookshelf;
+         friendBookshelf.forEach(book => {
+            if (book.id == bookID) {
+               friend.bookTagged = book.tag
+               friend.friendURL = `/user/${friend.friendID}`
+               commonBookFriends.push(friend)
+            }
+         })
+      })
+      return commonBookFriends
+   }
+   else {
+      return commonBookFriends
+   }
+}
+// let n = 1
+// export async function isInFriendsBookshelf(friends, bookID) {
+//    console.log(n)
+//    n = n + 1
+//    console.log(n)
+//    return []
+// }

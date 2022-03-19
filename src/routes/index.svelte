@@ -30,6 +30,7 @@
       });
 
       let books = await whatAreFriendsReading(friends)
+      books = books.reverse()
       return { props: { books }}
    }
 </script>
