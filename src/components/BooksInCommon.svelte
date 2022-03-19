@@ -32,7 +32,7 @@
    <p>no</p>
 {:then}
    {#if commonBookFriends.length > 0}
-   <h3 on:click={seeCommon} id="in_friends_bookshelf"><i class="fa-solid fa-user-group"></i> 1</h3>
+   <h3 on:click={seeCommon} id="in_friends_bookshelf"><i class="fa-solid fa-user-group"></i> {commonBookFriends.length}</h3>
    <div id="results_container">
       <div id="results">
          <p class="sidebarHeader">
