@@ -12,12 +12,13 @@
          book = null
       }
       // Requesting data from Otium DB
-      let dataFiltered;
+      let dataFiltered, bookshelf;
       let friends = [];
       try{
          const session = supabase.auth.session()
          const userID = session.user.id
          const { data, error } = await supabase.from('profiles').select('bookshelf').eq('id', userID)
+         bookshelf = data[0].bookshelf
          dataFiltered = data[0].bookshelf
          dataFiltered = dataFiltered.filter(function(e){
             return e.id == id
@@ -55,7 +56,7 @@
          reading: 'Reading now'
       }
 
-      return {props:{book, dataFiltered, tags, friends, id}}
+      return {props:{book, dataFiltered, tags, friends, id, bookshelf}}
    }
 </script>
 
@@ -74,7 +75,7 @@
    export let book;
    export let dataFiltered;
    export let tags;
-   export let friends, id
+   export let friends, id, bookshelf;
    let tag;
    let cover, year, lang;
    let title = 'Loading';
@@ -139,7 +140,7 @@
                {/if}
             </div>
             {/if}
-            <BooksInCommon friends={friends} id={id} />
+            <BooksInCommon friends={friends} id={id} bookshelf={bookshelf} />
             <h1 class="title-book">{book.volumeInfo.title}</h1>
             <h2 class="author title-book author-title">by <span id="author-name">{book.volumeInfo.authors[0]}</span></h2>
       </div>

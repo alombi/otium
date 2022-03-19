@@ -3,6 +3,7 @@
    import { onMount } from "svelte";
    export let friends = [];
    export let id;
+   export let bookshelf;
    let commonBookFriends = [];
    const tags = {
          unset: 'Added to bookshelf',
@@ -19,7 +20,7 @@
       }
    }
    onMount(async()=>{
-      commonBookFriends = await isInFriendsBookshelf(friends, id)
+      commonBookFriends = await isInFriendsBookshelf(friends, id, bookshelf)
    })
 
    let promise;

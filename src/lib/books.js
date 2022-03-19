@@ -81,7 +81,7 @@ export async function toggleStar(bookID) {
 }
 let commonBookFriends = [];
 let id; 
-export async function isInFriendsBookshelf(friends, bookID) {
+export async function isInFriendsBookshelf(friends, bookID, bookshelf) {
    if (id != bookID) {
       id = bookID
       commonBookFriends = []
@@ -89,7 +89,7 @@ export async function isInFriendsBookshelf(friends, bookID) {
          let friendBookshelf = await supabase.from('profiles').select('bookshelf').eq('id', friend.friendID)
          friendBookshelf = friendBookshelf.data[0].bookshelf;
          friendBookshelf.forEach(book => {
-            if (book.id == bookID) {
+            if (book.id == bookID && containsObject(book, bookshelf)) {
                friend.bookTagged = book.tag
                friend.friendURL = `/user/${friend.friendID}`
                commonBookFriends.push(friend)
@@ -101,6 +101,16 @@ export async function isInFriendsBookshelf(friends, bookID) {
    else {
       return commonBookFriends
    }
+}
+function containsObject(obj, list) {
+   var i;
+   for (i = 0; i < list.length; i++) {
+       if (list[i].id === obj.id) {
+           return true;
+       }
+   }
+
+   return false;
 }
 // let n = 1
 // export async function isInFriendsBookshelf(friends, bookID) {
