@@ -89,7 +89,8 @@ export async function isInFriendsBookshelf(friends, bookID, bookshelf) {
          let friendBookshelf = await supabase.from('profiles').select('bookshelf').eq('id', friend.friendID)
          friendBookshelf = friendBookshelf.data[0].bookshelf;
          friendBookshelf.forEach(book => {
-            if (book.id == bookID && containsObject(book, bookshelf)) {
+            //if (book.id == bookID && containsObject(book, bookshelf)) {
+            if (book.id == bookID) {
                friend.bookTagged = book.tag
                friend.friendURL = `/user/${friend.friendID}`
                commonBookFriends.push(friend)
