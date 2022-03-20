@@ -26,7 +26,7 @@
    let promise;
    setTimeout(()=>{
       promise = 's'
-   }, 1000)
+   }, 500)
 </script>
 
 {#await promise}

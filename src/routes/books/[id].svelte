@@ -112,6 +112,7 @@
    })
    onDestroy(()=>{
       isAdded.set(false)
+      isStarred.set(false)
    })
 </script>
 
