@@ -154,6 +154,7 @@ code {
   display: flex;
   flex-direction: row;
   overflow-x: scroll;
+  gap: 10px;
 }
 
 .friend {
@@ -162,7 +163,10 @@ code {
   border-radius: 6px;
   font-weight: 600;
   text-align: center;
-  width: 150px;
+  min-width: 100px;
+}
+.friend a p {
+  font-size: 15px;
 }
 
 /* Single page */

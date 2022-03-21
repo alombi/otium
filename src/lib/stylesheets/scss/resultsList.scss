@@ -68,6 +68,7 @@
    display: flex;
    flex-direction: row;
    overflow-x: scroll;
+   gap:10px;
 }
 .friend{
    background-color: #434c5e;
@@ -75,5 +76,10 @@
    border-radius:6px;
    font-weight: 600;
    text-align: center;
-   width:150px;
+   min-width:100px;
+   a{
+      p{
+         font-size: 15px;
+      }
+   }
 }
