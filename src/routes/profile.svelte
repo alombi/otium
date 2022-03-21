@@ -64,7 +64,10 @@
    let searchRes = [];
    function search(){
       let usernames = [];
-      profiles.forEach(profile => { usernames.push(profile.username) });
+      profiles.forEach(profile => { 
+         if(profile.username)
+            usernames.push(profile.username) 
+      });
       usernames.forEach(username =>{
          if(username.indexOf(searchTerm) != -1){
             var obj = {
