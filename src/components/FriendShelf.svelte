@@ -1,7 +1,6 @@
 <script>
    import { Jumper } from 'svelte-loading-spinners'
    export let books;
-   console.log(books)
    async function requestBook(id){
       let request = await fetch('../api/book-' + id)
       let element = await request.json()

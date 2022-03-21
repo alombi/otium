@@ -1,0 +1,40 @@
+.notif_username{
+   color:#fff3a3;
+}
+.notifications{
+   display: flex;
+   flex-direction: column;
+}
+.notification{
+   padding-left:5px;
+   padding-right: 5px;
+   border-bottom:2px solid #3b4252;
+   display:flex;
+   justify-content: flex-start;
+   align-items: baseline;
+   gap:5px;
+}
+.notification:hover{
+   background-color:#3b4252;
+}
+.notif_link{
+   color:white;
+}
+.notif_tools{
+   padding-top: 0px!important;
+   padding-bottom: 0px!important;
+}
+.bullet{
+   background-color: #EBCCFF;
+   border-radius: 50%;
+   width:5px;
+   height:5px;
+   padding:2px;
+}
+.bullet_read{
+   background-color: #4c566a;
+}
+.notif_date{
+   font-size: 13px;
+   opacity: 0.7;
+}

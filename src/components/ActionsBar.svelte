@@ -1,10 +1,14 @@
 <script>
    export let id;
    export let DB;
+   export let friends;
+   export let title;
    import { addToBookshelf, removeFromBookshelf, changeTag, toggleStar } from '$lib/books';
    import { getNotificationsContext } from 'svelte-notifications';
    import { isAdded, bookshelfTag, isStarred } from '$lib/tag_store';
    const { addNotification } = getNotificationsContext();
+   import { openModal } from 'svelte-modals'
+   import SuggestModal from '$components/SuggestModal.svelte';
 
    async function invokeAddToBookshelf(id, tag){
       let response = await addToBookshelf(id, tag, $isStarred)
@@ -50,8 +54,14 @@
          isStarred.set(!$isStarred)
       }
    }
+
+   function invokeSuggest(id){
+      openModal(SuggestModal, { title: "Suggest book", friends:friends, bookTitle:title, type:'suggestion' })
+   }
 </script>
 <div class="buttons-container">
+<button on:click={invokeSuggest(id)} class="book-actions share floating desktop"><i class="fa-solid fa-share-from-square"></i> Suggest to a friend</button>
+<button on:click={invokeSuggest(id)} class="book-actions share mobile"><i class="fa-solid fa-share-from-square"></i> Suggest to a friend</button>
    {#if DB}
       {#if $bookshelfTag != 'unset'}
          <button class="book-actions untag" on:click={invokeChangeTag(id, 'unset')}><i class="fa-solid fa-tag"></i> Remove tag</button>
@@ -77,3 +87,9 @@
       <!-- <button class="book-actions share"><i class="fas fa-share"></i> Suggest to a friend</button> -->
    {/if}
 </div>
+
+<style>
+   .special{
+      margin-bottom:10px;
+   }
+</style>

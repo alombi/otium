@@ -71,6 +71,15 @@
    gap:5px;
    margin-bottom:-15px;
 }
+.floating{
+      position: absolute;
+      right: 10px;
+      top:60px;
+      padding:10px;
+}
+.mobile{
+   display:none
+}
 
 // Search button
 #searchButton{

@@ -1,4 +1,5 @@
 import supabase from '$lib/db';
+import { notifsUnread } from '$lib/tag_store';
 
 export async function makeUserStats(data) {
    let stats = {
@@ -92,4 +93,32 @@ export async function whatAreFriendsReading(friends) {
    } else {
       return finalBooks
    }
+}
+
+export async function sendNotification(target, content, link, type) {
+   var obj = {
+      user: target,
+      content: content,
+      link: link,
+      isRead: false,
+      type: type
+   }
+   const { data, error } = await supabase.from('notifications').insert(obj)
+   if (error) {
+      return error
+   }
+}
+
+export async function markAsRead(id) {
+   const { data, error } = await supabase.from('notifications').update({'isRead':true}).eq('id', id)
+   if (error) {
+      console.error(error)
+   } else {
+      let unreadNotifications = await supabase.from('notifications').select('*').is('isRead', false)
+      unreadNotifications = unreadNotifications.data
+      if (unreadNotifications.length == 0) {
+         notifsUnread.set(false)
+      }
+   }
+   
 }

@@ -1,5 +1,11 @@
 /* Media query */
 @media(max-width:550px){
+   .desktop{
+      display: none;
+   }
+   .mobile{
+      display:block;
+   }
    h1{
       font-size: 25px;
    }

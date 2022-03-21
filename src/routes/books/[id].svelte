@@ -40,9 +40,11 @@
             if(id != friend.receiver_id){
                friend.friendName = friend.receiver_name
                friend.friendID = friend.receiver_id
+               friend.friendURL = `/user/${friend.receiver_id}`
             }else{
                friend.friendName = friend.sender_name
                friend.friendID = friend.sender_id
+               friend.friendURL = `/user/${friend.sender_id}`
             }
          });
       }catch{
@@ -146,7 +148,7 @@
             <h2 class="author title-book author-title">by <span id="author-name">{book.volumeInfo.authors[0]}</span></h2>
       </div>
       {#if $session}
-         <ActionsBar id={book.id} DB={dataFiltered} />
+         <ActionsBar title={title} id={book.id} DB={dataFiltered} friends={friends} />
       {/if}
       <div class="book-details-container">
          <div>
