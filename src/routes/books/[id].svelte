@@ -37,7 +37,7 @@
             }
          })
          friends.forEach(friend => {
-            if(id != friend.receiver_id){
+            if(userID != friend.receiver_id){
                friend.friendName = friend.receiver_name
                friend.friendID = friend.receiver_id
                friend.friendURL = `/user/${friend.receiver_id}`

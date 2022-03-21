@@ -57,7 +57,7 @@
      margin-bottom: -16px;
      border-bottom:2px solid #4c566a;
      display: flex;
-     justify-content: space-around;
+     justify-content: space-between;
      align-items: baseline;
      border-radius: 4px;
    }

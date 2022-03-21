@@ -20,6 +20,7 @@
       }
    }
    onMount(async()=>{
+      console.log(friends)
       commonBookFriends = await isInFriendsBookshelf(friends, id, bookshelf)
    })
 
