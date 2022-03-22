@@ -16,8 +16,9 @@
          email: email,
          password: password
       });
+      document.getElementById('waiting').style.display = 'fixed'
       if(error){
-         alert(error.message)
+         console.log(error.message)
       }else{
          session.set(supabaseSession)
          window.location.href = '/';
@@ -47,4 +48,12 @@
    form{
       text-align: center;
    }
+   #waiting{
+        position: none;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        background: rgba(0,0,0,0.50)
+    }
  </style>
