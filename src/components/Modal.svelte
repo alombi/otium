@@ -5,6 +5,8 @@
     export let title
     export let message
     export let showButtons
+
+    console.log(title, message, showButtons)
 </script>
 
 {#if isOpen}
