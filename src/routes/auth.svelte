@@ -20,6 +20,7 @@
          alert(error.message)
       }else{
          session.set(supabaseSession)
+         window.location.href = '/';
       }
    }
 
