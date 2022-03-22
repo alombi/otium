@@ -17,7 +17,7 @@
             console.log(error.message)
             document.getElementById('waitingForEmailToBeSentIndicatorFromAuth').style.display = 'none';
             document.getElementById('loginFromPage').style.display = 'block';
-            openModal(Modal, {title:"Whoops! Something went wrong", message:error.message, showButtons:true})
+            openModal(Modal, {title:"Whoops!", message:`An error occurred: ${error.message}`, showButtons:true})
         }else{
             if(user){
                 openModal(Modal, { title: "Verify your account", message:'Thank you for joining Otium! An email has been sent to you in order to verify your account.', showButtons:false })

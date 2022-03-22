@@ -6,6 +6,8 @@
    import { Jumper } from 'svelte-loading-spinners'
    import { getNotificationsContext } from 'svelte-notifications';
    const { addNotification } = getNotificationsContext();
+   import { openModal } from 'svelte-modals'
+   import Modal from '$components/Modal.svelte';
 
    let email, password;
    async function signIn(){
@@ -20,6 +22,7 @@
          console.log(error.message)
          document.getElementById('waitingForEmailToBeSentIndicatorFromAuth').style.display = 'none';
          document.getElementById('loginFromPage').style.display = 'block';
+         openModal(Modal, {title:"Whoops!", message:`An error occurred: ${error.message}`, showButtons:true})
       }else{
          session.set(supabaseSession)
          window.location.href = '/';
