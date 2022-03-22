@@ -4,11 +4,8 @@
    import { onMount } from "svelte";
    import supabase from '$lib/db';
    import { Jumper } from 'svelte-loading-spinners'
-   import { getNotificationsContext } from 'svelte-notifications';
-   const { addNotification } = getNotificationsContext();
    import { openModal } from 'svelte-modals'
    import Modal from '$components/Modal.svelte';
-
    let email, password;
    async function signIn(){
       document.getElementById('waitingForEmailToBeSentIndicatorFromAuth').style.display = 'flex';
