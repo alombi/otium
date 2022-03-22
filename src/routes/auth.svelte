@@ -19,8 +19,7 @@
       if(error){
          alert(error.message)
       }else{
-         $session = supabaseSession
-         window.location.href('/')
+         session.set(supabaseSession)
       }
    }
 
