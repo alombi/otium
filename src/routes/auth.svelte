@@ -8,17 +8,15 @@
 
    let email, password;
    async function signIn(){
-      //document.getElementById('loginFromPage').style.display = 'none';
-      //document.getElementById('waitingForEmailToBeSentIndicatorFromAuth').style.display = 'flex';
-      //document.getElementById('waitingForEmailToBeSentIndicatorFromAuth').style.justifyContent = 'center';
-      //document.getElementById('loginButton').disabled = 'true';
       const { user, supabaseSession, error } = await supabase.auth.signIn({
          email: email,
          password: password
       });
-      document.getElementById('waiting').style.display = 'fixed'
+      document.getElementById('waitingForEmailToBeSentIndicatorFromAuth').style.display = 'flex';
+      document.getElementById('waitingForEmailToBeSentIndicatorFromAuth').style.justifyContent = 'center';
       if(error){
          console.log(error.message)
+         document.getElementById('waitingForEmailToBeSentIndicatorFromAuth').style.display = 'none';
       }else{
          session.set(supabaseSession)
          window.location.href = '/';
@@ -43,17 +41,13 @@
       <button class="buttonAuth" type="submit">Sign in</button>
    </form>
 </div>
+<div id="waitingForEmailToBeSentIndicatorFromAuth" class="loader"><Jumper size="120" color="#f2b3cf" unit="px" duration="1s"></Jumper></div>
 
 <style>
    form{
       text-align: center;
    }
-   #waiting{
-        position: none;
-        top: 0;
-        bottom: 0;
-        right: 0;
-        left: 0;
-        background: rgba(0,0,0,0.50)
-    }
+   #waitingForEmailToBeSentIndicatorFromAuth{
+      display: none;
+   }
  </style>

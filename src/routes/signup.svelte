@@ -9,9 +9,12 @@
          email: email,
          password: password
         });
-        document.getElementById('waiting').style.display = 'fixed'
+        document.getElementById('waitingForEmailToBeSentIndicatorFromAuth').style.display = 'flex';
+        document.getElementById('waitingForEmailToBeSentIndicatorFromAuth').style.justifyContent = 'center';
         if(error){
-            alert(error.message)
+            console.log(error.message)
+            document.getElementById('waitingForEmailToBeSentIndicatorFromAuth').style.display = 'none';
+            addNotification({text:error.message, position:'bottom-right', type:'danger', removeAfter: '2000'})
         }else{
             if(user){
                 openModal(Modal, { title: "Verify your account", message:'Thank you for joining Otium! An email has been sent to you in order to verify your account.' })
@@ -28,18 +31,9 @@
        <button class="buttonAuth" type="submit">Sign UP</button>
     </form>
  </div>
- <div id="waiting"></div>
  
  <style>
     form{
        text-align: center;
-    }
-    #waiting{
-        position: none;
-        top: 0;
-        bottom: 0;
-        right: 0;
-        left: 0;
-        background: rgba(0,0,0,0.50)
     }
   </style>
