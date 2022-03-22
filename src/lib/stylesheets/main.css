@@ -588,6 +588,7 @@ a {
 
 .not_found {
   text-align: center;
+  padding-top: 30px;
   opacity: 0.6;
 }
 

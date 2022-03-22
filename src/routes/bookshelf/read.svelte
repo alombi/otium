@@ -42,6 +42,7 @@
 <script>
    import { session } from '$app/stores';
    import LoggedOutProfile from '$components/LoggedOutProfile.svelte';
+   import TagShelf from '$components/TagShelf.svelte';
    export let bookshelf;
    import { onMount } from 'svelte';
    onMount(()=>{
@@ -57,22 +58,7 @@
 {#if $session}
    <h1>Already read</h1>
    <div id="books" class="book-list layout-list">
-      {#each bookshelf as book}
-         <div class="book-card">
-            <a href={book.url}>
-               <div class="book-card-container">
-                  <div>
-                     <img src={book.cover} alt="cover">
-                  </div>
-                  <div>
-                     <p class="title">{book.title}</p>
-                     <p class="author">by <i>{book.author}</i></p>
-                     <p>{book.publisher}, {book.year}</p>
-                  </div>
-               </div>
-            </a>
-         </div>
-      {/each}
+      <TagShelf bookshelf={bookshelf} />
    </div>
 {:else}
    <LoggedOutProfile />
