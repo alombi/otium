@@ -15,10 +15,10 @@
          password: password
       });
       if(error){
-         console.log(error.message)
+         alert(error.message)
          document.getElementById('waitingForEmailToBeSentIndicatorFromAuth').style.display = 'none';
          document.getElementById('loginFromPage').style.display = 'block';
-         addNotification({text:`Whoops! ${error.message}`, position:'top-center', type:'danger', removeAfter: '5000'})
+         //addNotification({text:`Whoops! ${error.message}`, position:'top-center', type:'danger', removeAfter: '5000'})
       }else{
          if(supabaseSession){
             session.set(supabaseSession)
@@ -30,7 +30,7 @@
 
    onMount(()=>{
       if($session){
-      window.location.href = '/'
+         window.location.href = '/'
       };
       document.getElementById('alternativeButton').style.display = 'none'
    })
