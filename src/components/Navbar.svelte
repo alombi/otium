@@ -1,7 +1,6 @@
 <script>
   import supabase from '$lib/db';
   import { session } from '$app/stores';
-  import { Jumper } from 'svelte-loading-spinners'
   import { loading } from '$lib/utils';
   import { notifsUnread } from '$lib/tag_store';
   export let notifications = []
@@ -39,9 +38,7 @@
       <a class:unread_notification={$notifsUnread} class="toolsButton" on:click={()=>{loading('/notifications')}} href="/notifications"><i class="fa-solid fa-bell"></i></a>
       <button on:click={logOut} class="buttonAuth">Log out</button>
     {:else}
-      <form id="loginInNavbar" on:submit|preventDefault={signIn}> 
-        <button on:click={()=>window.location.href ='/auth'} id="alternativeButton" class="buttonAuth">Sign in</button>
-      </form>
+    <button on:click={()=>window.location.href ='/auth'} class="buttonAuth">Sign in</button>
     {/if}
   </div>
 </nav>
