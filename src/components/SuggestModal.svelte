@@ -33,12 +33,16 @@
     <div class="contents">
       <h2>{title}</h2>
       <div class="friend_element_container">
-        {#each friends as friend}
-          <p  class="friend_element">
-            <span>{friend.friendName}</span>
-            <button on:click={suggest(friend)} class="toolsButton">Suggest</button>
-          </p>
-        {/each}
+        {#if friends.length > 0}
+          {#each friends as friend}
+            <p  class="friend_element">
+              <span>{friend.friendName}</span>
+              <button on:click={suggest(friend)} class="toolsButton">Suggest</button>
+            </p>
+          {/each}
+        {:else}
+          <p>No friends yet!</p>
+        {/if}
       </div>
       <div class="actions">
         <button class="toolsButton" on:click={closeModal}>Close</button>
