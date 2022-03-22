@@ -6,17 +6,19 @@
    import { openModal } from 'svelte-modals'
    import Modal from '$components/Modal.svelte';
    let email, password;
-   let loginError = null; 
    async function signIn(){
-      document.getElementById('waitingForEmailToBeSentIndicatorFromAuth').style.display = 'flex';
-      document.getElementById('waitingForEmailToBeSentIndicatorFromAuth').style.justifyContent = 'center';
-      document.getElementById('loginFromPage').style.display = 'none';
+      //document.getElementById('waitingForEmailToBeSentIndicatorFromAuth').style.display = 'flex';
+      //document.getElementById('waitingForEmailToBeSentIndicatorFromAuth').style.justifyContent = 'center';
+      //document.getElementById('loginFromPage').style.display = 'none';
       const { user, supabaseSession, error } = await supabase.auth.signIn({
          email: email,
          password: password
       });
       if(error){
-         loginError = error
+         console.log(error.message)
+         //document.getElementById('waitingForEmailToBeSentIndicatorFromAuth').style.display = 'none';
+         //document.getElementById('loginFromPage').style.display = 'block';
+         openModal(Modal, {title:"Whoops!", message:`An error occurred: ${error.message}`, showButtons:true})
       }else{
          if(supabaseSession){
             session.set(supabaseSession)
@@ -24,12 +26,7 @@
          }
       }
    }
-   if(loginError){
-      console.log(error.message)
-      document.getElementById('waitingForEmailToBeSentIndicatorFromAuth').style.display = 'none';
-      document.getElementById('loginFromPage').style.display = 'block';
-      openModal(Modal, {title:"Whoops!", message:`An error occurred: ${error.message}`, showButtons:true})
-   }
+
 
    onMount(()=>{
       if($session){
