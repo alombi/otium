@@ -6,38 +6,26 @@
    import { openModal } from 'svelte-modals'
    import Modal from '$components/Modal.svelte';
    let email, password;
-   let isSent = false;
    async function signIn(){
-      if(!isSent){
-         document.getElementById('waitingForEmailToBeSentIndicatorFromAuth').style.display = 'flex';
-         document.getElementById('waitingForEmailToBeSentIndicatorFromAuth').style.justifyContent = 'center';
-         document.getElementById('loginFromPage').style.display = 'none';
-         const { user, supabaseSession, error } = await supabase.auth.signIn({
-            email: email,
-            password: password
-         });
-         if(error){
-            console.log(error.message)
-            document.getElementById('waitingForEmailToBeSentIndicatorFromAuth').style.display = 'none';
-            document.getElementById('loginFromPage').style.display = 'block';
-            openModal(Modal, {title:"Whoops!", message:`An error occurred: ${error.message}`, showButtons:true})
-         }else{
-            if(supabaseSession){
-               session.set(supabaseSession)
-               document.location.href = '/'
-            }
+      document.getElementById('waitingForEmailToBeSentIndicatorFromAuth').style.display = 'flex';
+      document.getElementById('waitingForEmailToBeSentIndicatorFromAuth').style.justifyContent = 'center';
+      document.getElementById('loginFromPage').style.display = 'none';
+      const { user, supabaseSession, error } = await supabase.auth.signIn({
+         email: email,
+         password: password
+      });
+      if(error){
+         console.log(error.message)
+         document.getElementById('waitingForEmailToBeSentIndicatorFromAuth').style.display = 'none';
+         document.getElementById('loginFromPage').style.display = 'block';
+         openModal(Modal, {title:"Whoops!", message:`An error occurred: ${error.message}`, showButtons:true})
+      }else{
+         if(supabaseSession){
+            session.set(supabaseSession)
+            document.location.href = '/'
          }
       }
    }
-   isSent = false
-
-
-   onMount(()=>{
-      if($session){
-         window.location.href = '/'
-      };
-      document.getElementById('alternativeButton').style.display = 'none'
-   })
 </script>
 
 <div id="loginFromPage">
