@@ -1,7 +1,6 @@
 <script>
   import supabase from '$lib/db';
   import { session } from '$app/stores';
-  import { Jumper } from 'svelte-loading-spinners'
   import { loading } from '$lib/utils';
   import { notifsUnread } from '$lib/tag_store';
   export let notifications = []
@@ -18,22 +17,6 @@
     }else{
       document.getElementById('page').style.paddingLeft = 0;
       document.getElementById('sidebar').style.display = 'none'
-    }
-  }
-
-  let email;
-  async function signIn(){
-    document.getElementById('loginInNavbar').style.display = 'none';
-    document.getElementById('waitingForEmailToBeSentIndicator').style.display = 'block';
-    document.getElementById('loginButton').disabled = 'true';
-    const { user, session, error } = await supabase.auth.signIn({
-      email: email
-    });
-    if(error){
-      alert(error.message)
-    }else{
-      document.getElementById('waitingForEmailToBeSentIndicator').style.display = 'none';
-      document.getElementById('emailSentIndicator').style.display = 'block'
     }
   }
   async function logOut(){
@@ -55,21 +38,12 @@
       <a class:unread_notification={$notifsUnread} class="toolsButton" on:click={()=>{loading('/notifications')}} href="/notifications"><i class="fa-solid fa-bell"></i></a>
       <button on:click={logOut} class="buttonAuth">Log out</button>
     {:else}
-      <form id="loginInNavbar" on:submit|preventDefault={signIn}> 
-        <input type="text" class="textForm navForm" placeholder="Email address" required="required"  bind:value={email}>
-        <button id="loginButton" class="buttonAuth" type="submit">Sign in</button>
-        <button on:click={()=>window.location.href ='/auth'} id="alternativeButton" class="buttonAuth">Sign in</button>
-      </form>
-      <div id="waitingForEmailToBeSentIndicator"><Jumper size="40" color="#f2b3cf" unit="px" duration="1s"></Jumper></div>
-      <p id="emailSentIndicator">Email sent!</p>
+    <button on:click={()=>window.location.href ='/auth'} class="buttonAuth">Sign in</button>
     {/if}
   </div>
 </nav>
 
 <style>
-  #emailSentIndicator, #waitingForEmailToBeSentIndicator{
-    display: none;
-  }
   .unread_notification{
     color:#ED8698
   }

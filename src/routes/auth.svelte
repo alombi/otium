@@ -1,57 +1,60 @@
-<!-- This page is for small devices or as an alternative to the navbar  -->
 <script>
    import { session } from '$app/stores';
-   import { onMount } from "svelte";
-   import { Jumper } from 'svelte-loading-spinners';
    import supabase from '$lib/db';
-   let email;
+   import { Jumper } from 'svelte-loading-spinners'
+   import { openModal } from 'svelte-modals'
+   import Modal from '$components/Modal.svelte';
+   let email, password;
    async function signIn(){
-      document.getElementById('loginFromPage').style.display = 'none';
       document.getElementById('waitingForEmailToBeSentIndicatorFromAuth').style.display = 'flex';
       document.getElementById('waitingForEmailToBeSentIndicatorFromAuth').style.justifyContent = 'center';
-      document.getElementById('loginButton').disabled = 'true';
-      const { user, session, error } = await supabase.auth.signIn({
-         email: email
+      document.getElementById('loginFromPage').style.display = 'none';
+      const { user, supabaseSession, error } = await supabase.auth.signIn({
+         email: email,
+         password: password
       });
       if(error){
-         alert(error.message)
-      }else{
+         console.log(error.message)
          document.getElementById('waitingForEmailToBeSentIndicatorFromAuth').style.display = 'none';
-         document.getElementById('emailSentIndicatorFromAuth').style.display = 'block'
+         document.getElementById('loginFromPage').style.display = 'block';
+         openModal(Modal, {title:"Whoops!", message:`An error occurred: ${error.message}`, showButtons:true})
+      }else{
+         if(supabaseSession){
+            session.set(supabaseSession)
+            document.location.href = '/'
+         }
       }
    }
-
-
-   onMount(()=>{
-      if($session){
-      window.location.href = '/'
-      };
-      document.getElementById('alternativeButton').style.display = 'none'
-   })
-   
 </script>
 
 <div id="loginFromPage">
    <h1>Login</h1>
-   <p>Fill in your email address to login or signup!</p>
-   <br>
    <form class="" on:submit|preventDefault={signIn}> 
-      <input type="text" class="textForm" placeholder="Email address" required="required" bind:value={email}>
+      <input type="email" class="textForm" placeholder="Email address" required="required" bind:value={email}>
+      <input type="password" class="textForm" placeholder="Password" required="required" bind:value={password}>
       <button class="buttonAuth" type="submit">Sign in</button>
    </form>
    <br>
-   <p>An email with a magic link be sent to your inbox: just open that link and you'll be logged into Otium!</p>
-   <p>Your email won't be shared with anyone.</p>
+   <p>New to Otium? <a href="/signup">Create an account!</a></p>
 </div>
 <div id="waitingForEmailToBeSentIndicatorFromAuth" class="loader"><Jumper size="120" color="#f2b3cf" unit="px" duration="1s"></Jumper></div>
-<h1 style="text-align: center;" id="emailSentIndicatorFromAuth">Email sent!</h1>
-
 
 <style>
+   #waitingForEmailToBeSentIndicatorFromAuth{
+      display: none;
+   }
    form{
       text-align: center;
+      display: flex;
+      flex-wrap: wrap;
    }
-   #emailSentIndicatorFromAuth, #waitingForEmailToBeSentIndicatorFromAuth{
-     display: none;
+   @media(max-width:550px){
+      form{
+         flex-direction: column;
+         gap:5px;
+      }
+      .buttonAuth, .textForm{
+        max-width: 350px;
+      }
    }
  </style>
