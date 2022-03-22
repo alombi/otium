@@ -38,4 +38,7 @@
     form{
        text-align: center;
     }
+    #waitingForEmailToBeSentIndicatorFromAuth{
+        display: none;
+    }
   </style>
