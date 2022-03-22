@@ -44,4 +44,13 @@
     #waitingForEmailToBeSentIndicatorFromAuth{
         display: none;
     }
+    form{
+      text-align: center;
+      display: flex;
+   }
+   @media(max-width:550px){
+      form{
+         flex-direction: column;
+      }
+   }
   </style>
