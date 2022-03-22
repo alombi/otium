@@ -3,9 +3,10 @@
    import { onMount } from "svelte";
    import supabase from '$lib/db';
    import { Jumper } from 'svelte-loading-spinners'
-   import { getNotificationsContext } from 'svelte-notifications';
-   const { addNotification } = getNotificationsContext();
+   import { openModal } from 'svelte-modals'
+   import Modal from '$components/Modal.svelte';
    let email, password;
+   let loginError = null; 
    async function signIn(){
       document.getElementById('waitingForEmailToBeSentIndicatorFromAuth').style.display = 'flex';
       document.getElementById('waitingForEmailToBeSentIndicatorFromAuth').style.justifyContent = 'center';
@@ -15,10 +16,7 @@
          password: password
       });
       if(error){
-         alert(error.message)
-         document.getElementById('waitingForEmailToBeSentIndicatorFromAuth').style.display = 'none';
-         document.getElementById('loginFromPage').style.display = 'block';
-         //addNotification({text:`Whoops! ${error.message}`, position:'top-center', type:'danger', removeAfter: '5000'})
+         loginError = error
       }else{
          if(supabaseSession){
             session.set(supabaseSession)
@@ -26,7 +24,12 @@
          }
       }
    }
-
+   if(loginError){
+      console.log(error.message)
+      document.getElementById('waitingForEmailToBeSentIndicatorFromAuth').style.display = 'none';
+      document.getElementById('loginFromPage').style.display = 'block';
+      openModal(Modal, {title:"Whoops!", message:`An error occurred: ${error.message}`, showButtons:true})
+   }
 
    onMount(()=>{
       if($session){
