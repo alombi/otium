@@ -3,9 +3,8 @@
    import { onMount } from "svelte";
    import supabase from '$lib/db';
    import { Jumper } from 'svelte-loading-spinners'
-   import { openModal } from 'svelte-modals'
-   import Modal from '$components/Modal.svelte'
-
+   import { getNotificationsContext } from 'svelte-notifications';
+   const { addNotification } = getNotificationsContext();
    let email, password;
    async function signIn(){
       document.getElementById('waitingForEmailToBeSentIndicatorFromAuth').style.display = 'flex';
@@ -19,7 +18,7 @@
          console.log(error.message)
          document.getElementById('waitingForEmailToBeSentIndicatorFromAuth').style.display = 'none';
          document.getElementById('loginFromPage').style.display = 'block';
-         openModal(Modal, {title:"Whoops!", message:`An error occurred: ${error.message}`, showButtons:true})
+         addNotification({text:`Whoops! ${error.message}`, position:'top-center', type:'danger', removeAfter: '5000'})
       }else{
          if(supabaseSession){
             session.set(supabaseSession)

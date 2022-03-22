@@ -4,8 +4,8 @@
    export let friends;
    export let title;
    import { addToBookshelf, removeFromBookshelf, changeTag, toggleStar } from '$lib/books';
-   import { getNotificationsContext } from 'svelte-notifications';
    import { isAdded, bookshelfTag, isStarred } from '$lib/tag_store';
+   import { getNotificationsContext } from 'svelte-notifications';
    const { addNotification } = getNotificationsContext();
    import { openModal } from 'svelte-modals'
    import SuggestModal from '$components/SuggestModal.svelte';
