@@ -1,5 +1,5 @@
 # Otium
-Otium is a free and open source bookshelf organizer, that helps you managing your books and the ones you would like to read.
+Otium is a free and open source book manager and bookshelf organiser, that helps you managing your books and the ones you would like to read.
 
 Built on top of SvelteKit, uses the Google Books API to retrieve informations and data. The database is hosted on Supabase.
 
