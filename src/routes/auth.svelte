@@ -29,7 +29,7 @@
          }
       }
    }
-   isSent = true
+   isSent = false
 
 
    onMount(()=>{
