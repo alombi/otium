@@ -7,17 +7,18 @@
    import Modal from '$components/Modal.svelte';
    let email, password;
    async function signIn(){
-      //document.getElementById('waitingForEmailToBeSentIndicatorFromAuth').style.display = 'flex';
-      //document.getElementById('waitingForEmailToBeSentIndicatorFromAuth').style.justifyContent = 'center';
-      //document.getElementById('loginFromPage').style.display = 'none';
+      document.getElementById('waitingForEmailToBeSentIndicatorFromAuth').style.display = 'flex';
+      document.getElementById('waitingForEmailToBeSentIndicatorFromAuth').style.justifyContent = 'center';
+      document.getElementById('loginFromPage').style.display = 'none';
       const { user, supabaseSession, error } = await supabase.auth.signIn({
          email: email,
          password: password
       });
+      console.log(error, supabaseSession, user)
       if(error){
          console.log(error.message)
-         //document.getElementById('waitingForEmailToBeSentIndicatorFromAuth').style.display = 'none';
-         //document.getElementById('loginFromPage').style.display = 'block';
+         document.getElementById('waitingForEmailToBeSentIndicatorFromAuth').style.display = 'none';
+         document.getElementById('loginFromPage').style.display = 'block';
          openModal(Modal, {title:"Whoops!", message:`An error occurred: ${error.message}`, showButtons:true})
       }else{
          if(supabaseSession){
