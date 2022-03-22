@@ -47,10 +47,15 @@
     form{
       text-align: center;
       display: flex;
+      flex-wrap: wrap;
    }
    @media(max-width:550px){
       form{
          flex-direction: column;
+         gap:5px;
+      }
+      .buttonAuth{
+        max-width: 300px;
       }
    }
   </style>
