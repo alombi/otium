@@ -16,14 +16,12 @@
       });
       if(error){
          console.log(error.message)
+         openModal(Modal, {title:"Whoops!", message:`An error occurred: ${error.message}`, showButtons:true})
          document.getElementById('waitingForEmailToBeSentIndicatorFromAuth').style.display = 'none';
          document.getElementById('loginFromPage').style.display = 'block';
       }else{
          session.set(supabaseSession)
          window.location.href = '/';
-      }
-      if(error){
-         openModal(Modal, {title:"Whoops!", message:`An error occurred: ${error.message}`, showButtons:true})
       }
    }
 
