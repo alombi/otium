@@ -6,19 +6,22 @@
     import { Jumper } from 'svelte-loading-spinners'
     let email, password;
     async function signUp(){
+        document.getElementById('waitingForEmailToBeSentIndicatorFromAuth').style.display = 'flex';
+        document.getElementById('waitingForEmailToBeSentIndicatorFromAuth').style.justifyContent = 'center';
+        document.getElementById('loginFromPage').style.display = 'none';
         const { user, supabaseSession, error } = await supabase.auth.signUp({
          email: email,
          password: password
         });
-        document.getElementById('waitingForEmailToBeSentIndicatorFromAuth').style.display = 'flex';
-        document.getElementById('waitingForEmailToBeSentIndicatorFromAuth').style.justifyContent = 'center';
         if(error){
             console.log(error.message)
             document.getElementById('waitingForEmailToBeSentIndicatorFromAuth').style.display = 'none';
+            document.getElementById('loginFromPage').style.display = 'block';
             addNotification({text:error.message, position:'bottom-right', type:'danger', removeAfter: '2000'})
         }else{
             if(user){
                 openModal(Modal, { title: "Verify your account", message:'Thank you for joining Otium! An email has been sent to you in order to verify your account.' })
+                document.getElementById('waitingForEmailToBeSentIndicatorFromAuth').style.display = 'none';
             }
         }
     }
