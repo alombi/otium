@@ -3,6 +3,7 @@
     import supabase from '$lib/db';
     import { openModal } from 'svelte-modals'
     import Modal from '$components/Modal.svelte';
+    import { Jumper } from 'svelte-loading-spinners'
     let email, password;
     async function signUp(){
         const { user, supabaseSession, error } = await supabase.auth.signUp({
@@ -28,9 +29,10 @@
     <form class="" on:submit|preventDefault={signUp}> 
        <input type="email" class="textForm" placeholder="Email address" required="required" bind:value={email}>
        <input type="password" class="textForm" placeholder="Password" required="required" bind:value={password}>
-       <button class="buttonAuth" type="submit">Sign UP</button>
+       <button class="buttonAuth" type="submit">Sign Up</button>
     </form>
  </div>
+ <div id="waitingForEmailToBeSentIndicatorFromAuth" class="loader"><Jumper size="120" color="#f2b3cf" unit="px" duration="1s"></Jumper></div>
  
  <style>
     form{
