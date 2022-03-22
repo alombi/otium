@@ -21,8 +21,10 @@
          document.getElementById('loginFromPage').style.display = 'block';
          openModal(Modal, {title:"Whoops!", message:`An error occurred: ${error.message}`, showButtons:true})
       }else{
-         session.set(supabaseSession)
-         window.location.href = '/';
+         if(supabaseSession){
+            session.set(supabaseSession)
+            document.location.href = '/'
+         }
       }
    }
 
@@ -33,7 +35,6 @@
       };
       document.getElementById('alternativeButton').style.display = 'none'
    })
-   
 </script>
 
 <div id="loginFromPage">
