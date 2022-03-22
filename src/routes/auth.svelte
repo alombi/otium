@@ -19,10 +19,8 @@
          document.getElementById('loginFromPage').style.display = 'block';
          openModal(Modal, {title:"Whoops!", message:`An error occurred: ${error.message}`, showButtons:true})
       }else{
-         if(supabaseSession){
-            session.set(supabaseSession)
-            document.location.href = '/'
-         }
+         $session = supabaseSession
+         document.location.href = '/'
       }
    }
 </script>
