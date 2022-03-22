@@ -4,6 +4,7 @@
     export let isOpen
     export let title
     export let message
+    export let showButtons
 </script>
 
 {#if isOpen}
@@ -11,9 +12,11 @@
     <div class="contents">
         <h2>{title}</h2>
         <p>{message}</p>
-      <div class="actions">
-        <button class="toolsButton" on:click={closeModal}>Close</button>
-      </div>
+      {#if showButtons}
+        <div class="actions">
+          <button class="toolsButton" on:click={closeModal}>Close</button>
+        </div>
+      {/if}
     </div>
   </div>
  {/if}

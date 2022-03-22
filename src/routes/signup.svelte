@@ -20,7 +20,7 @@
             addNotification({text:error.message, position:'bottom-right', type:'danger', removeAfter: '2000'})
         }else{
             if(user){
-                openModal(Modal, { title: "Verify your account", message:'Thank you for joining Otium! An email has been sent to you in order to verify your account.' })
+                openModal(Modal, { title: "Verify your account", message:'Thank you for joining Otium! An email has been sent to you in order to verify your account.', showButtons:false })
                 document.getElementById('waitingForEmailToBeSentIndicatorFromAuth').style.display = 'none';
             }
         }
