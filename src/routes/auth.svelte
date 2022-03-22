@@ -4,7 +4,8 @@
    import supabase from '$lib/db';
    import { Jumper } from 'svelte-loading-spinners'
    import { openModal } from 'svelte-modals'
-   import Modal from '$components/Modal.svelte';
+   import Modal from '$components/Modal.svelte'
+
    let email, password;
    async function signIn(){
       document.getElementById('waitingForEmailToBeSentIndicatorFromAuth').style.display = 'flex';
