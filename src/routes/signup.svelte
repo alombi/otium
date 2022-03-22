@@ -38,9 +38,6 @@
  <div id="waitingForEmailToBeSentIndicatorFromAuth" class="loader"><Jumper size="120" color="#f2b3cf" unit="px" duration="1s"></Jumper></div>
  
  <style>
-    form{
-       text-align: center;
-    }
     #waitingForEmailToBeSentIndicatorFromAuth{
         display: none;
     }
@@ -54,8 +51,8 @@
          flex-direction: column;
          gap:5px;
       }
-      .buttonAuth{
-        max-width: 300px;
+      .buttonAuth, .textForm{
+        max-width: 350px;
       }
    }
   </style>

@@ -40,16 +40,21 @@
 <div id="waitingForEmailToBeSentIndicatorFromAuth" class="loader"><Jumper size="120" color="#f2b3cf" unit="px" duration="1s"></Jumper></div>
 
 <style>
+   #waitingForEmailToBeSentIndicatorFromAuth{
+      display: none;
+   }
    form{
       text-align: center;
       display: flex;
+      flex-wrap: wrap;
    }
    @media(max-width:550px){
       form{
          flex-direction: column;
+         gap:5px;
       }
-   }
-   #waitingForEmailToBeSentIndicatorFromAuth{
-      display: none;
+      .buttonAuth, .textForm{
+        max-width: 350px;
+      }
    }
  </style>
