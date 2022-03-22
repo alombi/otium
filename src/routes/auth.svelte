@@ -1,6 +1,5 @@
 <script>
    import { session } from '$app/stores';
-   import { onMount } from "svelte";
    import supabase from '$lib/db';
    import { Jumper } from 'svelte-loading-spinners'
    import { openModal } from 'svelte-modals'
