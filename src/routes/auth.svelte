@@ -31,12 +31,20 @@
    
 </script>
 
-const { user, supabaseSession, error } = await supabase.auth.signIn({
-         email: email,
-         password: password
-      });
-      if(error){
-         alert(error.message)
-      }else{
-         $session = supabaseSession
-      }
+<div id="loginFromPage">
+   <h1>Login</h1>
+   <form class="" on:submit|preventDefault={signIn}> 
+      <input type="email" class="textForm" placeholder="Email address" required="required" bind:value={email}>
+      <input type="password" class="textForm" placeholder="Password" required="required" bind:value={password}>
+      <button class="buttonAuth" type="submit">Sign in</button>
+   </form>
+</div>
+
+<style>
+   form{
+      text-align: center;
+   }
+   #emailSentIndicatorFromAuth, #waitingForEmailToBeSentIndicatorFromAuth{
+     display: none;
+   }
+ </style>
