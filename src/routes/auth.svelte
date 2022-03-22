@@ -1,4 +1,3 @@
-<!-- This page is for small devices or as an alternative to the navbar  -->
 <script>
    import { session } from '$app/stores';
    import { onMount } from "svelte";
@@ -19,10 +18,12 @@
          console.log(error.message)
          document.getElementById('waitingForEmailToBeSentIndicatorFromAuth').style.display = 'none';
          document.getElementById('loginFromPage').style.display = 'block';
-         openModal(Modal, {title:"Whoops!", message:`An error occurred: ${error.message}`, showButtons:true})
       }else{
          session.set(supabaseSession)
          window.location.href = '/';
+      }
+      if(error){
+         openModal(Modal, {title:"Whoops!", message:`An error occurred: ${error.message}`, showButtons:true})
       }
    }
 
