@@ -2,8 +2,10 @@
 <script>
    import { session } from '$app/stores';
    import { onMount } from "svelte";
-   import { Jumper } from 'svelte-loading-spinners';
    import supabase from '$lib/db';
+   import { getNotificationsContext } from 'svelte-notifications';
+   const { addNotification } = getNotificationsContext();
+
    let email, password;
    async function signIn(){
       //document.getElementById('loginFromPage').style.display = 'none';
@@ -18,6 +20,7 @@
          alert(error.message)
       }else{
          $session = supabaseSession
+         window.location.href('/')
       }
    }
 
@@ -43,8 +46,5 @@
 <style>
    form{
       text-align: center;
-   }
-   #emailSentIndicatorFromAuth, #waitingForEmailToBeSentIndicatorFromAuth{
-     display: none;
    }
  </style>
