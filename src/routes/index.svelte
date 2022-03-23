@@ -12,7 +12,7 @@
          friendship = friendship.data;
          friendship.filter(function (e){
             if(e.sender_id == id || e.receiver_id == id){
-               if(e.status != 'declined'){
+               if(e.status != 'declined' && !e.pending){
                   friends.push(e)
                }
             }
