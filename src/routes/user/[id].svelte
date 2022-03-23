@@ -64,7 +64,7 @@
             document.getElementById('friendButton').style.display = 'none';
          }
       }else{
-         openModal(Modal, {title:"Whooops! Something went wrong", message:"Please create an username in your profile page before using social features!", showButtons:true})
+         openModal(Modal, {title:"Whoops! Something went wrong", message:"Please create an username in your profile page before using social features!", showButtons:true})
       }
    }
    friends.forEach(friend => {
@@ -90,7 +90,7 @@
       <div>
          <div id="buttonContainer">
             <h1>{data[0].username}</h1>
-            <p>{#if !isFriend}<button id="friendButton" on:click={invokeSendFriendRequest}>Ask friendship</button>{/if}</p>
+            <p>{#if !isFriend}<button id="friendButton" on:click|preventDefault={invokeSendFriendRequest}>Ask friendship</button>{/if}</p>
          </div>
          <StatsBar stats={stats} />
       </div>
