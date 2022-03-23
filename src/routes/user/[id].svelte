@@ -3,7 +3,7 @@
    export async function load({params}){
       const id = params.id
       const session = await supabase.auth.session()
-      let userID;
+      let userID = session.user.id;
       const { data, error } = await supabase.from('profiles').select('*').eq('id', id)
       let user = await supabase.from('profiles').select('*').eq('id', userID)
       user = user.data
