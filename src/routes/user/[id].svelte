@@ -3,7 +3,10 @@
    export async function load({params}){
       const id = params.id
       const session = await supabase.auth.session()
+      let userID;
       const { data, error } = await supabase.from('profiles').select('*').eq('id', id)
+      let user = await supabase.from('profiles').select('*').eq('id', userID)
+      user = user.data
       let friends = [];
       let friendship = await supabase.from('friendship').select('*');
       friendship = friendship.data;
@@ -24,7 +27,7 @@
             }
          }catch{}
       })
-      return {props:{data, id, friends, isFriend}}
+      return {props:{data, id, friends, isFriend, user}}
    }
 </script>
 
@@ -37,9 +40,12 @@
    import Switcher from '$components/Switcher.svelte';
    import { getNotificationsContext } from 'svelte-notifications';
    const { addNotification } = getNotificationsContext();
+   import { openModal } from 'svelte-modals'
+   import Modal from '$components/Modal.svelte';
 
    export let data, id, isFriend;
    export let friends;
+   export let user;
    $:value = "Reading";
    let stats;
    async function loading(){
@@ -49,12 +55,16 @@
    let loaded = loading()
 
    async function invokeSendFriendRequest(){
-      let res = await sendFriendRequest(id)
-      if(res){
-         alert(res.message)
+      if(user[0].username){
+         let res = await sendFriendRequest(id)
+         if(res){
+            alert(res.message)
+         }else{
+            addNotification({text:'Sent!', position:'bottom-right', type:'success', removeAfter: '2000'})
+            document.getElementById('friendButton').style.display = 'none';
+         }
       }else{
-         addNotification({text:'Sent!', position:'bottom-right', type:'success', removeAfter: '2000'})
-         document.getElementById('friendButton').style.display = 'none';
+         openModal(Modal, {title:"Error!", message:"Please create an username in your profile page before using social features!", showButton:true})
       }
    }
    friends.forEach(friend => {
