@@ -95,7 +95,7 @@
    <h2>Getting started</h2>
    <p>Ready to begin? Creating an account is easy: just tap on <b>Sign in</b>, insert your email and create a password. Once you'll have verified your account, you'll be ready to use all the features that Otium has to offer!</p>
    <h2>About the project</h2>
-   <p>The aim of the project is to create a UI friendly, lightweight and simple bookshelf organizer for people who enjoy reading. Otium is open source at <a href="https://github.com/alombi/otium">github.com/alombi/otium</a> and is designed and developed by <a href="https://alombi.xyz">alombi</a>.</p>
+   <p>The aim of the project is to create a UI friendly, lightweight and simple bookshelf organizer for people who enjoy reading. Otium is open source at <a target="_blank" href="https://github.com/alombi/otium">github.com/alombi/otium</a> and is designed and developed by <a target="_blank" href="https://alombi.xyz">alombi</a>.</p>
 {/if}
 
 <style>
