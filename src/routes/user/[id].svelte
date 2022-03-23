@@ -64,7 +64,7 @@
             document.getElementById('friendButton').style.display = 'none';
          }
       }else{
-         openModal(Modal, {title:"Error!", message:"Please create an username in your profile page before using social features!", showButton:true})
+         openModal(Modal, {title:"Whooops! Something went wrong", message:"Please create an username in your profile page before using social features!", showButtons:true})
       }
    }
    friends.forEach(friend => {
