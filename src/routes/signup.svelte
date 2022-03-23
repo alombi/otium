@@ -4,7 +4,7 @@
     import { openModal } from 'svelte-modals'
     import Modal from '$components/Modal.svelte';
     import { Jumper } from 'svelte-loading-spinners';
-    import { sendNotification } from '$lib/userAction';
+    import { sendNotification } from '$lib/userActions';
     let email, password;
     async function signUp(){
         document.getElementById('waitingForEmailToBeSentIndicatorFromAuth').style.display = 'flex';
