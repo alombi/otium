@@ -3,7 +3,8 @@
     import supabase from '$lib/db';
     import { openModal } from 'svelte-modals'
     import Modal from '$components/Modal.svelte';
-    import { Jumper } from 'svelte-loading-spinners'
+    import { Jumper } from 'svelte-loading-spinners';
+    import { sendNotification } from '$lib/userAction';
     let email, password;
     async function signUp(){
         document.getElementById('waitingForEmailToBeSentIndicatorFromAuth').style.display = 'flex';
@@ -20,6 +21,7 @@
             openModal(Modal, {title:"Whoops!", message:`An error occurred: ${error.message}`, showButtons:true})
         }else{
             if(user){
+                let notif = await sendNotification(user.id, "Create an username to start using social features!", "/profile", "username_creation")
                 openModal(Modal, { title: "Verify your account", message:'Thank you for joining Otium! An email has been sent to you in order to verify your account.', showButtons:false })
                 document.getElementById('waitingForEmailToBeSentIndicatorFromAuth').style.display = 'none';
             }
