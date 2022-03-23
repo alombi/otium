@@ -61,7 +61,7 @@
     </p>
     <div class="headerLinks">
       <a on:click={()=>{loading('/')}} href="/"><i class="fa-solid fa-house"></i> Home</a>
-      <a on:click={()=>{loading('/profile')}} href="/profile"><i class="fa-regular fa-user"></i> Social</a>
+      <a on:click={()=>{loading('/profile')}} href="/profile"><i class="fa-regular fa-user"></i> Profile</a>
     </div>
 
     

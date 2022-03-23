@@ -30,7 +30,7 @@
 </script>
 
 <svelte:head>
-   <title>Otium | Social</title>
+   <title>Otium | Profile</title>
 </svelte:head>
 
 <script>
