@@ -135,7 +135,7 @@
 {:then}
       <div id="searchBar-local">
          <form class="searchBar-alt searchBar-search-and-profile" on:submit|preventDefault={search}>
-            <input type="text" class="textForm" placeholder="Search per username" required="required" bind:value={searchTerm}>
+            <input type="text" class="textForm" placeholder="Search per username" autocomplete="off" required="required" bind:value={searchTerm}>
             <button id="searchButton" type="submit"><i class="fas fa-search"></i></button>
          </form>
       </div>
