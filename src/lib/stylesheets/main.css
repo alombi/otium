@@ -440,7 +440,7 @@ code {
   background-color: #3b4252;
   padding: 0px 8px 5px 5px;
   border-radius: 2px;
-  margin-bottom:35px;
+  margin-bottom: 25px;
 }
 .banner .bannerTitle {
   display: flex;
@@ -552,6 +552,50 @@ code {
 .notif_date {
   font-size: 13px;
   opacity: 0.7;
+}
+
+#newflow {
+  background-color: #434c5e;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 6px;
+  width: 98%;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  text-align: center;
+}
+
+#newflow > p > i {
+  margin-bottom: 5px;
+  font-size: 18px;
+}
+
+#newflow:hover {
+  opacity: 0.8;
+}
+
+.flow {
+  color: white;
+  background-color: #434c5e;
+  border-radius: 6px;
+  padding: 10px;
+}
+
+.date {
+  opacity: 0.8;
+}
+
+.flow_list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.annotation_page {
+  font-size: 14px;
+  opacity: 0.7;
+  margin-top: -10px;
 }
 
 /* General stuff */

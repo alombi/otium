@@ -14,7 +14,6 @@
          DBbookshelf = data[0].bookshelf.filter(function (e) {
             return e.tag == 'unset'
          })
-         console.log(DBbookshelf)
          for(let book of DBbookshelf){
             book = await requestBook(book.id)
 
