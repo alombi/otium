@@ -33,12 +33,12 @@
 
 <div id="loader" class="loader"><Jumper size="120" color="#f2b3cf" unit="px" duration="1s"></Jumper></div>
 <form id="new_annotation_form" on:submit|preventDefault={invokeCreateAnnotation} >
-   <input type="text" name="title" class="textForm" placeholder="Title" bind:value={title}>
-   <input type="text" name="page" class="textForm" placeholder="Page, section or chapter" bind:value={page}>
+   <input required="required" type="text" name="title" class="textForm" placeholder="Title" bind:value={title}>
+   <input required="required" type="text" name="page" class="textForm" placeholder="Page, section or chapter" bind:value={page}>
    <h2>Quote</h2>
       <textarea name="quote" class="textForm" id="quote" placeholder="Quote (if you would not like to insert a quote, live it blank)" bind:value={quote}></textarea>
    <h2>Annotation</h2>
-      <textarea name="quote" class="textForm" id=""placeholder="Write your annotations here..." bind:value={annotation}></textarea>
+      <textarea required="required" name="quote" class="textForm" id=""placeholder="Write your annotations here..." bind:value={annotation}></textarea>
    <h2>Create</h2>
       <button class="buttonAuth" type="submit">Create annotation</button>
       <br><br>
