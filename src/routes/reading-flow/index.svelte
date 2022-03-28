@@ -91,8 +91,8 @@
       <p><i class="fa-solid fa-circle-plus"></i><br>New flow</p>
    </div>
 </div>
+<h2>Personal Flows</h2>
 {#if flows.length > 0}
-   <h2>Your flows</h2>
    <div class="flow_list">
       {#each flows as flow}
       <a href={flow.url}>
@@ -104,11 +104,11 @@
       {/each}
    </div>
 {:else}
-   <h2>Your flows</h2>
    <p class="not_found">No flows!</p>
 {/if}
+<br>
 {#if archivedFlows.length > 0}
-   <h2>Your archived flows</h2>
+   <h2><i class="fa-solid fa-box-archive"></i> Archived flows</h2>
    {#each archivedFlows as flow}
       <div class="flow" on:click={(()=>{invokeUnarchiveFlow(flow.id)})}>
          <p class="title">{flow.title}</p>
@@ -119,3 +119,9 @@
 {:else}
    <LoggedOutProfile />
 {/if}
+
+<style>
+   .fa-solid{
+      font-size: 21px;
+   }
+</style>

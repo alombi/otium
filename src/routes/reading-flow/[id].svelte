@@ -66,9 +66,17 @@
 <style>
    /* These lines are here because :global doesn't seem to work in SCSS */
    .flow_list > :global(:nth-child(even)){
-      margin-left:50px;
+      margin-left:40px;
    }
    .flow_list > :global(:nth-child(odd)){
-      margin-right: 50px;
+      margin-right: 40px;
+   }
+   @media(max-width:550px){
+      .flow_list > :global(:nth-child(even)){
+         margin-left:25px;
+      }
+      .flow_list > :global(:nth-child(odd)){
+         margin-right: 25px;
+      }
    }
 </style>
