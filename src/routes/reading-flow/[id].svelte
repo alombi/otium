@@ -18,7 +18,7 @@
    const { addNotification } = getNotificationsContext();
    import { annotations } from '$lib/readingFlow'
    export let flow;
-   annotations.set(flow.annotations)
+   annotations.set(flow.annotations.reverse())
    let months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 
    function openAnnotation(annotation){
