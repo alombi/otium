@@ -64,6 +64,9 @@
 
 
 <style>
+   .flow_list{
+      gap:20px;
+   }
    /* These lines are here because :global doesn't seem to work in SCSS */
    .flow_list > :global(:nth-child(even)){
       margin-left:40px;
