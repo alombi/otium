@@ -16,15 +16,16 @@
    import { archiveFlow } from '$lib/readingFlow';
    import { getNotificationsContext } from 'svelte-notifications';
    const { addNotification } = getNotificationsContext();
+   import { annotations } from '$lib/readingFlow'
    export let flow;
-   let annotations = flow.annotations
+   annotations.set(flow.annotations)
    let months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 
    function openAnnotation(annotation){
       if(annotation.annotationQuote){
-         openModal(AnnotationModal, {title:annotation.annotationTitle, message:annotation.annotationContent, containsQuote:true, quote:annotation.annotationQuote})
+         openModal(AnnotationModal, {title:annotation.annotationTitle, message:annotation.annotationContent, containsQuote:true, quote:annotation.annotationQuote, annotation:annotation, flow:flow})
       }else{
-         openModal(AnnotationModal, {title:annotation.annotationTitle, message:annotation.annotationContent, containsQuote:false})
+         openModal(AnnotationModal, {title:annotation.annotationTitle, message:annotation.annotationContent, containsQuote:false, annotation:annotation, flow:flow})
       }
    }
    function openCreateAnnotationPage(){
@@ -46,11 +47,11 @@
    <button class="buttonAuth" on:click={openCreateAnnotationPage}>New annotation</button>
    <br><br>
    <h2>Flow</h2>
-   {#if annotations.length == 0}
+   {#if $annotations.length == 0}
       <p class="not_found">No annotations yet. Create one!</p>
    {:else} 
       <div class="flow_list">
-      {#each annotations as annotation}
+      {#each $annotations as annotation}
             <div class="flow" on:click={(()=>{openAnnotation(annotation)})}>
                <p class="title">{annotation.annotationTitle} <span class="annotation_page">{annotation.annotationPage}</span></p>
                <p class="annotation_page">Added on {annotation.annotationMoment}</p>

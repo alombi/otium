@@ -1,4 +1,7 @@
 import supabase from '$lib/db';
+import { writable } from "svelte/store";
+
+export const annotations = writable([])
 
 export async function createReadingFlow(bookID, title) {
    let res;
@@ -54,5 +57,19 @@ export async function unarchiveFlow(flowID){
    if (error) {
       console.log(error)
       return error
+   }
+}
+
+export async function removeAnnotation(annotation, flowID) {
+   let flow = await supabase.from('reading_flow').select('annotations').eq('id', flowID)
+   let newData = flow.data[0].annotations.filter(function (e) {
+      return e.annotationTitle != annotation.annotationTitle && e.annotationContent != annotation.annotationContent
+   })
+   const { data, error } = await supabase.from('reading_flow').update({ annotations: newData }).eq('id', flowID)
+   if (error) {
+      console.log(error)
+      return 'problem'
+   } else {
+      return data[0].annotations
    }
 }

@@ -1,11 +1,29 @@
 <script>
    import { closeModal } from 'svelte-modals'
+   import { removeAnnotation } from '$lib/readingFlow';
+   import { getNotificationsContext } from 'svelte-notifications';
+   const { addNotification } = getNotificationsContext();
+   import { annotations } from '$lib/readingFlow';
 
    export let isOpen
    export let title
    export let containsQuote
    export let quote
    export let message
+   export let annotation
+   export let flow
+
+   async function invokeRemoveAnnotation(){
+      let res = await removeAnnotation(annotation, flow.id)
+      console.log(res)
+      if(res == 'problem'){
+         addNotification({text:'Whoops! Something went wrong.', position:'bottom-right', type:'danger', removeAfter: '2000'})
+      }else{
+         closeModal()
+         annotations.set(res)
+         addNotification({text:'Done!', position:'bottom-right', type:'success', removeAfter: '2000'})
+      }
+   }
 </script>
 
 {#if isOpen}
@@ -19,6 +37,7 @@
          <p>{message}</p>
       </div>
        <div class="actions">
+         <button class="buttonAuth remove" on:click={invokeRemoveAnnotation}>Remove annotation</button>
          <button class="toolsButton" on:click={closeModal}>Close</button>
        </div>
    </div>
@@ -45,8 +64,8 @@
       }
    }
    .contents {
-      min-width: 240px;
-      max-width: 800px;
+      min-width: 600px;
+      max-width: 600px;
       border-radius: 6px;
       padding: 16px;
       background: #3b4252;
@@ -56,7 +75,12 @@
       pointer-events: auto;
       max-height: 65vh;
       overflow-x: scroll;
-
+   }
+   @media(max-width:550px){
+      .contents{
+         min-width: 90%;
+         max-width: 90%;
+      }
    }
    .content_container{
       max-height: 65vh;
