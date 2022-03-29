@@ -7,23 +7,10 @@
    }
    import supabase from '$lib/db';
    export async function load(){
-      let flows = [];
-      let archivedFlows = [];
-      let bookshelf = [];
-      let userID;
+      let bookshelf = []
       try{
-         userID = supabase.auth.session().user.id
-         flows = await supabase.from('reading_flow').select('*').eq('user_id', userID).eq('isArchived', false)
-         flows = flows.data
-         flows.forEach(flow=>{
-            flow.url = `/reading-flow/${flow.id}`
-         })
-         archivedFlows = await supabase.from('reading_flow').select('*').eq('user_id', userID).eq('isArchived', true)
-         archivedFlows = archivedFlows.data
-         archivedFlows.forEach(flow=>{
-            flow.url = `/reading-flow/${flow.id}`
-         })
-
+         const session = supabase.auth.session()
+         const userID = session.user.id
          let books = await getBooksByTag('reading', userID)
          for(let book of books){
             book = await requestBook(book.id)
@@ -42,9 +29,9 @@
             bookFinal.id = book.id
             bookshelf.push(bookFinal)
          }
-         bookshelf = bookshelf.reverse()
       }catch{}
-      return {props:{flows, archivedFlows, bookshelf}}
+      bookshelf = bookshelf.reverse()
+      return {props:{bookshelf}}
    }  
 </script>
 
@@ -54,12 +41,13 @@
    import LoggedOutProfile from '$components/LoggedOutProfile.svelte';
    import { openModal } from 'svelte-modals'
    import BooksModal from '$components/BooksModal.svelte';
-   import { unarchiveFlow } from '$lib/readingFlow';
+   import { unarchiveFlow, getFlows, getArchivedFlows } from '$lib/readingFlow';
    import { getNotificationsContext } from 'svelte-notifications';
    const { addNotification } = getNotificationsContext();
-   export let flows = [];
-   export let archivedFlows = []
+   import { Jumper } from 'svelte-loading-spinners'
    export let bookshelf = []
+   let flows = []
+   let archivedFlows = []
    async function invokeNewFlow(){
       openModal(BooksModal, {title:"Create new reading flow", books:bookshelf})
    }
@@ -77,6 +65,13 @@
          window.location.href = url
       }
    }
+   let loading;
+   async function requestFlows(){
+      flows = await getFlows()
+      archivedFlows = await getArchivedFlows()
+      return
+   }
+   loading = requestFlows()
 </script>
 
 <svelte:head>
@@ -85,6 +80,9 @@
 
 
 {#if $session}
+{#await loading}
+   <div class="loader"><Jumper size="60" color="#f2b3cf" unit="px" duration="1s"></Jumper></div>
+{:then}
 <h1>Reading Flows</h1>
 <div class="book-list layout-list">
    <div on:click={invokeNewFlow} id="newflow">
@@ -116,6 +114,7 @@
       </div>
    {/each}
 {/if}
+{/await}
 {:else}
    <LoggedOutProfile />
 {/if}

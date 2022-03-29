@@ -20,7 +20,7 @@
          addNotification({text:'Whoops! Something went wrong.', position:'bottom-right', type:'danger', removeAfter: '2000'})
       }else{
          closeModal()
-         annotations.set(res)
+         annotations.set(res.reverse())
          addNotification({text:'Done!', position:'bottom-right', type:'success', removeAfter: '2000'})
       }
    }
@@ -33,9 +33,11 @@
          {#if containsQuote}
             <p class="quote">{quote}</p>
          {/if}
-       <div class="content_container">
-         <p>{message}</p>
-      </div>
+         {#if message}
+            <div class="content_container">
+               <p>{message}</p>
+            </div>
+         {/if}
        <div class="actions">
          <button class="buttonAuth remove" on:click={invokeRemoveAnnotation}>Remove annotation</button>
          <button class="toolsButton" on:click={closeModal}>Close</button>

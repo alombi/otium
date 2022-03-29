@@ -39,9 +39,9 @@
    <input required="required" type="text" name="title" class="textForm" placeholder="Title" bind:value={title}>
    <input required="required" type="text" name="page" class="textForm" placeholder="Page, section or chapter" bind:value={page}>
    <h2>Quote</h2>
-      <textarea name="quote" class="textForm" id="quote" placeholder="Quote (if you would not like to insert a quote, live it blank)" bind:value={quote}></textarea>
+      <textarea name="quote" class="textForm" id="quote" placeholder="Type in a quote (if you would not like to insert a quote, live this field blank)" bind:value={quote}></textarea>
    <h2>Annotation</h2>
-      <textarea required="required" name="quote" class="textForm" id=""placeholder="Write your annotations here..." bind:value={annotation}></textarea>
+      <textarea name="quote" class="textForm" id=""placeholder="Write your annotations here (if you would not like to insert an annotation, leave this field blank" bind:value={annotation}></textarea>
    <h2>Create</h2>
       <button class="buttonAuth" type="submit">Create annotation</button>
       <br><br>

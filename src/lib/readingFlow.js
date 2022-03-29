@@ -1,5 +1,6 @@
 import supabase from '$lib/db';
 import { writable } from "svelte/store";
+import {v4 as uuidv4} from 'uuid';
 
 export const annotations = writable([])
 
@@ -29,7 +30,9 @@ export async function createReadingFlow(bookID, title) {
 export async function createAnnotation(flowID, annotationTitle, annotationQuote, annotationContent, annotationPage, annotationMoment) {
    let flow = await supabase.from('reading_flow').select('annotations').eq('id', flowID)
    let newData = flow.data[0].annotations
+   let uuid = uuidv4();
    var obj = {
+      annotationID: uuid,
       annotationTitle: annotationTitle,
       annotationContent: annotationContent,
       annotationQuote: annotationQuote,
@@ -63,7 +66,7 @@ export async function unarchiveFlow(flowID){
 export async function removeAnnotation(annotation, flowID) {
    let flow = await supabase.from('reading_flow').select('annotations').eq('id', flowID)
    let newData = flow.data[0].annotations.filter(function (e) {
-      return e.annotationTitle != annotation.annotationTitle && e.annotationContent != annotation.annotationContent
+      return e.annotationID != annotation.annotationID
    })
    const { data, error } = await supabase.from('reading_flow').update({ annotations: newData }).eq('id', flowID)
    if (error) {
@@ -72,4 +75,26 @@ export async function removeAnnotation(annotation, flowID) {
    } else {
       return data[0].annotations
    }
+}
+
+export async function getFlows(){
+   const session = supabase.auth.session()
+   const userID = session.user.id
+   let flows = await supabase.from('reading_flow').select('*').eq('user_id', userID).eq('isArchived', false)
+   flows = flows.data
+   flows.forEach(flow=>{
+      flow.url = `/reading-flow/${flow.id}`
+   })
+   return flows
+}
+
+export async function getArchivedFlows(){
+   const session = supabase.auth.session()
+   const userID = session.user.id
+   let archivedFlows = await supabase.from('reading_flow').select('*').eq('user_id', userID).eq('isArchived', true)
+   archivedFlows = archivedFlows.data
+   archivedFlows.forEach(flow=>{
+      flow.url = `/reading-flow/${flow.id}`
+   })
+   return archivedFlows
 }
