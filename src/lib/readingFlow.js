@@ -63,7 +63,7 @@ export async function unarchiveFlow(flowID){
 export async function removeAnnotation(annotation, flowID) {
    let flow = await supabase.from('reading_flow').select('annotations').eq('id', flowID)
    let newData = flow.data[0].annotations.filter(function (e) {
-      return e.annotationTitle != annotation.annotationTitle && e.annotationContent != annotation.annotationContent
+      return e.annotationTitle != annotation.annotationTitle && e.annotationContent != annotation.annotationContent && e.annotationQuote != annotation.annotationQuote
    })
    const { data, error } = await supabase.from('reading_flow').update({ annotations: newData }).eq('id', flowID)
    if (error) {
