@@ -44,7 +44,7 @@
 </script>
 
 <svelte:head>
-   <title>Otium | {flow.title} reading flow</title>
+   <title>Otium | Reading flow: {flow.title}</title>
 </svelte:head>
 
 <div>
