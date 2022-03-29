@@ -63,7 +63,7 @@
    async function invokeNewFlow(){
       openModal(BooksModal, {title:"Create new reading flow", books:bookshelf})
    }
-   onMount(async()=>{
+   onMount(()=>{
       document.getElementById('real-page').style.display = 'block';
       document.getElementById('waitingForBookshelfPageToBeOpened').style.display = 'none'
    })

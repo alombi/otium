@@ -38,6 +38,7 @@
          addNotification({text:'Whoops! Something went wrong.', position:'bottom-right', type:'danger', removeAfter: '2000'})
       }else{
          loading('/reading-flow')
+         window.location.href = '/reading-flow'
       }
    }
 </script>
