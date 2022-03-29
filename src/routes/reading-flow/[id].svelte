@@ -17,6 +17,7 @@
    import { getNotificationsContext } from 'svelte-notifications';
    const { addNotification } = getNotificationsContext();
    import { annotations } from '$lib/readingFlow'
+   import { loading } from '$lib/utils';
    export let flow;
    annotations.set(flow.annotations.reverse())
    let months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
@@ -36,7 +37,7 @@
       if(res){
          addNotification({text:'Whoops! Something went wrong.', position:'bottom-right', type:'danger', removeAfter: '2000'})
       }else{
-         window.location.href = '/reading-flow'
+         loading('/reading-flow')
       }
    }
 </script>
