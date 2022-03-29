@@ -33,9 +33,11 @@
          {#if containsQuote}
             <p class="quote">{quote}</p>
          {/if}
-       <div class="content_container">
-         <p>{message}</p>
-      </div>
+         {#if message}
+            <div class="content_container">
+               <p>{message}</p>
+            </div>
+         {/if}
        <div class="actions">
          <button class="buttonAuth remove" on:click={invokeRemoveAnnotation}>Remove annotation</button>
          <button class="toolsButton" on:click={closeModal}>Close</button>
