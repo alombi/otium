@@ -30,6 +30,7 @@
          console.log(e)
          }
       }
+      bookshelf = bookshelf.reverse()
       return
    }
 
