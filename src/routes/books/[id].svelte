@@ -171,6 +171,13 @@
       </div>
       <div class="book-details-container">
          <div>
+            <h2>Details</h2>
+            <p><b>Author</b>: {book.volumeInfo.authors[0]}</p>
+            <p><b>Publisher</b>: {book.volumeInfo.publisher}</p>
+            <p><b>Year</b>: {year}</p>
+            <p><b>Language</b>: {lang}</p>
+         </div>
+         <div>
             <h2>Public flows and reviews</h2>
             {#if flows.length > 0}
                <div class="flow_list">
@@ -183,18 +190,11 @@
                         </div>
                      </a>
                   {/each}
-                  <br><br>
+                  <br>
                </div>
             {:else}
                <p class="not_found">No public flows found!</p>
             {/if}
-         </div>
-         <div>
-            <h2>Details</h2>
-            <p><b>Author</b>: {book.volumeInfo.authors[0]}</p>
-            <p><b>Publisher</b>: {book.volumeInfo.publisher}</p>
-            <p><b>Year</b>: {year}</p>
-            <p><b>Language</b>: {lang}</p>
          </div>
       </div>
    {:else}
