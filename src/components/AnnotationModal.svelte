@@ -20,7 +20,7 @@
          addNotification({text:'Whoops! Something went wrong.', position:'bottom-right', type:'danger', removeAfter: '2000'})
       }else{
          closeModal()
-         annotations.set(res)
+         annotations.set(res.reverse())
          addNotification({text:'Done!', position:'bottom-right', type:'success', removeAfter: '2000'})
       }
    }
