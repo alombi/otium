@@ -7,24 +7,29 @@
    }
    import supabase from '$lib/db';
    export async function load(){
-      let books = await getBooksByTag('reading', userID)
-      for(let book of books){
-         book = await requestBook(book.id)
+      let bookshelf = []
+      try{
+         const session = supabase.auth.session()
+         const userID = session.user.id
+         let books = await getBooksByTag('reading', userID)
+         for(let book of books){
+            book = await requestBook(book.id)
 
-         var bookFinal = {};
-         if(book.volumeInfo.imageLinks){
-            bookFinal.cover = book.volumeInfo.imageLinks.thumbnail.replace('http://', 'https://')
-         } else{
-            bookFinal.cover = 'https://bookstoreromanceday.org/wp-content/uploads/2020/08/book-cover-placeholder.png'
-         };
-         bookFinal.title = book.volumeInfo.title;
-         bookFinal.author = book.volumeInfo.authors[0];
-         bookFinal.publisher = book.volumeInfo.publisher;
-         bookFinal.year = book.volumeInfo.publishedDate.split('-')[0]
-         bookFinal.url = `/books/${book.id}`
-         bookFinal.id = book.id
-         bookshelf.push(bookFinal)
-      }
+            var bookFinal = {};
+            if(book.volumeInfo.imageLinks){
+               bookFinal.cover = book.volumeInfo.imageLinks.thumbnail.replace('http://', 'https://')
+            } else{
+               bookFinal.cover = 'https://bookstoreromanceday.org/wp-content/uploads/2020/08/book-cover-placeholder.png'
+            };
+            bookFinal.title = book.volumeInfo.title;
+            bookFinal.author = book.volumeInfo.authors[0];
+            bookFinal.publisher = book.volumeInfo.publisher;
+            bookFinal.year = book.volumeInfo.publishedDate.split('-')[0]
+            bookFinal.url = `/books/${book.id}`
+            bookFinal.id = book.id
+            bookshelf.push(bookFinal)
+         }
+      }catch{}
       bookshelf = bookshelf.reverse()
       return {props:{bookshelf}}
    }  
