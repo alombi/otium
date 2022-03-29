@@ -66,7 +66,7 @@
       archivedFlows = await getArchivedFlows()
       return
    }
-   loading = requestBook()
+   loading = requestFlows()
 </script>
 
 <svelte:head>
