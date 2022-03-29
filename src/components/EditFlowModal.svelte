@@ -1,27 +1,35 @@
 <script>
    import { closeModal } from 'svelte-modals'
-   import { removeAnnotation } from '$lib/readingFlow';
+   import { loading } from '$lib/utils';
+   import { archiveFlow , switchVisibility } from '$lib/readingFlow';
    import { getNotificationsContext } from 'svelte-notifications';
    const { addNotification } = getNotificationsContext();
-   import { annotations } from '$lib/readingFlow';
+   import { isPublic } from '$lib/readingFlow';
 
    export let isOpen
    export let title
-   export let containsQuote
-   export let quote
-   export let message
-   export let annotation
    export let flow
-   export let userID
 
-   async function invokeRemoveAnnotation(){
-      let res = await removeAnnotation(annotation, flow.id)
-      console.log(res)
-      if(res == 'problem'){
+
+   async function invokeArchiveFlow(){
+      let res = await archiveFlow(flow.id)
+      if(res){
+         closeModal()
          addNotification({text:'Whoops! Something went wrong.', position:'bottom-right', type:'danger', removeAfter: '2000'})
       }else{
          closeModal()
-         annotations.set(res.reverse())
+         loading('/reading-flow')
+         window.location.href = '/reading-flow'
+      }
+   }
+   async function invokeSwitchVisibility(){
+      let res = await switchVisibility(flow.id, $isPublic)
+      if(res){
+         closeModal()
+         addNotification({text:'Whoops! Something went wrong.', position:'bottom-right', type:'danger', removeAfter: '2000'})
+      }else{
+         isPublic.set(!$isPublic)
+         closeModal()
          addNotification({text:'Done!', position:'bottom-right', type:'success', removeAfter: '2000'})
       }
    }
@@ -30,19 +38,17 @@
 {#if isOpen}
  <div role="dialog" class="modal">
    <div class="contents">
-      <h2>{title}</h2>
-         {#if containsQuote}
-            <p class="quote">{quote}</p>
+       <h2>{title}</h2>
+       <div class="buttons">
+         {#if $isPublic}
+            <button class="buttonAuth private" on:click={invokeSwitchVisibility}>Make private</button>
+         {:else}
+         <button class="buttonAuth public" on:click={invokeSwitchVisibility}>Make public</button>
          {/if}
-         {#if message}
-            <div class="content_container">
-               <p>{message}</p>
-            </div>
-         {/if}
+         <br>
+         <button class="buttonAuth unset" on:click={invokeArchiveFlow}>Archive flow</button>
+       </div>
        <div class="actions">
-         {#if userID == flow.user_id}
-            <button class="buttonAuth remove" on:click={invokeRemoveAnnotation}>Remove annotation</button>
-         {/if}
          <button class="toolsButton" on:click={closeModal}>Close</button>
        </div>
    </div>
@@ -50,6 +56,14 @@
 {/if}
 
 <style>
+   .buttonAuth{
+      padding-left: 50px;
+      padding-right: 50px;
+      margin-bottom:5px;
+   }
+   .buttonAuth:hover{
+      opacity: 0.9;
+   }
    .modal {
       position: fixed;
       top: 0;
@@ -69,45 +83,23 @@
       }
    }
    .contents {
-      min-width: 600px;
-      max-width: 600px;
+      min-width: 440px;
       border-radius: 6px;
       padding: 16px;
       background: #3b4252;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      align-items: center;
       pointer-events: auto;
-      max-height: 65vh;
-      overflow-x: scroll;
-   }
-   @media(max-width:550px){
-      .contents{
-         min-width: 90%;
-         max-width: 90%;
-      }
-   }
-   .content_container{
-      max-height: 65vh;
-      overflow-y: scroll;
-      padding-bottom: 10px;
    }
    h2 {
       text-align: center;
       font-size: 24px;
    } 
-   p {
-      text-align: left;
-      margin-top: 16px;
-   }
-   .quote{
-      font-style: italic;
-      opacity: 0.7;
-   }
    .actions {
       margin-top: 32px;
       display: flex;
       justify-content: flex-end;
    }
-
 </style>

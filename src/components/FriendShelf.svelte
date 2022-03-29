@@ -57,7 +57,7 @@
                      <div id="book-card-text">
                         <p class="title">{book.title}</p>
                         <p class="author">by <i>{book.author}</i></p>
-                        <p class="reader">Reading by <a href={book.url}><span>{book.user}</span></a></p>
+                        <p class="reader">Reading by <a href={book.url}><span class="friend_name">{book.user}</span></a></p>
                      </div>
                   </div>
                </a>
@@ -68,9 +68,3 @@
       {/if}
    {/await}
 </div>
-
-<style>
-   span{
-      color:#fff3a3
-   }
-</style>

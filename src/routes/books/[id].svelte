@@ -14,6 +14,7 @@
       // Requesting data from Otium DB
       let dataFiltered, bookshelf;
       let friends = [];
+      let flows = []
       try{
          const session = supabase.auth.session()
          const userID = session.user.id
@@ -47,6 +48,15 @@
                friend.friendURL = `/user/${friend.sender_id}`
             }
          });
+         
+         flows = await supabase.from('reading_flow').select('*').eq('book_id', id)
+         flows = flows.data
+         flows = flows.filter(function (e){
+            return e.isPublic && e.user_id != userID
+         })
+         flows.forEach(async flow=>{
+            flow.url = '/reading-flow/' + flow.id
+         })
       }catch{
          dataFiltered = null
       }
@@ -58,7 +68,7 @@
          reading: 'Reading now'
       }
 
-      return {props:{book, dataFiltered, tags, friends, id, bookshelf}}
+      return {props:{book, dataFiltered, tags, friends, id, bookshelf, flows}}
    }
 </script>
 
@@ -78,6 +88,7 @@
    export let dataFiltered;
    export let tags;
    export let friends, id, bookshelf;
+   export let flows = [];
    let tag;
    let cover, year, lang;
    let title = 'Loading';
@@ -150,13 +161,32 @@
       {#if $session}
          <ActionsBar title={title} id={book.id} DB={dataFiltered} friends={friends} />
       {/if}
+      <div>
+         <h2>Description</h2>
+         {#if !book.volumeInfo.description}
+            <p>No description provided.</p>
+         {:else}
+            <BookDescription description={book.volumeInfo.description} />
+         {/if}
+      </div>
       <div class="book-details-container">
          <div>
-            <h2>Description</h2>
-            {#if !book.volumeInfo.description}
-               <p>No description provided.</p>
+            <h2>Public flows and reviews</h2>
+            {#if flows.length > 0}
+               <div class="flow_list">
+                  {#each flows as flow}
+                     <a href={flow.url}>
+                        <div class="flow">
+                           <p class="title">{flow.title}</p>
+                           <p>Created by <span class="friend_name">{flow.user_name}</span></p>
+                           <p class="date">Flow created on {new Date(flow.created_at).getDate().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}/{new Date(flow.created_at).getMonth().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}/{new Date(flow.created_at).getFullYear()}</p>
+                        </div>
+                     </a>
+                  {/each}
+                  <br><br>
+               </div>
             {:else}
-               <BookDescription description={book.volumeInfo.description} />
+               <p class="not_found">No public flows found!</p>
             {/if}
          </div>
          <div>

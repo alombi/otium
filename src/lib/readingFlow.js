@@ -3,6 +3,7 @@ import { writable } from "svelte/store";
 import {v4 as uuidv4} from 'uuid';
 
 export const annotations = writable([])
+export const isPublic = writable()
 
 export async function createReadingFlow(bookID, title) {
    let res;
@@ -11,10 +12,13 @@ export async function createReadingFlow(bookID, title) {
    let flow = await supabase.from('reading_flow').select('*').eq('user_id', userID).eq('book_id', bookID)
    flow = flow.data
    if (flow.length == 0) {
+      let author = await supabase.from('profiles').select('username').eq('id', userID)
+      author = author.data[0].username
       res = await supabase.from('reading_flow').insert([
          {
          title: title,
          user_id: userID,
+         user_name:author,
          book_id: bookID,
          isArchived: false
          }
@@ -97,4 +101,12 @@ export async function getArchivedFlows(){
       flow.url = `/reading-flow/${flow.id}`
    })
    return archivedFlows
+}
+
+export async function switchVisibility(flowID, isPublic) {
+   const { data, error } = await supabase.from('reading_flow').update({ isPublic: !isPublic }).eq('id', flowID)
+   if (error) {
+      console.log(error)
+      return error
+   }
 }

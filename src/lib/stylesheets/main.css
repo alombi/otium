@@ -270,6 +270,15 @@ code {
   background-color: #D5F6FB;
 }
 
+.private {
+  background-color: #BCCACA;
+}
+
+.public {
+  background-color: #EF9967;
+  color: white !important;
+}
+
 #tag {
   font-size: 13px;
   text-align: center;
@@ -644,4 +653,8 @@ a {
 
 #in_friends_bookshelf {
   text-align: center;
+}
+
+.friend_name {
+  color: #fff3a3;
 }/*# sourceMappingURL=main.css.map */

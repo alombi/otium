@@ -21,7 +21,7 @@
     "svelte": "^3.42.6",
     "svelte-loading-spinners": "^0.1.7",
     "svelte-select": "^4.4.6",
-    "uuid":"^8.3.2"
+    "uuid": "^8.3.2"
   },
   "type": "module",
   "dependencies": {

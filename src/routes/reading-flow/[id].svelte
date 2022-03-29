@@ -1,11 +1,16 @@
 <script context="module">
    import supabase from '$lib/db';
+   let userID;
    export async function load({params}){
+      try{
+         const session = supabase.auth.session()
+         userID = session.user.id
+      }catch{}
       const id = params.id;
       let flow = await supabase.from('reading_flow').select('*').eq('id', id)
       flow = flow.data[0]
 
-      return {props:{flow}}
+      return {props:{flow, userID}}
    }
 </script>
 
@@ -13,33 +18,25 @@
 <script>
    import { openModal } from 'svelte-modals'
    import AnnotationModal from '$components/AnnotationModal.svelte';
-   import { archiveFlow } from '$lib/readingFlow';
-   import { getNotificationsContext } from 'svelte-notifications';
-   const { addNotification } = getNotificationsContext();
-   import { annotations } from '$lib/readingFlow'
-   import { loading } from '$lib/utils';
-   export let flow;
+   import EditFlowModal from '$components/EditFlowModal.svelte';
+   import { annotations, isPublic } from '$lib/readingFlow'
+   export let flow, userID;
    annotations.set(flow.annotations.reverse())
+   isPublic.set(flow.isPublic)
    let months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 
    function openAnnotation(annotation){
       if(annotation.annotationQuote){
-         openModal(AnnotationModal, {title:annotation.annotationTitle, message:annotation.annotationContent, containsQuote:true, quote:annotation.annotationQuote, annotation:annotation, flow:flow})
+         openModal(AnnotationModal, {title:annotation.annotationTitle, message:annotation.annotationContent, containsQuote:true, quote:annotation.annotationQuote, annotation:annotation, flow:flow, userID:userID})
       }else{
-         openModal(AnnotationModal, {title:annotation.annotationTitle, message:annotation.annotationContent, containsQuote:false, annotation:annotation, flow:flow})
+         openModal(AnnotationModal, {title:annotation.annotationTitle, message:annotation.annotationContent, containsQuote:false, annotation:annotation, flow:flow, userID:userID})
       }
    }
    function openCreateAnnotationPage(){
       window.location.href = '/reading-flow/new?id=' + flow.id
    }
-   async function invokeArchiveFlow(){
-      let res = await archiveFlow(flow.id)
-      if(res){
-         addNotification({text:'Whoops! Something went wrong.', position:'bottom-right', type:'danger', removeAfter: '2000'})
-      }else{
-         loading('/reading-flow')
-         window.location.href = '/reading-flow'
-      }
+   async function invokeEditFlowModal(){
+      openModal(EditFlowModal, {title:'Edit flow', flow: flow})
    }
 </script>
 
@@ -48,10 +45,22 @@
 </svelte:head>
 
 <div>
-   <h1>{flow.title}</h1>
+   <h1>{flow.title} 
+      {#if $isPublic}
+         <span class="public" id="tag">Public</span>
+      {:else}
+         <span class="private" id="tag">Private</span>
+      {/if}
+   </h1>
    <p class="date">Reading flow created on {new Date(flow.created_at).getDate().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})} {months[new Date(flow.created_at).getMonth()]} {new Date(flow.created_at).getFullYear()}</p>
-   <button class="buttonAuth" on:click={openCreateAnnotationPage}>New annotation</button>
-   <br><br>
+   {#if userID == flow.user_id}
+      <button class="buttonAuth" on:click={openCreateAnnotationPage}>New annotation</button>
+      <button class="buttonAuth share" on:click={invokeEditFlowModal}>Edit flow</button>
+      <br>
+   {:else}
+      <p class="date">Created by <span class="friend_name">{flow.user_name}</span></p>
+   {/if}
+   <br>
    <h2>Flow</h2>
    {#if $annotations.length == 0}
       <p class="not_found">No annotations yet. Create one!</p>
@@ -66,11 +75,21 @@
       </div>
    {/if}
    <br><br>
-   <button class="buttonAuth remove" on:click={invokeArchiveFlow}>Archive flow</button>
 </div>
 
 
 <style>
+   h1{
+      display: flex;
+      align-items: center;
+      gap:10px;
+      justify-content:flex-start;
+      flex-wrap: wrap;
+   }
+   #tag{
+      font-size: 12px !important;
+      margin-top: 8px;
+   }
    /* These lines are here because :global doesn't seem to work in SCSS */
    .flow_list > :global(:nth-child(even)){
       margin-left:40px;

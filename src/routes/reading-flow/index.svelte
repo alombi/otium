@@ -95,7 +95,14 @@
       {#each flows as flow}
       <a href={flow.url}>
       <div class="flow">
-         <p class="title">{flow.title}</p>
+         <p class="title">
+            {flow.title}
+            {#if flow.isPublic}
+               <span class="public" id="tag">Public</span>
+            {:else}
+               <span class="private" id="tag">Private</span>
+            {/if}
+         </p>
          <p class="date">Flow created on {new Date(flow.created_at).getDate().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}/{new Date(flow.created_at).getMonth().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}/{new Date(flow.created_at).getFullYear()}</p>
       </div>
       </a>
@@ -109,7 +116,14 @@
    <h2><i class="fa-solid fa-box-archive"></i> Archived flows</h2>
    {#each archivedFlows as flow}
       <div class="flow" on:click={(()=>{invokeUnarchiveFlow(flow.id)})}>
-         <p class="title">{flow.title}</p>
+         <p class="title">
+            {flow.title}
+            {#if flow.isPublic}
+               <span class="public" id="tag">Public</span>
+            {:else}
+               <span class="private" id="tag">Private</span>
+            {/if}
+         </p>
          <p class="date">Flow created on {new Date(flow.created_at).getDate().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}/{new Date(flow.created_at).getMonth().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}/{new Date(flow.created_at).getFullYear()}</p>
       </div>
    {/each}
@@ -122,5 +136,15 @@
 <style>
    .fa-solid{
       font-size: 21px;
+   }
+   #tag{
+      font-size: 10.5px !important;
+   }
+   .title{
+      display: flex;
+      align-items: center;
+      gap:10px;
+      justify-content:flex-start;
+      flex-wrap: wrap;
    }
 </style>
