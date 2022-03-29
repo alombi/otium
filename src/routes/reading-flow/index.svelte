@@ -127,6 +127,7 @@
          <p class="date">Flow created on {new Date(flow.created_at).getDate().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}/{new Date(flow.created_at).getMonth().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}/{new Date(flow.created_at).getFullYear()}</p>
       </div>
    {/each}
+   <br>
 {/if}
 {/await}
 {:else}
