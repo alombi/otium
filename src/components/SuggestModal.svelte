@@ -14,7 +14,7 @@
 
   async function suggest(friend){
     let link = window.location.pathname
-    let content = `${$session.user.id} suggested you a book: ${bookTitle}!`
+    let content = `${$session.user.id} suggested you a book: <i>${bookTitle}</i>!`
     let suggestion = await sendNotification(friend.friendID, content, link, 'suggestion')
     if(suggestion){
       closeModal()
