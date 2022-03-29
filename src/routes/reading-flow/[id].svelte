@@ -43,6 +43,10 @@
    }
 </script>
 
+<svelte:head>
+   <title>Otium | {flow.title} reading flow</title>
+</svelte:head>
+
 <div>
    <h1>{flow.title}</h1>
    <p class="date">Reading flow created on {new Date(flow.created_at).getDate().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})} {months[new Date(flow.created_at).getMonth()]} {new Date(flow.created_at).getFullYear()}</p>

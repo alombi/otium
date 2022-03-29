@@ -29,8 +29,11 @@
    }
 </script>
 
-<h1>New annotation</h1>
+<svelte:head>
+   <title>Otium | New annotation</title>
+</svelte:head>
 
+<h1>New annotation</h1>
 <div id="loader" class="loader"><Jumper size="120" color="#f2b3cf" unit="px" duration="1s"></Jumper></div>
 <form id="new_annotation_form" on:submit|preventDefault={invokeCreateAnnotation} >
    <input required="required" type="text" name="title" class="textForm" placeholder="Title" bind:value={title}>
