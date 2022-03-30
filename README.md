@@ -1,3 +1,4 @@
+![img](assets/github-banner.png)
 # Otium
 Otium is a free and open source book manager and bookshelf organiser, that helps you managing your books and the ones you would like to read.
 
