@@ -69,7 +69,7 @@
             usernames.push(profile.username) 
       });
       usernames.forEach(username =>{
-         if(username.indexOf(searchTerm) != -1){
+         if(username.toLowerCase().indexOf(searchTerm.toLowerCase()) != -1){
             var obj = {
                name: username
             }
