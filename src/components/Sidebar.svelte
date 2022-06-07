@@ -77,6 +77,14 @@
       <a on:click={()=>{loading('/bookshelf/untagged')}} href="/bookshelf/untagged"><i class="fa-solid fa-tag"></i> Untagged</a>
     </div>
 
+    <p class="sidebarHeader">
+      <span>About</span>
+    </p>
+    <div class="headerLinks">
+      <a href="/release_notes"><i class="fa-solid fa-code-commit"></i> What's new</a>
+      <a href="https://github.com/alombi/otium" target="_blank"><i class="fa-brands fa-github-alt"></i> Source</a>
+    </div>
+
   </div>
 
 </div>

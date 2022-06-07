@@ -12,6 +12,8 @@
       const { user, supabaseSession, error } = await supabase.auth.signIn({
          email: email,
          password: password
+      },{
+         redirectTo:'http://localhost:3000'
       });
       if(error){
          console.log(error.message)
