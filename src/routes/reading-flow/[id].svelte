@@ -17,7 +17,6 @@
 
 <script>
    import { openModal } from 'svelte-modals'
-   import AnnotationModal from '$components/AnnotationModal.svelte';
    import EditFlowModal from '$components/EditFlowModal.svelte';
    import { annotations, isPublic } from '$lib/readingFlow'
    export let flow, userID;
@@ -25,13 +24,6 @@
    isPublic.set(flow.isPublic)
    let months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 
-   function openAnnotation(annotation){
-      if(annotation.annotationQuote){
-         openModal(AnnotationModal, {title:annotation.annotationTitle, message:annotation.annotationContent, containsQuote:true, quote:annotation.annotationQuote, annotation:annotation, flow:flow, userID:userID})
-      }else{
-         openModal(AnnotationModal, {title:annotation.annotationTitle, message:annotation.annotationContent, containsQuote:false, annotation:annotation, flow:flow, userID:userID})
-      }
-   }
    function openCreateAnnotationPage(){
       window.location.href = '/reading-flow/new?id=' + flow.id
    }
@@ -67,9 +59,10 @@
    {:else} 
       <div class="flow_list">
       {#each $annotations as annotation}
-            <div class="flow" on:click={(()=>{openAnnotation(annotation)})}>
+            <div class="flow">
                <p class="title">{annotation.annotationTitle} <span class="annotation_page">{annotation.annotationPage}</span></p>
                <p class="annotation_page">Added on {annotation.annotationMoment}</p>
+               <a href={flow.id + "/" + annotation.annotationID}>Open</a>
             </div>
       {/each}
       </div>
