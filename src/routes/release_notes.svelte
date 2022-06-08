@@ -1,3 +1,10 @@
+<script>
+   import { onMount } from 'svelte';
+   onMount(()=>{
+      document.getElementById('real-page').style.display = 'block';
+      document.getElementById('waitingForBookshelfPageToBeOpened').style.display = 'none';
+   })
+</script>
 
 <svelte:head>
    <title>Otium | A free and open source bookshelf organizer</title>

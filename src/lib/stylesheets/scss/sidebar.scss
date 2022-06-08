@@ -1,6 +1,6 @@
 /* Sidebar */
 .sidebar{
-   overflow: hidden;
+   overflow: auto;
    display:block;
    position: fixed;
 	top:0;
@@ -42,4 +42,5 @@
 }
 .page{
    padding-left:250px;
+   overflow-y: auto;
 }

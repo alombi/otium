@@ -10,6 +10,9 @@
 
   function toggleSidebar(){
     if(document.getElementById('sidebar').style.display == 'none'){
+      if(screen.width < 550){
+        document.getElementById('real-page').style.overflow = 'none'
+      }
       if(screen.width > 550){
         document.getElementById('page').style.paddingLeft = '240px';
       }
@@ -17,6 +20,9 @@
     }else{
       document.getElementById('page').style.paddingLeft = 0;
       document.getElementById('sidebar').style.display = 'none'
+      if(screen.width < 550){
+        document.getElementById('real-page').style.overflow = 'auto'
+      }
     }
   }
   async function logOut(){

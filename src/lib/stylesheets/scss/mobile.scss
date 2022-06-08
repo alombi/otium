@@ -20,6 +20,10 @@
    // }
    .sidebar{
       display:none;
+      overflow: scroll;
+   }
+   #mobile_last_sidebar_links{
+      padding-bottom: 200px;
    }
    .page{
       padding-left: 0px;
