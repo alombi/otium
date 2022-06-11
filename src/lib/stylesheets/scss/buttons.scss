@@ -27,40 +27,58 @@
    text-align: center;
 }
 .book-actions{
-   border:0px;;
+   border:0px;
    color:#2e3440;
    font-size: 14px;
    padding: 8px 35px;
    border-radius: 6px;
    font-weight: 600;
 }
+.untag{
+   background-color: #c0c0c01a;
+   color: #c0c0c0 !important;
+}
 .add, .unset{
-   background-color: #81a1c1;
+   background-color: #81a1c11a;
+   color: #81a1c1 !important;
 }
 .to_read{
-   background-color: #F6B2D7;
+   background-color: #F6B2D71a;
+   color: #F6B2D7 !important;
 }
 .read{
-   background-color:#a1ffa1;
+   background-color:#a1ffa11a;
+   color: #a1ffa1 !important;
 }
 .favorite{
-   background-color: #ffe896;
+   background-color: #ffe8961a;
+   color: #ffe896 !important;
 }
 .share{
-   background-color: #D5C6B4;
+   background-color: #D5C6B41a;
+   color: #D5C6B4 !important;
 }
 .remove{
-   background-color: #D26466;
+   background-color: #D264661a;
+   color: #D26466 !important;
 }
 .reading{
-   background-color: #D5F6FB;
+   background-color: #D5F6FB1a;
+   color: #D5F6FB !important;
 }
 .private{
-   background-color: #BCCACA;
+   background-color: #BCCACA1a;
+   color: #BCCACA !important;
 }
 .public{
-   background-color: #EF9967;
-   color: white !important;
+   background-color: #EF99671a;
+   color:#EF9967 !important;
+}
+
+// Solid versions
+.remove-solid{
+   background-color: #D26466 !important;
+   color: unset !important;
 }
 
 

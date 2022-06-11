@@ -46,7 +46,7 @@
    </h1>
    <p class="date">Reading flow created on {new Date(flow.created_at).getDate().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})} {months[new Date(flow.created_at).getMonth()]} {new Date(flow.created_at).getFullYear()}</p>
    {#if userID == flow.user_id}
-      <button class="buttonAuth" on:click={openCreateAnnotationPage}>New annotation</button>
+      <button class="buttonAuth unset" on:click={openCreateAnnotationPage}>New annotation</button>
       <button class="buttonAuth share" on:click={invokeEditFlowModal}>Edit flow</button>
       <br>
    {:else}

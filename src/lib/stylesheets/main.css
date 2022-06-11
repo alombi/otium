@@ -243,41 +243,59 @@ code {
   font-weight: 600;
 }
 
+.untag {
+  background-color: rgba(192, 192, 192, 0.1019607843);
+  color: #c0c0c0 !important;
+}
+
 .add, .unset {
-  background-color: #81a1c1;
+  background-color: rgba(129, 161, 193, 0.1019607843);
+  color: #81a1c1 !important;
 }
 
 .to_read {
-  background-color: #F6B2D7;
+  background-color: rgba(246, 178, 215, 0.1019607843);
+  color: #F6B2D7 !important;
 }
 
 .read {
-  background-color: #a1ffa1;
+  background-color: rgba(161, 255, 161, 0.1019607843);
+  color: #a1ffa1 !important;
 }
 
 .favorite {
-  background-color: #ffe896;
+  background-color: rgba(255, 232, 150, 0.1019607843);
+  color: #ffe896 !important;
 }
 
 .share {
-  background-color: #D5C6B4;
+  background-color: rgba(213, 198, 180, 0.1019607843);
+  color: #D5C6B4 !important;
 }
 
 .remove {
-  background-color: #D26466;
+  background-color: rgba(210, 100, 102, 0.1019607843);
+  color: #D26466 !important;
 }
 
 .reading {
-  background-color: #D5F6FB;
+  background-color: rgba(213, 246, 251, 0.1019607843);
+  color: #D5F6FB !important;
 }
 
 .private {
-  background-color: #BCCACA;
+  background-color: rgba(188, 202, 202, 0.1019607843);
+  color: #BCCACA !important;
 }
 
 .public {
-  background-color: #EF9967;
-  color: white !important;
+  background-color: rgba(239, 153, 103, 0.1019607843);
+  color: #EF9967 !important;
+}
+
+.remove-solid {
+  background-color: #D26466 !important;
+  color: unset !important;
 }
 
 #tag {

@@ -47,15 +47,17 @@
          <p class="quote_content">{annotation.annotationQuote}</p>
       </div>
    {/if}
-   <div class="notes">
-      <h2>Notes</h2>
-      <p>{annotation.annotationContent}</p>
-   </div>
+  {#if annotation.annotationContent}
+      <div class="notes">
+         <h2>Notes</h2>
+         <p>{annotation.annotationContent}</p>
+      </div>
+   {/if}
 </div>
 <br>
 {#if userID == flowAuthor}
    
-   <button class="buttonAuth remove" on:click={invokeRemoveAnnotation}>Remove annotation</button>
+   <button class="buttonAuth remove-solid" on:click={invokeRemoveAnnotation}>Remove annotation</button>
 {/if}
 
 <style>
