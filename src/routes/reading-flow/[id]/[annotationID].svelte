@@ -57,7 +57,7 @@
 <br>
 {#if userID == flowAuthor}
    
-   <button class="buttonAuth remove-solid" on:click={invokeRemoveAnnotation}>Remove annotation</button>
+   <button class="buttonAuth remove" on:click={invokeRemoveAnnotation}>Remove annotation</button>
 {/if}
 
 <style>

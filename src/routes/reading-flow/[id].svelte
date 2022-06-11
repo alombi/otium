@@ -39,14 +39,14 @@
 <div>
    <h1>{flow.title} 
       {#if $isPublic}
-         <span class="public" id="tag">Public</span>
+         <span class="public-pill" id="tag">Public</span>
       {:else}
-         <span class="private" id="tag">Private</span>
+         <span class="private-pill" id="tag">Private</span>
       {/if}
    </h1>
    <p class="date">Reading flow created on {new Date(flow.created_at).getDate().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})} {months[new Date(flow.created_at).getMonth()]} {new Date(flow.created_at).getFullYear()}</p>
    {#if userID == flow.user_id}
-      <button class="buttonAuth unset" on:click={openCreateAnnotationPage}>New annotation</button>
+      <button class="buttonAuth" on:click={openCreateAnnotationPage}>New annotation</button>
       <button class="buttonAuth share" on:click={invokeEditFlowModal}>Edit flow</button>
       <br>
    {:else}

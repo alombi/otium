@@ -3,11 +3,11 @@
 </script>
 
 <div id="tag_container">
-   <p class="reading" id="tag">Reading: {stats.reading}</p>
-   <p class="to_read" id="tag">To read: {stats.to_read}</p>
-   <p class="read" id="tag">Read: {stats.read}</p>
-   <p class="favorite" id="tag">Starred: {stats.favorites}</p>
-   <p class="unset" id="tag">Untagged: {stats.untagged}</p>
+   <p class="reading-pill" id="tag">Reading: {stats.reading}</p>
+   <p class="to_read-pill" id="tag">To read: {stats.to_read}</p>
+   <p class="read-pill" id="tag">Read: {stats.read}</p>
+   <p class="favorite-pill" id="tag">Starred: {stats.favorites}</p>
+   <p class="unset-pill" id="tag">Untagged: {stats.untagged}</p>
 </div>
 
 <style>

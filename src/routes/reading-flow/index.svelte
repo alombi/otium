@@ -98,9 +98,9 @@
          <p class="title">
             {flow.title}
             {#if flow.isPublic}
-               <span class="public" id="tag">Public</span>
+               <span class="public-pill" id="tag">Public</span>
             {:else}
-               <span class="private" id="tag">Private</span>
+               <span class="private-pill" id="tag">Private</span>
             {/if}
          </p>
          <p class="date">Flow created on {new Date(flow.created_at).getDate().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}/{new Date(flow.created_at).getMonth().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}/{new Date(flow.created_at).getFullYear()}</p>

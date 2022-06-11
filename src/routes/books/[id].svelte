@@ -141,16 +141,16 @@
          <img loading="eager" class="book-cover" src="{cover}" alt='cover'>
             {#if $isAdded && $bookshelfTag == undefined}
                <div id="tag_container">
-                  <p class="unset" id="tag">{tags.unset}</p>
+                  <p class="unset-pill" id="tag">{tags.unset}</p>
                   {#if $isStarred}
-                     <p class='favorite' id="tag">Starred</p>
+                     <p class='favorite-pill' id="tag">Starred</p>
                   {/if}
                </div>
             {:else if !$isAdded && $bookshelfTag != undefined}
             <div id="tag_container">
-               <p class={$bookshelfTag} id="tag">{tags[$bookshelfTag]}</p>
+               <p class="{$bookshelfTag}-pill" id="tag">{tags[$bookshelfTag]}</p>
                {#if $isStarred}
-                  <p class='favorite' id="tag">Starred</p>
+                  <p class='favorite-pill' id="tag">Starred</p>
                {/if}
             </div>
             {/if}
