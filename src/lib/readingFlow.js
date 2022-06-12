@@ -1,6 +1,6 @@
 import supabase from '$lib/db';
 import { writable } from "svelte/store";
-import {v4 as uuidv4} from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 
 export const annotations = writable([])
 export const isPublic = writable()
@@ -30,6 +30,13 @@ export async function createReadingFlow(bookID, title) {
    return {res, flow}
 }
 
+export async function deleteFlow(flowID) {
+   const { data, error } = await supabase.from('reading_flow').delete().match({id: flowID})
+   if (error) {
+      console.log(error, data)
+      return error
+   }
+}
 
 export async function createAnnotation(flowID, annotationTitle, annotationQuote, annotationContent, annotationPage, annotationMoment) {
    let flow = await supabase.from('reading_flow').select('annotations').eq('id', flowID)

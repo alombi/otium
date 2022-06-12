@@ -1,10 +1,11 @@
 <script>
    import { closeModal } from 'svelte-modals'
    import { loading } from '$lib/utils';
-   import { archiveFlow , switchVisibility } from '$lib/readingFlow';
+   import { archiveFlow , switchVisibility, deleteFlow } from '$lib/readingFlow';
    import { getNotificationsContext } from 'svelte-notifications';
    const { addNotification } = getNotificationsContext();
    import { isPublic } from '$lib/readingFlow';
+   import { goto } from '$app/navigation';
 
    export let isOpen
    export let title
@@ -33,6 +34,17 @@
          addNotification({text:'Done!', position:'bottom-right', type:'success', removeAfter: '2000'})
       }
    }
+   async function invokeDeleteFlow(){
+      let res = await deleteFlow(flow.id)
+      if(res){
+         closeModal()
+         addNotification({text:'Whoops! Something went wrong.', position:'bottom-right', type:'danger', removeAfter: '2000'})
+      }else{
+         addNotification({text:'Done!', position:'bottom-right', type:'success', removeAfter: '2000'})
+         closeModal()
+         goto('/reading-flow')
+      }
+   }
 </script>
 
 {#if isOpen}
@@ -47,6 +59,8 @@
          {/if}
          <br>
          <button class="buttonAuth unset" on:click={invokeArchiveFlow}>Archive flow</button>
+         <br>
+         <button class="buttonAuth remove" on:click={invokeDeleteFlow}>Delete flow</button>
        </div>
        <div class="actions">
          <button class="toolsButton" on:click={closeModal}>Close</button>
@@ -57,10 +71,9 @@
 
 <style>
    .buttonAuth{
-      padding-left: 50px;
-      padding-right: 50px;
-      margin-bottom:5px;
+      min-width:170px;
    }
+   
    .buttonAuth:hover{
       opacity: 0.9;
    }
