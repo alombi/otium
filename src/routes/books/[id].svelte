@@ -52,8 +52,9 @@
          flows = await supabase.from('reading_flow').select('*').eq('book_id', id)
          flows = flows.data
          flows = flows.filter(function (e){
-            return e.isPublic && e.user_id != userID
+            return e.isPublic
          })
+         // e.user_id != userID
          flows.forEach(async flow=>{
             flow.url = '/reading-flow/' + flow.id
          })

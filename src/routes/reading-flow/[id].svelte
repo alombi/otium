@@ -59,11 +59,12 @@
    {:else} 
       <div class="flow_list">
       {#each $annotations as annotation}
+         <a href={flow.id + "/" + annotation.annotationID}>
             <div class="flow">
                <p class="title">{annotation.annotationTitle} <span class="annotation_page">{annotation.annotationPage}</span></p>
                <p class="annotation_page">Added on {annotation.annotationMoment}</p>
-               <a href={flow.id + "/" + annotation.annotationID}>Open</a>
             </div>
+         </a>
       {/each}
       </div>
    {/if}
