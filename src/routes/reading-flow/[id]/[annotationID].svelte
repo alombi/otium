@@ -22,6 +22,7 @@
    import { getNotificationsContext } from 'svelte-notifications';
    const { addNotification } = getNotificationsContext();
    import { annotations } from '$lib/readingFlow';
+   import { goto } from '$app/navigation';
    export let annotation;
    export let flowID, flowAuthor, userID
 
@@ -33,6 +34,7 @@
       }else{
          annotations.set(res.reverse())
          addNotification({text:'Done!', position:'bottom-right', type:'success', removeAfter: '2000'})
+         goto(`/reading-flow/${flowID}`)
       }
    }
 </script>
@@ -56,7 +58,7 @@
 </div>
 <br>
 {#if userID == flowAuthor}
-   
+   <button class="buttonAuth share" on:click={invokeRemoveAnnotation}>Edit annotation</button>
    <button class="buttonAuth remove" on:click={invokeRemoveAnnotation}>Remove annotation</button>
 {/if}
 
