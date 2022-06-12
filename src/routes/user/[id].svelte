@@ -82,7 +82,11 @@
 </script>
 
 <svelte:head>
-   <title>Otium | {data[0].username}</title>
+   {#if data[0].username}
+      <title>Otium | {data[0].username}</title>
+   {:else}
+      <title>Otium | User {data[0].id.split('-')[0]}</title>
+   {/if}
 </svelte:head>
 
 <div id="loading-loader" class="loader"><Jellyfish size="120" color="#f2b3cf" unit="px" duration="1s"></Jellyfish></div>
@@ -92,7 +96,7 @@
    <div class="content">
       <div>
          <div id="buttonContainer">
-            <h1>{data[0].username}</h1>
+            {#if data[0].username}<h1>{data[0].username}</h1>{:else}<h1>User {data[0].id.split('-')[0]}</h1>{/if}
             <p>{#if !isFriend}<button id="friendButton" on:click|preventDefault={invokeSendFriendRequest}>Ask friendship</button>{/if}</p>
          </div>
          <StatsBar stats={stats} />
