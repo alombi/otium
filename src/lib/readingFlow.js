@@ -1,6 +1,6 @@
 import supabase from '$lib/db';
 import { writable } from "svelte/store";
-import {v4 as uuidv4} from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 
 export const annotations = writable([])
 export const isPublic = writable()
@@ -30,6 +30,13 @@ export async function createReadingFlow(bookID, title) {
    return {res, flow}
 }
 
+export async function deleteFlow(flowID) {
+   const { data, error } = await supabase.from('reading_flow').delete().match({id: flowID})
+   if (error) {
+      console.log(error, data)
+      return error
+   }
+}
 
 export async function createAnnotation(flowID, annotationTitle, annotationQuote, annotationContent, annotationPage, annotationMoment) {
    let flow = await supabase.from('reading_flow').select('annotations').eq('id', flowID)
@@ -72,6 +79,21 @@ export async function removeAnnotation(annotation, flowID) {
    let newData = flow.data[0].annotations.filter(function (e) {
       return e.annotationID != annotation.annotationID
    })
+   const { data, error } = await supabase.from('reading_flow').update({ annotations: newData }).eq('id', flowID)
+   if (error) {
+      console.log(error)
+      return 'problem'
+   } else {
+      return data[0].annotations
+   }
+}
+
+export async function editAnnotation(annotation, flowID) {
+   let flow = await supabase.from('reading_flow').select('annotations').eq('id', flowID)
+   flow = flow.data[0].annotations
+   let dataToReplace = [annotation]
+   flow = flow.map(obj => dataToReplace.find(o => o.annotationID === obj.annotationID) || obj);
+   let newData = flow
    const { data, error } = await supabase.from('reading_flow').update({ annotations: newData }).eq('id', flowID)
    if (error) {
       console.log(error)

@@ -17,7 +17,6 @@
 
 <script>
    import { openModal } from 'svelte-modals'
-   import AnnotationModal from '$components/AnnotationModal.svelte';
    import EditFlowModal from '$components/EditFlowModal.svelte';
    import { annotations, isPublic } from '$lib/readingFlow'
    export let flow, userID;
@@ -25,13 +24,6 @@
    isPublic.set(flow.isPublic)
    let months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 
-   function openAnnotation(annotation){
-      if(annotation.annotationQuote){
-         openModal(AnnotationModal, {title:annotation.annotationTitle, message:annotation.annotationContent, containsQuote:true, quote:annotation.annotationQuote, annotation:annotation, flow:flow, userID:userID})
-      }else{
-         openModal(AnnotationModal, {title:annotation.annotationTitle, message:annotation.annotationContent, containsQuote:false, annotation:annotation, flow:flow, userID:userID})
-      }
-   }
    function openCreateAnnotationPage(){
       window.location.href = '/reading-flow/new?id=' + flow.id
    }
@@ -47,9 +39,9 @@
 <div>
    <h1>{flow.title} 
       {#if $isPublic}
-         <span class="public" id="tag">Public</span>
+         <span class="public-pill" id="tag">Public</span>
       {:else}
-         <span class="private" id="tag">Private</span>
+         <span class="private-pill" id="tag">Private</span>
       {/if}
    </h1>
    <p class="date">Reading flow created on {new Date(flow.created_at).getDate().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})} {months[new Date(flow.created_at).getMonth()]} {new Date(flow.created_at).getFullYear()}</p>
@@ -67,10 +59,12 @@
    {:else} 
       <div class="flow_list">
       {#each $annotations as annotation}
-            <div class="flow" on:click={(()=>{openAnnotation(annotation)})}>
+         <a href={flow.id + "/" + annotation.annotationID}>
+            <div class="flow">
                <p class="title">{annotation.annotationTitle} <span class="annotation_page">{annotation.annotationPage}</span></p>
                <p class="annotation_page">Added on {annotation.annotationMoment}</p>
             </div>
+         </a>
       {/each}
       </div>
    {/if}
