@@ -52,22 +52,4 @@
    #loader{
       display: none;
    }
-   textarea{
-      min-width: 79vw;
-      width: 100%;
-      resize:none;   
-      height: 400px;
-   }
-   #quote{
-      height: 150px;
-   }
-   @media(max-width:550px){
-      .textForm{
-         padding-left:4px;
-      }
-      textarea{
-         min-width:88vw;
-         margin-left: 2px;
-      }
-   }  
 </style>

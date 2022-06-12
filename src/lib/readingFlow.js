@@ -81,6 +81,21 @@ export async function removeAnnotation(annotation, flowID) {
    }
 }
 
+export async function editAnnotation(annotation, flowID) {
+   let flow = await supabase.from('reading_flow').select('annotations').eq('id', flowID)
+   flow = flow.data[0].annotations
+   let dataToReplace = [annotation]
+   flow = flow.map(obj => dataToReplace.find(o => o.annotationID === obj.annotationID) || obj);
+   let newData = flow
+   const { data, error } = await supabase.from('reading_flow').update({ annotations: newData }).eq('id', flowID)
+   if (error) {
+      console.log(error)
+      return 'problem'
+   } else {
+      return data[0].annotations
+   }
+}
+
 export async function getFlows(){
    const session = supabase.auth.session()
    const userID = session.user.id
