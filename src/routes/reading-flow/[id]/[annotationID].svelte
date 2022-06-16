@@ -28,16 +28,19 @@
    export let flowID, flowAuthor, userID
 
    async function invokeRemoveAnnotation(){
-      document.getElementById('annotation').style.display = 'none';
-      document.getElementById('loader').style.display = 'flex'
-      let res = await removeAnnotation(annotation, flowID)
-      console.log(res)
-      if(res == 'problem'){
-         addNotification({text:'Whoops! Something went wrong.', position:'bottom-right', type:'danger', removeAfter: '2000'})
-      }else{
-         annotations.set(res.reverse())
-         addNotification({text:'Done!', position:'bottom-right', type:'success', removeAfter: '2000'})
-         goto(`/reading-flow/${flowID}`)
+      let isConfirmed = window.confirm('Are you sure you want to delete the annotation?')      
+      if(isConfirmed){
+         document.getElementById('annotation').style.display = 'none';
+         document.getElementById('loader').style.display = 'flex'
+         let res = await removeAnnotation(annotation, flowID)
+         console.log(res)
+         if(res == 'problem'){
+            addNotification({text:'Whoops! Something went wrong.', position:'bottom-right', type:'danger', removeAfter: '2000'})
+         }else{
+            annotations.set(res.reverse())
+            addNotification({text:'Done!', position:'bottom-right', type:'success', removeAfter: '2000'})
+            goto(`/reading-flow/${flowID}`)
+         }
       }
    }
    let isEditing = false;
