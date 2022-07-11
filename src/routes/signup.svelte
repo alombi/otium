@@ -29,6 +29,10 @@
     }
 </script>
 
+<svelte:head>
+    <title>Otium | Create an account</title>
+</svelte:head>
+
 <div id="loginFromPage">
     <h1>Create an account</h1>
     <form class="" on:submit|preventDefault={signUp}> 
