@@ -68,6 +68,7 @@
    let loading;
    async function requestFlows(){
       flows = await getFlows()
+      flows = flows.reverse()
       archivedFlows = await getArchivedFlows()
       return
    }
