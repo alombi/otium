@@ -396,83 +396,72 @@ code {
   .desktop {
     display: none;
   }
-
   .mobile {
     display: block;
   }
-
   h1 {
     font-size: 25px;
   }
-
   h2 {
     font-size: 22px;
   }
-
   p, a {
     font-size: 16px;
   }
-
   .sidebar {
     display: none;
     overflow: scroll;
+    width: 100vw;
   }
-
+  .sidebar .searchBar {
+    width: 90vw;
+  }
+  .sidebar .textForm {
+    min-width: 80vw;
+  }
   #mobile_last_sidebar_links {
     padding-bottom: 100px;
   }
-
   .page {
     padding-left: 0px;
   }
-
   .book-list {
     display: grid;
     grid-template-columns: repeat(1, 100%);
   }
-
   .layout-grid > .book-card {
     width: 100%;
     justify-self: center;
   }
-
   .book-details-container {
     display: grid;
     grid-template-columns: repeat(1, 100%);
   }
-
   .buttons-container {
     margin-bottom: 30px;
     display: flex;
     flex-direction: column;
     gap: 5px;
   }
-
   .title-bar {
     grid-template-columns: 90% 10%;
   }
-
   .centered-welcome {
     display: unset;
     padding-top: 25px;
   }
-
   .centered-welcome div {
     text-align: left;
   }
-
   .centered-welcome h2, .centered-welcome p {
     display: none;
   }
-
   .mobile-welcome {
     display: block !important;
   }
-
   .mobile-welcome h1 {
     text-align: left;
   }
-
   .searchBar-alt input {
     width: 70vw;
   }
@@ -481,7 +470,6 @@ code {
   #loginButton, .navForm, .switchAuthButtons {
     display: none;
   }
-
   #alternativeButton {
     display: block;
   }
@@ -663,7 +651,6 @@ textarea {
   .textForm {
     padding-left: 4px;
   }
-
   textarea {
     min-width: 88vw;
     margin-left: 2px;

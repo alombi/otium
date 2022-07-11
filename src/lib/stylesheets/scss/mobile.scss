@@ -21,6 +21,13 @@
    .sidebar{
       display:none;
       overflow: scroll;
+      width:100vw;
+      .searchBar{
+         width:90vw;
+      }
+      .textForm{
+         min-width:80vw;
+      }
    }
    #mobile_last_sidebar_links{
       padding-bottom: 100px;

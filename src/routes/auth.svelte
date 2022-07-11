@@ -25,6 +25,10 @@
    }
 </script>
 
+<svelte:head>
+   <title>Otium | Login</title>
+</svelte:head>
+
 <div id="loginFromPage">
    <h1>Login</h1>
    <form class="" on:submit|preventDefault={signIn}> 
