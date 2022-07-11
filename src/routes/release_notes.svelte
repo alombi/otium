@@ -13,6 +13,14 @@
 <h1>What's new</h1>
 <p>A page to track Otium's progress within time. For more details and code, check out Otium's <a href="https://github.com/alombi/otium" target="_blank">GitHub page</a>.</p>
 
+<h2>11 July 2022</h2>
+<ul>
+   <li><span class="release-tag new">NEW</span> Improved this page with NEW and FIX tags!</li>
+   <li><span class="release-tag fix">FIX</span> Fixed the reading flow's listing</li>
+   <li><span class="release-tag fix">FIX</span> Sidebar now opens fullscreen on mobile</li>
+   <li><span class="release-tag fix">FIX</span> Added titles to login and signup pages</li>
+</ul>
+
 <h2>8 June 2022</h2>
 <ul>
    <li><span class="release-tag new">NEW</span> A page for tracking Otium's progress and new features is here!</li>
