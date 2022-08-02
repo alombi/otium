@@ -7,3 +7,6 @@ export const bookshelfTag = writable()
 export const isStarred = writable(false)
 
 export const notifsUnread = writable(false)
+
+export const progress = writable(0)
+export const pagesRead = writable(0)

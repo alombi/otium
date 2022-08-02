@@ -81,7 +81,7 @@
    import Error from '$components/Error.svelte';
    import BookDescription from '$components/BookDescription.svelte';
    import BooksInCommon from '$components/BooksInCommon.svelte';
-   import { isAdded, bookshelfTag, isStarred } from '$lib/tag_store';
+   import { isAdded, bookshelfTag, isStarred, progress, pagesRead } from '$lib/tag_store';
    import ISO6391 from 'iso-639-1';
 
    
@@ -93,7 +93,15 @@
    let tag;
    let cover, year, lang;
    let title = 'Loading';
+   $:{
+     if(book){
+      $progress = percentage($pagesRead, book.volumeInfo.pageCount).toFixed()
+     }
+   }
+   
    onMount(()=>{
+      $pagesRead = dataFiltered[0].progress;
+      $progress = percentage($pagesRead, book.volumeInfo.pageCount).toFixed()
       lang = ISO6391.getName(book.volumeInfo.language)
       if(book.volumeInfo.publishedDate){
          year = book.volumeInfo.publishedDate.split('-')[0]
@@ -128,6 +136,9 @@
       isAdded.set(false)
       isStarred.set(false)
    })
+   function percentage(partialValue, totalValue) {
+      return (100 * partialValue) / totalValue;
+   }
 </script>
 
 <svelte:head>
@@ -149,7 +160,7 @@
                </div>
             {:else if !$isAdded && $bookshelfTag != undefined}
             <div id="tag_container">
-               <p class="{$bookshelfTag}-pill" id="tag">{tags[$bookshelfTag]}</p>
+               <p class="{$bookshelfTag}-pill" id="tag">{tags[$bookshelfTag]} {#if $bookshelfTag == 'reading'} - {$progress}%{/if}</p>
                {#if $isStarred}
                   <p class='favorite-pill' id="tag">Starred</p>
                {/if}
@@ -160,7 +171,7 @@
             <h2 class="author title-book author-title">by <span id="author-name">{book.volumeInfo.authors[0]}</span></h2>
       </div>
       {#if $session}
-         <ActionsBar title={title} id={book.id} DB={dataFiltered} friends={friends} />
+         <ActionsBar pagesRead={pagesRead} totalPages={book.volumeInfo.pageCount} title={title} id={book.id} DB={dataFiltered} friends={friends} />
       {/if}
       <div>
          <h2>Description</h2>
@@ -177,6 +188,7 @@
             <p><b>Publisher</b>: {book.volumeInfo.publisher}</p>
             <p><b>Year</b>: {year}</p>
             <p><b>Language</b>: {lang}</p>
+            <p><b>Pages</b>: {book.volumeInfo.pageCount}</p>
          </div>
          <div>
             <h2>Public flows and reviews</h2>

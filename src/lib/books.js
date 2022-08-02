@@ -1,6 +1,30 @@
 import supabase from '$lib/db'
 import moment from 'moment'
 
+export async function updateProgress(bookID, progress, totalPages) {
+   const session = supabase.auth.session()
+   const id = session.user.id
+   const { data, error } = await supabase.from('profiles').select('bookshelf').eq('id', id);
+   if (error) {
+      return error
+   } else {
+      let newData = data[0].bookshelf.filter(function (e) {
+         if (e.id == bookID) {
+            if (Number(progress) < totalPages + 1) {
+               e.progress = Number(progress)
+            } else {
+               e.progress = totalPages
+            }
+         }
+         return e
+      });
+      const { updatedData, updatedError } = await supabase.from('profiles').update({ bookshelf: newData }).eq('id', id)
+      if (updatedError) {
+         return updatedError
+      }
+   }
+}
+
 export async function addToBookshelf(bookID, tag, isStarred) {
    const session = supabase.auth.session()
    const id = session.user.id
@@ -50,7 +74,11 @@ export async function changeTag(bookID, tag) {
       let newData = data[0].bookshelf.filter(function (e) {
          if (e.id == bookID) {
             e.tag = tag
+            if (tag == 'reading') {
+               e.progress = 0
+            }
          }
+         
          return e
       });
       const { updatedData, updatedError } = await supabase.from('profiles').update({ bookshelf: newData }).eq('id', id)

@@ -13,6 +13,12 @@
 <h1>What's new</h1>
 <p>A page to track Otium's progress within time. For more details and code, check out Otium's <a href="https://github.com/alombi/otium" target="_blank">GitHub page</a>.</p>
 
+<h2>2 August 2022</h2>
+<ul>
+   <li><span class="release-tag new">NEW</span> Added progress tracking for books with the Reading now tags!</li>
+   <li><span class="release-tag new">NEW</span> Added a new public API endpoint, that returns the most recent book marked as Reading for an user</li>
+</ul>
+
 <h2>11 July 2022</h2>
 <ul>
    <li><span class="release-tag new">NEW</span> Improved this page with NEW and FIX tags!</li>

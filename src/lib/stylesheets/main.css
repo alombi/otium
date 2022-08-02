@@ -232,6 +232,14 @@ code {
 /* Single page buttons */
 .buttons-container {
   text-align: center;
+  width: 90%;
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+}
+
+#buttons_grid_container {
+  display: flex;
+  justify-content: center;
 }
 
 .book-actions {
