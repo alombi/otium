@@ -100,8 +100,10 @@
    }
    
    onMount(()=>{
-      $pagesRead = dataFiltered[0].progress;
-      $progress = percentage($pagesRead, book.volumeInfo.pageCount).toFixed()
+      if($session){
+         $pagesRead = dataFiltered[0].progress;
+         $progress = percentage($pagesRead, book.volumeInfo.pageCount).toFixed()
+      }
       lang = ISO6391.getName(book.volumeInfo.language)
       if(book.volumeInfo.publishedDate){
          year = book.volumeInfo.publishedDate.split('-')[0]

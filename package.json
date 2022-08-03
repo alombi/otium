@@ -26,6 +26,7 @@
   "type": "module",
   "dependencies": {
     "@supabase/supabase-js": "^1.25.2",
+    "cookie": "^0.5.0",
     "svelte-modals": "^1.1.0",
     "svelte-notifications": "^0.9.93"
   }
