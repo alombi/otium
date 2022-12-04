@@ -1,0 +1,29 @@
+// .centered-welcome{
+//    display: flex;
+//    align-items: center;
+//    justify-content: center;
+//    height:calc(100vh - 650px);
+//    overflow-y: hidden;
+//    margin:0;
+// }
+// // .centered-welcome h2, .centered-welcome p{
+// //    opacity: 0.3;
+// // }
+// .centered-welcome div{
+//    text-align: center;
+// }
+// .centered-welcome p{
+//    margin-top: -15px;
+//    line-break: auto;
+// }
+// .mobile-welcome{
+//    display: none;
+// }
+
+.centered-welcome{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+}

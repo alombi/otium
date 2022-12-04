@@ -1,19 +1,11 @@
-/** @type {import('@sveltejs/kit').Config} */
-import vercel from '@sveltejs/adapter-vercel';
-import { resolve } from "path";
+import adapter from '@sveltejs/adapter-auto';
+import preprocess from 'svelte-preprocess';
+
 const config = {
+	preprocess: preprocess(),
+
 	kit: {
-		adapter:vercel(),
-		vite: {
-			define: {
-				'process.env': process.env,
-		  	},
-			resolve: {
-				alias: {
-					$components: resolve('./src/components')
-				}
-			}
-		}
+		adapter: adapter()
 	}
 };
 

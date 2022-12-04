@@ -1,0 +1,88 @@
+/* Media query */
+@media(max-width:550px){
+   .desktop{
+      display: none;
+   }
+   .mobile{
+      display:block;
+   }
+   h1{
+      font-size: 25px;
+   }
+   h2{
+      font-size: 22px;
+   }
+   p, a{
+      font-size: 16px;
+   }
+   // #navbarBrand{
+   //    display: none;
+   // }
+   .sidebar{
+      display:none;
+      overflow: scroll;
+      width:100vw;
+      .searchBar{
+         width:90vw;
+      }
+      .textForm{
+         min-width:80vw;
+      }
+   }
+   #mobile_last_sidebar_links{
+      padding-bottom: 100px;
+   }
+   .page{
+      padding-left: 0px;
+   }
+   .book-list{
+      display: grid;
+      grid-template-columns: repeat(1, 100%);
+   }
+   .layout-grid > .book-card{
+      width:100%;
+      justify-self: center;
+   }
+   .book-details-container{
+      display: grid;
+      grid-template-columns: repeat(1, 100%);
+   }
+   .buttons-container{
+      margin-bottom: 30px;
+      display: flex;
+      flex-direction: column;
+      gap:5px;
+   }
+
+   // Home page
+   .centered-welcome{
+     display:unset;
+     padding-top:25px;
+   }
+   .centered-welcome div{
+      text-align: left;
+   }
+   .centered-welcome h2, .centered-welcome p{
+      display: none;
+   }
+   .mobile-welcome{
+      display: block !important;
+   }
+   .mobile-welcome h1{
+      text-align: left;
+   }
+   // at some point .searchBar-alt input stopped working. now there's an alias in index.svelte, which is using textForm
+   .searchBar-alt input{
+        max-width: 68vw;
+      //margin-bottom: 25px;
+   }
+}
+
+@media(max-width:750px){
+   #loginButton, .navForm, .switchAuthButtons{
+      display: none;
+   }
+   #alternativeButton{
+      display: block;
+   }
+}
