@@ -5,7 +5,12 @@ const config = {
 	preprocess: preprocess(),
 
 	kit: {
-		adapter: adapter()
+		adapter: adapter(),
+        vite: {
+            define: {
+                'process.env': process.env,
+            },
+        },
 	}
 };
 
