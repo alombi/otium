@@ -1,11 +1,11 @@
-import vercel from '@sveltejs/adapter-vercel';
+import adapter from '@sveltejs/adapter-auto';
 import preprocess from 'svelte-preprocess';
 
 const config = {
 	preprocess: preprocess(),
 
 	kit: {
-		adapter:vercel(),
+		adapter: adapter()
 	}
 };
 
