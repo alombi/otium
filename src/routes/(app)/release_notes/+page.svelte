@@ -7,9 +7,9 @@
 
 <h2>4 December 2022</h2>
 <ul>
-    <li>><span class="release-tag new">NEW</span> Search has been revamped and it's now more efficient</li>
+    <li><span class="release-tag new">NEW</span> Search has been revamped and it's now more efficient</li>
     <li><span class="release-tag fix">IMPROVEMENT</span> Improved security and efficiency of authentication</li>
-    <li><span class="release-tag fix">FIX</span> Complete rewrite in order to migrate SvelteKit/li>
+    <li><span class="release-tag fix">FIX</span> Complete rewrite in order to migrate SvelteKit</li>
 </ul>
 
 <h2>2 August 2022</h2>
