@@ -73,7 +73,7 @@
 
 <div class="book-title-container">
     <img class="book-cover" src="{cover}" alt='cover'>
-     {#if $isAdded && $bookshelfTag == undefined}
+    {#if $isAdded && $bookshelfTag == undefined}
         <div id="tag_container">
             <p class="unset-pill" id="tag">{tags.unset}</p>
             {#if $isStarred}
