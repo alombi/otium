@@ -2,6 +2,13 @@ import { getSupabase } from '@supabase/auth-helpers-sveltekit';
 import { AuthApiError } from '@supabase/supabase-js';
 import { invalid, redirect } from '@sveltejs/kit';
 
+export const load = async (event) => {
+	const { session } = await getSupabase(event);
+	if (session) {
+		throw redirect(303, '/dashboard');
+	}
+};
+
 export const actions = {
 	async default(event){
 		const { request } = event;

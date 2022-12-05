@@ -1,1 +1,0 @@
-import { supabaseClient } from '$lib/db';
