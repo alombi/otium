@@ -42,6 +42,14 @@
     }
 </script>
 
+<svelte:head>
+    {#if dbData[0].username}
+        <title>Otium | {dbData[0].username}</title>
+    {:else}
+        <title>>User {dbData[0].id.split('-')[0]}</title>
+    {/if}
+</svelte:head>
+
 
 <div class="content">
     <div class="centered-welcome">
