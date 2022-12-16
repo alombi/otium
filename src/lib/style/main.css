@@ -386,6 +386,11 @@ button:hover, .toolsButton:hover {
 
 /* Media query */
 @media (max-width: 550px) {
+  #loginFromPage > form > input {
+    margin-bottom: 5px;
+    width: 80vw;
+    height: 30px;
+  }
   .desktop {
     display: none;
   }
