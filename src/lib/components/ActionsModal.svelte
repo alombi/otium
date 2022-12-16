@@ -62,6 +62,9 @@
  {/if}
  
  <style>
+  button{
+    margin-bottom: 5px;
+  }
   .modal {
     position: fixed;
     top: 0;
