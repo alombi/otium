@@ -24,6 +24,7 @@
             $pagesRead = dataFiltered[0].progress;
             $progress = percentage($pagesRead, book.volumeInfo.pageCount).toFixed()
             console.log($progress == 'NaN')
+            console.clear()
         }
         if(book.volumeInfo.imageLinks){
             cover = book.volumeInfo.imageLinks.thumbnail.replace('http://', 'https://')
@@ -62,7 +63,6 @@
     function percentage(partialValue, totalValue) {
         return (100 * partialValue) / totalValue;
     }
-    console.log($isAdded)
 </script>
 
 <svelte:head>
@@ -87,7 +87,7 @@
                 <p class='favorite-pill' id="tag">Starred</p>
             {/if}
         </div>
-    {/if} 
+    {/if}
     <BooksInCommon friends={friends} id={id} bookshelf={bookshelf} />
     <h1 class="title-book">{book.volumeInfo.title}</h1>
     <h2 class="author title-book author-title">by <span id="author-name">{book.volumeInfo.authors[0]}</span></h2>

@@ -651,6 +651,10 @@ textarea {
     margin-left: 2px;
   }
 }
+.position-top-right, .position-top-left, .position-top-center, .position-bottom-right, .position-bottom-left, .position-bottom-center {
+  z-index: 3 !important;
+}
+
 /* General stuff */
 body {
   font-family: "Barlow", sans-serif;
