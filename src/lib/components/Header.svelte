@@ -2,9 +2,11 @@
 // @ts-nocheck
     import { page } from '$app/stores';
     import { applyAction, enhance} from '$app/forms';
-	import { invalidate } from '$app/navigation';
-    import { notifsUnread } from '$lib/stores.js';
+	  import { invalidate } from '$app/navigation';
+    import { notifsUnread, bookshelfTag } from '$lib/stores.js';
     export let notifications = []
+    import { getNotificationsContext } from 'svelte-notifications';
+    const { addNotification } = getNotificationsContext();
     
     var n = notifications.filter((i)=>{return !i.isRead})
     if(n.length > 0){
@@ -32,6 +34,7 @@
 
 	const handleLogout = () => {
 		loading = true;
+    bookshelfTag.set('')
 		return async ({ result }) => {
 			if (result.type === 'redirect') {
 				await invalidate('supabase:auth');
@@ -39,6 +42,7 @@
 				await applyAction(result);
 			}
 			loading = false;
+      addNotification({text: 'See you soon!', position:'top-right', type:'default', removeAfter: '2000'})
 		};
 	};
 </script>

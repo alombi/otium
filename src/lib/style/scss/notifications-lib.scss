@@ -1,0 +1,4 @@
+// This code is for the notifications from the svelte-notifications package.
+.position-top-right, .position-top-left, .position-top-center, .position-bottom-right, .position-bottom-left, .position-bottom-center {
+    z-index: 3 !important;	
+}
