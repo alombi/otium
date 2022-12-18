@@ -4,6 +4,8 @@
     import Switcher from '$lib/components/Switcher.svelte';
     import { getNotificationsContext } from 'svelte-notifications';
     const { addNotification } = getNotificationsContext();
+    import { navigating } from '$app/stores';
+    import { Jellyfish } from 'svelte-loading-spinners';
     export let data;
     $:({ dbData, id, friends, isFriend, user, stats, bookshelf} = data)
     
@@ -51,36 +53,41 @@
 </svelte:head>
 
 
-<div class="content">
-    <div class="centered-welcome">
-        <div id="buttonContainer">
-            {#if dbData[0].username}<h1>{dbData[0].username}</h1>{:else}<h1>User {dbData[0].id.split('-')[0]}</h1>{/if}
-            {#if user}
-                <p>{#if !isFriend}<button id="friendButton" on:click|preventDefault={invokeSendFriendRequest}>Ask friendship</button>{/if}</p>
-            {/if}
-        </div>
-       <StatsBar stats={stats} />
-    </div>
-    <h2>Friends</h2>
-    {#if friends.length == 0}
-       <p class="not_found">No friends yet!</p>
-    {:else}
-       <div class="friends">
-       {#each friends as friend}
-          {#if friend.status != 'declined'}
-             <div class="friend">
-                <a href={friend.friendURL} target="_parent"><p>{friend.friendName}</p></a>
-                {#if friend.pending}
-                   <p id="pending">Pending</p>
+
+{#if $navigating}
+    <div id="loader" class="loader"><Jellyfish size="120" color="#f2b3cf" unit="px" duration="1s"></Jellyfish></div>
+{:else}
+    <div class="content">
+        <div class="centered-welcome">
+            <div id="buttonContainer">
+                {#if dbData[0].username}<h1>{dbData[0].username}</h1>{:else}<h1>User {dbData[0].id.split('-')[0]}</h1>{/if}
+                {#if user}
+                    <p>{#if !isFriend}<button id="friendButton" on:click|preventDefault={invokeSendFriendRequest}>Ask friendship</button>{/if}</p>
                 {/if}
-             </div>
-          {/if}
-       {/each}
-       </div>
-    {/if}
-    
-    <h2>Bookshelf</h2>
-    <Switcher items={['Reading', 'To Read', 'Read', 'Starred'].map((i) => ({ l: `${i}`, v: i }))} bind:value/>
-    <br>
-    <Shelf bookshelf={shelfArray} />
-</div>
+            </div>
+        <StatsBar stats={stats} />
+        </div>
+        <h2>Friends</h2>
+        {#if friends.length == 0}
+        <p class="not_found">No friends yet!</p>
+        {:else}
+        <div class="friends">
+        {#each friends as friend}
+            {#if friend.status != 'declined'}
+                <div class="friend">
+                    <a href={friend.friendURL} target="_parent"><p>{friend.friendName}</p></a>
+                    {#if friend.pending}
+                    <p id="pending">Pending</p>
+                    {/if}
+                </div>
+            {/if}
+        {/each}
+        </div>
+        {/if}
+        
+        <h2>Bookshelf</h2>
+        <Switcher items={['Reading', 'To Read', 'Read', 'Starred'].map((i) => ({ l: `${i}`, v: i }))} bind:value/>
+        <br>
+        <Shelf bookshelf={shelfArray} />
+    </div>
+{/if}

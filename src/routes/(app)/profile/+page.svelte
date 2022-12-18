@@ -6,6 +6,8 @@
     import Banner from '$lib/components/Banner.svelte';
     import StatsBar from '$lib/components/StatsBar.svelte';
     export let data;
+    import { navigating } from '$app/stores';
+    import { Jellyfish } from 'svelte-loading-spinners';
     $:({ id, profiles, friends, userData, stats } = data)
     let usernameMissing = false;
     let name;
@@ -76,46 +78,51 @@
 </svelte:head>
 
 
-<div id="searchBar-local">
-    <form class="searchBar-alt searchBar-search-and-profile" on:submit|preventDefault={search}>
-       <input type="text" class="textForm" placeholder="Search per username" autocomplete="off" required="required" bind:value={searchTerm}>
-       <button id="searchButton" type="submit"><i class="fas fa-search"></i></button>
-    </form>
-</div>
-<div id="results_container">
-    <div id="results">
-       {#each searchRes as result}
-          <p><a href={result.url}>{result.name}</a></p>
-       {/each}
-    </div>
-</div>
 
-<div class="centered-welcome">
-    <h1>Welcome back {name}!</h1>
-    {#if usernameMissing}
-        <Banner desc="Complete your profile by creating an username" button="Create" func={()=>changeUsername()} advancedTitle="Create username"/>
-    {/if}
-    <StatsBar stats={stats}/>
-</div>
-<h2>Friends</h2>
-{#if friends.length == 0}
-    <p class="not_found">No friends yet!</p>
+{#if $navigating}
+    <div id="loader" class="loader"><Jellyfish size="120" color="#f2b3cf" unit="px" duration="1s"></Jellyfish></div>
 {:else}
-    <div class="friends">
-    {#each friends as friend}
-        {#if friend.status != 'declined'}
-            <div class="friend">
-            <a href={friend.friendURL} target="_parent"><p>{friend.friendName}</p></a>
-            <div id="pending_container">
-                {#if friend.pending && id === friend.receiver_id}
-                   <button id="friendButton" on:click={()=>{invokeAnswerFriendRequest(true, friend)}}>Accept</button>
-                   <button id="friendButton" on:click={()=>{invokeAnswerFriendRequest(false, friend)}}>Decline</button>
-                {:else if friend.pending && id != friend.receiver_id}
-                    <p id="pending">Pending</p>
-                {/if}
-             </div>
-          </div>
-       {/if}
-    {/each}
+    <div id="searchBar-local">
+        <form class="searchBar-alt searchBar-search-and-profile" on:submit|preventDefault={search}>
+        <input type="text" class="textForm" placeholder="Search per username" autocomplete="off" required="required" bind:value={searchTerm}>
+        <button id="searchButton" type="submit"><i class="fas fa-search"></i></button>
+        </form>
     </div>
+    <div id="results_container">
+        <div id="results">
+        {#each searchRes as result}
+            <p><a href={result.url}>{result.name}</a></p>
+        {/each}
+        </div>
+    </div>
+
+    <div class="centered-welcome">
+        <h1>Welcome back {name}!</h1>
+        {#if usernameMissing}
+            <Banner desc="Complete your profile by creating an username" button="Create" func={()=>changeUsername()} advancedTitle="Create username"/>
+        {/if}
+        <StatsBar stats={stats}/>
+    </div>
+    <h2>Friends</h2>
+    {#if friends.length == 0}
+        <p class="not_found">No friends yet!</p>
+    {:else}
+        <div class="friends">
+        {#each friends as friend}
+            {#if friend.status != 'declined'}
+                <div class="friend">
+                <a href={friend.friendURL} target="_parent"><p>{friend.friendName}</p></a>
+                <div id="pending_container">
+                    {#if friend.pending && id === friend.receiver_id}
+                    <button id="friendButton" on:click={()=>{invokeAnswerFriendRequest(true, friend)}}>Accept</button>
+                    <button id="friendButton" on:click={()=>{invokeAnswerFriendRequest(false, friend)}}>Decline</button>
+                    {:else if friend.pending && id != friend.receiver_id}
+                        <p id="pending">Pending</p>
+                    {/if}
+                </div>
+            </div>
+        {/if}
+        {/each}
+        </div>
+    {/if}
 {/if}

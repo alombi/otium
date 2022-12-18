@@ -2,6 +2,7 @@
 	import { applyAction, enhance } from '$app/forms';
 	import { invalidate } from '$app/navigation';
 	import { Jellyfish } from 'svelte-loading-spinners';
+	import { onMount } from 'svelte';
 
 	export let form;
 	let loading = false;
@@ -19,7 +20,10 @@
 			}, 1000);
 		};
 	};
-    
+
+	onMount(()=>{
+		document.getElementById('header-login-button').style.display = 'none';
+	})
 </script>
 
 <div id="loginFromPage">

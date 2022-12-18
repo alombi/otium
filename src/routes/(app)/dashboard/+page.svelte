@@ -2,6 +2,8 @@
     import ISO6391 from 'iso-639-1';
     import Shelf from '$lib/components/Shelf.svelte';
     export let data;
+    import { Jellyfish } from 'svelte-loading-spinners';
+    import { navigating } from '$app/stores';
 	$: ({ bookshelf, user } = data);
     let searchTerm, langCode;
     function search(){
@@ -17,13 +19,16 @@
    <title>Otium | A free and open source bookshelf organizer</title>
 </svelte:head>
 
-
-<div class="centered-welcome">
-    <h1>Welcome back</h1>
-    <form class="searchBar-alt" on:submit|preventDefault={search}>
-        <input type="text" class="textForm" placeholder="Search per title" required="required" bind:value={searchTerm}>
-        <button id="searchButton" type="submit"><i class="fas fa-search"></i></button>
-     </form>
-</div>
-<h2>Reading now</h2>
-<Shelf bookshelf={bookshelf} />
+{#if $navigating}
+    <div id="loader" class="loader"><Jellyfish size="120" color="#f2b3cf" unit="px" duration="1s"></Jellyfish></div>
+{:else}
+    <div class="centered-welcome">
+        <h1>Welcome back</h1>
+        <form class="searchBar-alt" on:submit|preventDefault={search}>
+            <input type="text" class="textForm" placeholder="Search per title" required="required" bind:value={searchTerm}>
+            <button id="searchButton" type="submit"><i class="fas fa-search"></i></button>
+        </form>
+    </div>
+    <h2>Reading now</h2>
+    <Shelf bookshelf={bookshelf} />
+{/if}

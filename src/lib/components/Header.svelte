@@ -61,7 +61,7 @@
             <button disabled={loading} type="submit" class="buttonAuth">Sign out</button>
         </form>
     {:else}
-    <button on:click={()=>window.location.href ='/'} class="buttonAuth">Sign in</button>
+    <button on:click={()=>window.location.href ='/'} class="buttonAuth" id="header-login-button">Sign in</button>
     {/if}
   </div>
 </nav>

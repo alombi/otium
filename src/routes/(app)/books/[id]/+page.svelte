@@ -5,7 +5,8 @@
     import ActionsBar from '$lib/components/ActionsBar.svelte';
     import BookDescription from "$lib/components/BookDescription.svelte";
     import ISO6391 from 'iso-639-1';
-    import { page } from '$app/stores';
+    import { page, navigating } from '$app/stores';
+    import { Jellyfish } from 'svelte-loading-spinners';
     export let data;
     $: ({book, dataFiltered, tags, friends, id, bookshelf, flows, session} = data);
     let cover, tag, year, lang;
@@ -70,48 +71,51 @@
 </svelte:head>
 
 
-
-<div class="book-title-container">
-    <img class="book-cover" src="{cover}" alt='cover'>
-    {#if $isAdded && $bookshelfTag == undefined}
-        <div id="tag_container">
-            <p class="unset-pill" id="tag">{tags.unset}</p>
-            {#if $isStarred}
-                <p class='favorite-pill' id="tag">Starred</p>
-            {/if}
-        </div>
-    {:else if !$isAdded && $bookshelfTag != ''}
-        <div id="tag_container">
-            <p class="{$bookshelfTag}-pill" id="tag">{tags[$bookshelfTag]} {#if $bookshelfTag == 'reading'} - {$progress}%{/if}</p>
-            {#if $isStarred}
-                <p class='favorite-pill' id="tag">Starred</p>
-            {/if}
-        </div>
-    {/if}
-    <BooksInCommon friends={friends} id={id} bookshelf={bookshelf} />
-    <h1 class="title-book">{book.volumeInfo.title}</h1>
-    <h2 class="author title-book author-title">by <span id="author-name">{book.volumeInfo.authors[0]}</span></h2>
-</div>
-{#if $page.data.session}
-    <ActionsBar pagesRead={pagesRead} totalPages={book.volumeInfo.pageCount} title={book.volumeInfotitle} id={book.id} DB={dataFiltered} friends={friends} userID={$page.data.session.user.id} />
-{/if}
-<div>
-    <h2>Description</h2>
-    {#if !book.volumeInfo.description}
-       <p>No description provided.</p>
-    {:else}
-       <BookDescription description={book.volumeInfo.description} />
-    {/if}
- </div>
- <div class="book-details-container">
-    <div>
-       <h2>Details</h2>
-       <p><b>Author</b>: {book.volumeInfo.authors[0]}</p>
-       <p><b>Publisher</b>: {book.volumeInfo.publisher}</p>
-       <p><b>Year</b>: {year}</p>
-       <p><b>Language</b>: {lang}</p>
-       <p><b>Pages</b>: {book.volumeInfo.pageCount}</p>
+{#if $navigating}
+    <div id="loader" class="loader"><Jellyfish size="120" color="#f2b3cf" unit="px" duration="1s"></Jellyfish></div>
+{:else}
+    <div class="book-title-container">
+        <img class="book-cover" src="{cover}" alt='cover'>
+        {#if $isAdded && $bookshelfTag == undefined}
+            <div id="tag_container">
+                <p class="unset-pill" id="tag">{tags.unset}</p>
+                {#if $isStarred}
+                    <p class='favorite-pill' id="tag">Starred</p>
+                {/if}
+            </div>
+        {:else if !$isAdded && $bookshelfTag != ''}
+            <div id="tag_container">
+                <p class="{$bookshelfTag}-pill" id="tag">{tags[$bookshelfTag]} {#if $bookshelfTag == 'reading'} - {$progress}%{/if}</p>
+                {#if $isStarred}
+                    <p class='favorite-pill' id="tag">Starred</p>
+                {/if}
+            </div>
+        {/if}
+        <BooksInCommon friends={friends} id={id} bookshelf={bookshelf} />
+        <h1 class="title-book">{book.volumeInfo.title}</h1>
+        <h2 class="author title-book author-title">by <span id="author-name">{book.volumeInfo.authors[0]}</span></h2>
     </div>
-    <h2>Public flows and reviews</h2>
+    {#if $page.data.session}
+        <ActionsBar pagesRead={pagesRead} totalPages={book.volumeInfo.pageCount} title={book.volumeInfotitle} id={book.id} DB={dataFiltered} friends={friends} userID={$page.data.session.user.id} />
+    {/if}
+    <div>
+        <h2>Description</h2>
+        {#if !book.volumeInfo.description}
+        <p>No description provided.</p>
+        {:else}
+        <BookDescription description={book.volumeInfo.description} />
+        {/if}
+    </div>
+    <div class="book-details-container">
+        <div>
+        <h2>Details</h2>
+        <p><b>Author</b>: {book.volumeInfo.authors[0]}</p>
+        <p><b>Publisher</b>: {book.volumeInfo.publisher}</p>
+        <p><b>Year</b>: {year}</p>
+        <p><b>Language</b>: {lang}</p>
+        <p><b>Pages</b>: {book.volumeInfo.pageCount}</p>
+        </div>
+        <h2>Public flows and reviews</h2>
 
- </div>
+    </div>
+{/if}
