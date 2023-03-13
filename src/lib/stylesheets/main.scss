@@ -1,0 +1,71 @@
+@import "colors";
+@import "notifications";
+
+.error{
+  background-color: #e53935;
+  border: #e53935;
+}
+#plus > svg{
+  margin:10px
+}
+.text-icon > svg{
+  margin-top:-6px;
+  margin-right: 2px;
+}
+.icon > svg{
+  margin-top:-50px
+}
+#tag{
+  font-size: 13px;
+  text-align: center;
+  padding:5px 15px;
+  border-radius: 16px;
+  /* color:#2e3440; */
+  font-weight: 500;
+}
+#tag_container{
+  display: flex;
+  justify-content: center;
+  gap:5px;
+  margin-bottom:-20px;
+  padding-top: 15px;
+}
+
+
+/* Teal Light scheme (Default) */
+/* Can be forced with data-theme="light" */
+[data-theme="light"],
+:root:not([data-theme="dark"]) {
+  --primary: #00897b;
+  --primary-hover: #00796b;
+  --primary-focus: rgba(0, 137, 123, 0.125);
+  --primary-inverse: #FFF;
+}
+
+/* Teal Dark scheme (Auto) */
+/* Automatically enabled if user has Dark mode enabled */
+@media only screen and (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --primary: #00897b;
+    --primary-hover: #009688;
+    --primary-focus: rgba(0, 137, 123, 0.25);
+    --primary-inverse: #FFF;
+  }
+}
+
+/* Teal Dark scheme (Forced) */
+/* Enabled if forced with data-theme="dark" */
+[data-theme="dark"] {
+  --primary: #00897b;
+  --primary-hover: #009688;
+  --primary-focus: rgba(0, 137, 123, 0.25);
+  --primary-inverse: #FFF;
+}
+
+/* Teal (Common styles) */
+:root {
+  --form-element-active-border-color: var(--primary);
+  --form-element-focus-color: var(--primary-focus);
+  --switch-color: var(--primary-inverse);
+  --switch-checked-background-color: var(--primary);
+}

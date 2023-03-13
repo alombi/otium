@@ -1,0 +1,119 @@
+.favorite-pill{
+    background-color: #fdd8351a;
+    color:#fdd835
+}
+.reading-pill{
+    background-color: #039be51a;
+    color: #039be5;
+}
+.to_read-pill{
+    background-color: #d81b601a;
+    color: #d81b60;
+}
+.read-pill{
+    background-color: #43a0471a;
+    color: #43a047;
+}
+.add-pill, .unset-pill{
+    background-color: #546e7a1a;
+    color: #546e7a;
+}
+
+
+
+.reading{
+    background-color: #039be5;
+    border-color: #039be5;
+    color:white
+}
+.reading:hover{
+    background-color: #0288d1;
+    color:white
+}
+@media only screen and (prefers-color-scheme: dark){
+    .reading:hover{
+        background-color: #03a9f4;
+    }
+}
+
+.to_read{
+    background-color: #d81b60;
+    border-color: #d81b60;
+    color:white
+}
+.to_read:hover{
+    background-color: #c2185b;
+}
+@media only screen and (prefers-color-scheme: dark){
+    .to_read:hover{
+        background-color: #e91e63;
+    }
+}
+
+.read{
+    background-color: #43a047;
+    border-color: #43a047;
+    color:white;
+}
+.read:hover{
+    background-color: #388e3c;
+}
+@media only screen and (prefers-color-scheme: dark){
+    .read:hover{
+        background-color: #4caf50;
+    }
+}
+
+.remove{
+    background-color: #e53935;
+    border-color: #e53935;
+}
+.remove:hover{
+    background-color: #d32f2f;
+}
+@media only screen and (prefers-color-scheme: dark){
+    .remove:hover{
+        background-color: #f44336;
+    }
+}
+
+.untag{
+    background-color: #546e7a;
+    border-color: #546e7a;
+}
+.untag:hover{
+    background-color: #455a64;
+}
+@media only screen and (prefers-color-scheme: dark){
+    .untag:hover{
+        background-color: #607d8b;
+    }
+}
+
+.favorite{
+    background-color: #fdd835;
+    border-color: #fdd835;
+    color: black;
+}
+.favorite:hover{
+    background-color: #fbc02d;
+}
+@media only screen and (prefers-color-scheme: dark){
+    .favorite:hover{
+        background-color: #ffeb3b;
+    }
+}
+
+.share{
+    background-color: #757575;
+    border-color: #757575;
+    color:white;
+}
+.share:hover{
+    background-color: #616161;
+}
+@media only screen and (prefers-color-scheme: dark){
+    .share:hover{
+        background-color: #9e9e9e;
+    }
+}
