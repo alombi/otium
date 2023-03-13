@@ -1,19 +1,17 @@
 <script>
-   export let id, DB, friends, title, totalPages, userID;
-   import { addToBookshelf, removeFromBookshelf, toggleStar } from '$lib/books';
-   import { isAdded, bookshelfTag, isStarred, progress, pagesRead } from '$lib/stores.js';
-   import { getNotificationsContext } from 'svelte-notifications';
-   const { addNotification } = getNotificationsContext();
-   import { openModal } from 'svelte-modals'
-   import ActionsModal from './ActionsModal.svelte';
-   import SuggestModal from './SuggestModal.svelte';
-
+    export let id, DB, friends, title, totalPages, userID;
+    import { addToBookshelf, removeFromBookshelf, toggleStar } from '$lib/books';
+    import { isAdded, bookshelfTag, isStarred, progress, pagesRead } from '$lib/stores.js';
+    import ActionsModal from './ActionsModal.svelte';
+    import { Send, Star, StarOff, Tag, Trash2 } from 'lucide-svelte';
+    import SuggestModal from './SuggestModal.svelte';
+ 
     async function invokeAddToBookshelf(id, tag){
         let response = await addToBookshelf(id, tag, $isStarred, userID)
         if(response){
             alert(response.message)
         }else{
-            addNotification({text:'Done!', position:'bottom-right', type:'success', removeAfter: '2000'})
+            // addNotification({text:'Done!', position:'bottom-right', type:'success', removeAfter: '2000'})
             isAdded.set(true)
             bookshelfTag.set('unset')
             DB = true
@@ -24,7 +22,7 @@
         if(response){
             alert(response.message)
         }else{
-            addNotification({text:'Done!', position:'bottom-right', type:'success', removeAfter: '2000'})
+            // addNotification({text:'Done!', position:'bottom-right', type:'success', removeAfter: '2000'})
             isAdded.set(false)
             bookshelfTag.set(undefined)
             DB = false
@@ -35,40 +33,44 @@
         if(response){
             alert(response.message)
         }else{
-            addNotification({text:'Done!', position:'bottom-right', type:'success', removeAfter: '2000'})
+            // addNotification({text:'Done!', position:'bottom-right', type:'success', removeAfter: '2000'})
             isStarred.set(!$isStarred)
         }
     }
-
+ 
     function invokeSuggest(id){
-        openModal(SuggestModal, { title: "Suggest book", friends:friends, bookTitle:title, type:'suggestion', userID: userID })
+        // openModal(SuggestModal, { title: "Suggest book", friends:friends, bookTitle:title, type:'suggestion', userID: userID })
+        const dialog = document.querySelector('#suggestModal');
+        dialog.setAttribute("open", "true")
     }
     function openActionsModal(){
-        openModal(ActionsModal, { tag: $bookshelfTag, userID:userID, id:id, totalPages:totalPages })
+        const dialog = document.querySelector('#actionsModal');
+        dialog.setAttribute("open", "true")
     }
-</script>
-
+ </script>
+ 
 <div id="buttons_grid_container">
-   <div class="buttons-container">
-   <button on:click={invokeSuggest(id)} class="book-actions share floating desktop"><i class="fa-solid fa-share-from-square"></i> Suggest to a friend</button>
-   <button on:click={invokeSuggest(id)} class="book-actions share mobile"><i class="fa-solid fa-share-from-square"></i> Suggest to a friend</button>
+    <div class="grid">
+    <button on:click={invokeSuggest(id)} class="book-actions share"><span class="text-icon"><Send /></span> Suggest to a friend</button>
     {#if DB}
-        <button class="book-actions edit" on:click={openActionsModal}><i class="fa-solid fa-tag"></i> Edit tag</button>
+        <button class="book-actions edit" on:click={openActionsModal}><span class="text-icon"><Tag /></span> Edit tag</button>
         {#if $isStarred == false}
-            <button class="book-actions favorite" on:click={invokeToggleStar(id)}><i class="fa-regular fa-star"></i> Star as favorite</button>
+            <button class="book-actions favorite" on:click={invokeToggleStar(id)}><span class="text-icon"><Star /></span> Star as favorite</button>
         {/if}
         {#if $isStarred == true}
-            <button class="book-actions favorite" on:click={invokeToggleStar(id)}><i class="fa-regular fa-star"></i> Unstar</button>
+            <button class="book-actions favorite" on:click={invokeToggleStar(id)}><span class="text-icon"><StarOff /></span> Unstar</button>
         {/if}
-        <button class="book-actions remove" on:click={invokeRemoveFromBookshelf(id)}><i class="fas fa-trash-alt"></i> Remove book</button>
+        <button class="book-actions remove" on:click={invokeRemoveFromBookshelf(id)}><span class="text-icon"><Trash2 /></span> Remove book</button>
     {:else}
         <button class="book-actions add" on:click={invokeAddToBookshelf(id, 'unset')}><i class="fas fa-plus"></i> Add to bookshelf</button>
     {/if}
-   </div>
+    </div>
 </div>
+<ActionsModal tag={$bookshelfTag} {userID} {id} {totalPages} />
+<SuggestModal {friends} {userID} bookTitle={title}/>
 
-<style>
-    .special{
-        margin-bottom:10px;
-    }
-</style>
+ <style>
+     .special{
+         margin-bottom:10px;
+     }
+ </style>
