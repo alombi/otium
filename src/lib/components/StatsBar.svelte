@@ -18,12 +18,12 @@
    }
    @media(max-width:550px){
       #tag_container{
-         display:grid;
-         grid-template-columns: repeat(3, 32%);
+         display: flex;
+         flex-wrap: wrap;
       }
-      #tag_container > p:last-child{
+      /* #tag_container > p:last-child{
          width:75%
-      }
+      } */
       #tag_container > p:nth-child(4), #tag_container > p:nth-child(5){
          margin-top:-12px;
       }
