@@ -4,9 +4,9 @@
     import { browser } from "$app/environment";
     export let data;
 	$: ({ results, query } = data);
-    if(data.results.length == 0 && browser){
-        document.getElementsByClassName('footer')[0].style.display = 'none';
-    }
+    // if(data.results.length == 0 && browser){
+    //     document.getElementsByClassName('footer')[0].style.display = 'none';
+    // }
 </script>
 
 <svelte:head>
