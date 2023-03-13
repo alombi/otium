@@ -41,7 +41,9 @@
         </form>
     </li>
     {:else}
+    <li>
       <a class="button" role="button" href="/">Log in</a>
+    </li>
     {/if}
   </ul>
 </nav>
