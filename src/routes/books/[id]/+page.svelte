@@ -116,7 +116,7 @@
         margin-bottom:10px
     }
     .progress{
-        padding-top: 0px;
+        padding-top: 10px;
         width: 35%;
         margin: auto;
     }
@@ -135,5 +135,11 @@
         margin-left: auto;
         margin-right: auto;
         height: 50%;
+    }
+    @media only screen and (max-width: 600px) {
+        .progress{
+            width: 80%;
+
+        }
     }
 </style>
