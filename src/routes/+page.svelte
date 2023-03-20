@@ -16,11 +16,15 @@
 {#if $page.data.session}
     <Search />
     <h1>Welcome back {username}</h1>
-    <FirstBook {firstBook} />
-    <h3>More readings</h3>
-    <div class="grid">
-       <BookList {bookshelf} />
-    </div>
+    {#if firstBook}
+        <FirstBook {firstBook} />
+        <h3>More readings</h3>
+        <div class="grid">
+        <BookList {bookshelf} />
+        </div>
+    {:else}
+        <p>You're not reading any books at the moment.</p>
+    {/if}
 {:else}
     <h1>Login</h1>
     {#if form?.error}
