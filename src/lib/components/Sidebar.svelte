@@ -18,7 +18,7 @@
             <li><h6>Sections</h6></li>
             <li><a on:click={() => sidebarOpen = !sidebarOpen} href="/"><span class="text-icon"><Home size=19/></span>Home</a></li>
             <li><a  on:click={() => sidebarOpen = !sidebarOpen} href="/profile"><span class="text-icon"><User size=19/></span>Profile</a></li>
-            <!-- <li><a on:click={() => sidebarOpen = !sidebarOpen} href="/">Reading flow</a></li> -->
+            <!-- <li><a on:click={() => sidebarOpen = !sidebarOpen} href="/reading-flows"><span class="text-icon"><User size=19/>Reading flows</a></li> -->
             <li><a on:click={() => {sidebarOpen = !sidebarOpen; window.location.href = '/bookshelf/favorites'}} href="/bookshelf/favorites"><span class="text-icon"><Star size=19/></span>Favorites</a></li>
             <li><a on:click={() => bookshelfClosed = !bookshelfClosed} href="#"><span class="text-icon"><Library size=19/></span>Bookshelf</a></li>
             <ul class:bookshelfClosed>
@@ -31,7 +31,7 @@
         </ul>
             <ul class="sidebar-links">
                 <li><h6>About</h6></li>
-                <li><a on:click={() => sidebarOpen = !sidebarOpen} href="/release_notes"><span class="text-icon"><GitCommit size=19/></span>What's new</a></li>
+                <li><a on:click={() => sidebarOpen = !sidebarOpen} href="/release-notes"><span class="text-icon"><GitCommit size=19/></span>What's new</a></li>
                 <li><a on:click={() => sidebarOpen = !sidebarOpen} href="https://github.com/alombi/otium"><span class="text-icon"><Github size=19/></span>Source</a></li>
             </ul>
     </aside>
